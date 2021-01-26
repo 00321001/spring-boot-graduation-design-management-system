@@ -1,0 +1,30 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    url: jdbc:mysql://49.232.20.143:3306/bsglxt?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC&allowMultiQueries=true
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: Yty350804201
+  thymeleaf:
+    prefix:
+      classpath: /templates/
+  #静态资源访问路径：用于告诉Spring Boot应该在何处查找静态资源文件,查找文件时会依赖于配置的先后顺序依次进行
+  mvc:
+    static-path-pattern: /static/**
+
+
+
+
+mybatis:
+  mapper-locations: classpath:mapping/*.xml
+  type-aliases-package: cn.zcbigdata.mybits_demo.entity
+
+#showSql
+logging:
+  level:
+    com:
+      example:
+        mapper: debug
+

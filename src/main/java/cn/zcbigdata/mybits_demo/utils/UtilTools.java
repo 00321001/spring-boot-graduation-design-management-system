@@ -24,12 +24,16 @@ public class UtilTools {
     /**
      * 用于检查是否登录的方法
      * @param session 一个HttpSession对象
-     * @param type 期望的用户类型：管理员-admin；教师-teacher；学生-student
+     * @param type 期望的用户类型：管理员-0；教师-1；学生-2
      * @return 用户已经登录返回true，否则返回false
      */
-    public static boolean checkLogin(HttpSession session, String type) {
+    public static boolean checkLogin(HttpSession session, int type) {
         String useridStr = (String) session.getAttribute("userid");
-        return useridStr != null && useridStr.length() > 0;
+        String userTypeStr = (String) session.getAttribute("userType");
+        if(useridStr == null || userTypeStr == null){
+            return false;
+        }
+        return Integer.parseInt(userTypeStr) == type;
     }
 
     /**

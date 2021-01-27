@@ -205,7 +205,7 @@ public class TeacherController {
     @ResponseBody
     String selectTeacherById(HttpServletRequest request) {
         HttpSession session = request.getSession();
-        if (!(UtilTools.checkLogin(session, 0) || UtilTools.checkLogin(session, 1))) {
+        if (!(UtilTools.checkLogin(session, 4))) {
             return UtilTools.NO_LOGIN_RETURN_JSON;
         }
         String teacheridStr = request.getParameter("teacherid");

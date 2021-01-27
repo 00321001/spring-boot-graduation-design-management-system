@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.zcbigdata.mybits_demo.mapper.NoticeMapper">
+
+    <resultMap id="BaseResultMap" type="cn.zcbigdata.mybits_demo.entity.Notice">
+        <result column="id" jdbcType="INTEGER" property="id"/>
+        <result column="content" jdbcType="VARCHAR" property="content"/>
+        <result column="userid" jdbcType="INTEGER" property="userid"/>
+        <result column="flag" jdbcType="INTEGER" property="flag"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,content,userid,flag
+    </sql>
+
+    <insert id="adminAddNotice" parameterType="cn.zcbigdata.mybits_demo.entity.Notice">
+        INSERT INTO notice (content,userid,flag)
+        VALUES (#{content}, #{userid}, #{flag});
+    </insert>
+
+    <update id="adminUpdateNotice" parameterType="cn.zcbigdata.mybits_demo.entity.Notice">
+        UPDATE notice
+        SET content = #{content}
+        WHERE id = #{id};
+    </update>
+
+    <delete id="adminDeleteNotice" parameterType="java.lang.Integer">
+        DELETE
+        FROM notice
+        WHERE id = #{id};
+    </delete>
+
+    <select id="selectAdminNotice" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        id,content
+        from notice
+        where flag = 0
+        limit #{param1},#{param2};
+    </select>
+
+    <select id="selectAdminNoticeCount" resultType="java.lang.Integer">
+        select count(*)
+        from notice
+        where flag = 0;
+    </select>
+
+</mapper>

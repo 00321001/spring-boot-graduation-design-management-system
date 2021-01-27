@@ -13,18 +13,18 @@
         id,content,userid,flag
     </sql>
 
-    <insert id="adminAddNotice" parameterType="cn.zcbigdata.mybits_demo.entity.Notice">
+    <insert id="addNotice" parameterType="cn.zcbigdata.mybits_demo.entity.Notice">
         INSERT INTO notice (content,userid,flag)
         VALUES (#{content}, #{userid}, #{flag});
     </insert>
 
-    <update id="adminUpdateNotice" parameterType="cn.zcbigdata.mybits_demo.entity.Notice">
+    <update id="updateNotice" parameterType="cn.zcbigdata.mybits_demo.entity.Notice">
         UPDATE notice
         SET content = #{content}
         WHERE id = #{id};
     </update>
 
-    <delete id="adminDeleteNotice" parameterType="java.lang.Integer">
+    <delete id="deleteNotice" parameterType="java.lang.Integer">
         DELETE
         FROM notice
         WHERE id = #{id};
@@ -38,10 +38,24 @@
         limit #{param1},#{param2};
     </select>
 
+    <select id="selectTeacherNotice" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        id,content
+        from notice
+        where flag = 1
+        limit #{param1},#{param2};
+    </select>
+
     <select id="selectAdminNoticeCount" resultType="java.lang.Integer">
         select count(*)
         from notice
         where flag = 0;
+    </select>
+
+    <select id="selectTeacherNoticeCount" resultType="java.lang.Integer">
+        select count(*)
+        from notice
+        where flag = 1;
     </select>
 
 </mapper>

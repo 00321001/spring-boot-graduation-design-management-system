@@ -15,18 +15,18 @@ public class INoticeServiceImpl implements INoticeService {
     private NoticeMapper noticeMapper;
 
     @Override
-    public int adminAddNotice(Notice notice) {
-        return this.noticeMapper.adminAddNotice(notice);
+    public int addNotice(Notice notice) {
+        return this.noticeMapper.addNotice(notice);
     }
 
     @Override
-    public int adminUpdateNotice(Notice notice) {
-        return this.noticeMapper.adminUpdateNotice(notice);
+    public int updateNotice(Notice notice) {
+        return this.noticeMapper.updateNotice(notice);
     }
 
     @Override
-    public int adminDeleteNotice(int id) {
-        return this.noticeMapper.adminDeleteNotice(id);
+    public int deleteNotice(int id) {
+        return this.noticeMapper.deleteNotice(id);
     }
 
     @Override
@@ -38,6 +38,17 @@ public class INoticeServiceImpl implements INoticeService {
     @Override
     public int selectAdminNoticeCount() {
         return this.noticeMapper.selectAdminNoticeCount();
+    }
+
+    @Override
+    public List<Notice> selectTeacherNotice(int page, int limit) {
+        int pageIndex = (page - 1) * limit;
+        return this.noticeMapper.selectTeacherNotice(pageIndex, limit);
+    }
+
+    @Override
+    public int selectTeacherNoticeCount() {
+        return this.noticeMapper.selectTeacherNoticeCount();
     }
 
 }

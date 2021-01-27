@@ -38,7 +38,7 @@ public class TeacherController {
      */
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     @ResponseBody
-    String teacherLogin(HttpServletRequest request) {
+    public String teacherLogin(HttpServletRequest request) {
         String userName = request.getParameter("userName");
         String password = request.getParameter("password");
         logger.info("userName：" + userName + "-----password：" + password);
@@ -66,7 +66,7 @@ public class TeacherController {
      */
     @RequestMapping(value = "/resetPassword", method = RequestMethod.POST)
     @ResponseBody
-    String resetPassword(HttpServletRequest request) {
+    public String resetPassword(HttpServletRequest request) {
         HttpSession session = request.getSession();
         if (!UtilTools.checkLogin(session, 1)) {
             return UtilTools.NO_LOGIN_RETURN_JSON;
@@ -97,7 +97,7 @@ public class TeacherController {
      */
     @RequestMapping(value = "/adminAddTeacher", method = RequestMethod.POST)
     @ResponseBody
-    String adminAddTeacher(HttpServletRequest request) {
+    public String adminAddTeacher(HttpServletRequest request) {
         HttpSession session = request.getSession();
         if (!UtilTools.checkLogin(session, 0)) {
             return UtilTools.NO_LOGIN_RETURN_JSON;
@@ -127,7 +127,7 @@ public class TeacherController {
      */
     @RequestMapping(value = "/adminUpdateTeacher", method = RequestMethod.POST)
     @ResponseBody
-    String adminUpdateTeacher(HttpServletRequest request) {
+    public String adminUpdateTeacher(HttpServletRequest request) {
         HttpSession session = request.getSession();
         if (!UtilTools.checkLogin(session, 0)) {
             return UtilTools.NO_LOGIN_RETURN_JSON;
@@ -161,7 +161,7 @@ public class TeacherController {
      */
     @RequestMapping(value = "/adminSelectTeacher", method = RequestMethod.GET)
     @ResponseBody
-    String adminSelectTeacher(HttpServletRequest request) {
+    public String adminSelectTeacher(HttpServletRequest request) {
         HttpSession session = request.getSession();
         if (!UtilTools.checkLogin(session, 0)) {
             return UtilTools.NO_LOGIN_RETURN_JSON;
@@ -187,7 +187,7 @@ public class TeacherController {
      */
     @RequestMapping(value = "/selectCount", method = RequestMethod.GET)
     @ResponseBody
-    String selectCount(HttpServletRequest request) {
+    public String selectCount(HttpServletRequest request) {
         HttpSession session = request.getSession();
         if (!UtilTools.checkLogin(session, 0)) {
             return UtilTools.NO_LOGIN_RETURN_JSON;
@@ -203,7 +203,7 @@ public class TeacherController {
      */
     @RequestMapping(value = "/selectTeacherById", method = RequestMethod.GET)
     @ResponseBody
-    String selectTeacherById(HttpServletRequest request) {
+    public String selectTeacherById(HttpServletRequest request) {
         HttpSession session = request.getSession();
         if (!(UtilTools.checkLogin(session, 4))) {
             return UtilTools.NO_LOGIN_RETURN_JSON;
@@ -220,4 +220,9 @@ public class TeacherController {
             return UtilTools.FAIL_RETURN_JSON;
         }
     }
+
+
+
+
+
 }

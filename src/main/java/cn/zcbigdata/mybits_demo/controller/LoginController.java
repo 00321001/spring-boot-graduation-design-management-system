@@ -21,7 +21,7 @@ public class LoginController {
      * @return 返回登录页面
      */
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    String loginPage() {
+    public String loginPage() {
         return "login";
     }
 
@@ -33,7 +33,7 @@ public class LoginController {
      */
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
     @ResponseBody
-    String logout(HttpServletRequest request) {
+    public String logout(HttpServletRequest request) {
         HttpSession session = request.getSession();
         session.invalidate();
         return UtilTools.SUCCESS_RETURN_JSON;

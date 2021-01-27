@@ -34,7 +34,7 @@ public class AdminController {
      */
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     @ResponseBody
-    String adminLogin(HttpServletRequest request) {
+    public String adminLogin(HttpServletRequest request) {
         String userName = request.getParameter("userName");
         String password = request.getParameter("password");
         logger.info("userName：" + userName + "-----password：" + password);
@@ -62,7 +62,7 @@ public class AdminController {
      */
     @RequestMapping(value = "/resetPassword", method = RequestMethod.POST)
     @ResponseBody
-    String resetPassword(HttpServletRequest request) {
+    public String resetPassword(HttpServletRequest request) {
         HttpSession session = request.getSession();
         if (!UtilTools.checkLogin(session, 0)) {
             return UtilTools.NO_LOGIN_RETURN_JSON;

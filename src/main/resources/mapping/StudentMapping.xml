@@ -18,6 +18,17 @@
           AND password = #{password};
     </select>
 
+    <!--教师添加学生-->
+    <insert id="teacherAddStudent" keyProperty="id" useGeneratedKeys="true" parameterType="cn.zcbigdata.mybits_demo.entity.Student">
+        INSERT INTO student(userName, teacherid, nickName)
+        VALUES (#{userName}, #{teacherid}, #{nickName});
+    </insert>
+
+    <!--根据id删除学生-->
+    <delete id="deleteStudentById" parameterType="java.lang.Integer">
+        DELETE FROM student WHERE id = #{id};
+    </delete>
+
     <!--根据id获取学生信息-->
     <select id="selectStudentById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
         SELECT *

@@ -16,4 +16,17 @@ public interface StudentMapper {
      */
     List<Student> selectStudentByTeacherid(Map<String, Integer> map);
 
+    /**
+     * 教师添加学生接口Mapper层方法
+     * @param student Teacher对象，存有userName、nickName、teacherid
+     * @return 受影响的行数，返回0时代表操作失败，1代表操作成功
+     */
+    Integer teacherAddStudent(Student student);
+
+    /**
+     * 根据id删除学生的Mapper层方法
+     * @param id 学生id
+     * @return 受影响行数
+     */
+    Integer deleteStudentById(Integer id);
 }

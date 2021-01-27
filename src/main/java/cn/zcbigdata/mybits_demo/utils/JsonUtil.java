@@ -5,14 +5,16 @@ import java.util.List;
 
 /**
  * Json工具类
+ *
  * @author yty
  */
 public class JsonUtil {
 
     /**
      * 将list转换为layui风格的json
+     *
      * @param fields String数组形式的字段列表
-     * @param data 传入的列表，内容需要为javaBean格式的类
+     * @param data   传入的列表，内容需要为javaBean格式的类
      * @return 返回转换好的json
      * @throws Exception 传入的字段列表或list内的对象格式不对抛出异常
      */
@@ -34,8 +36,9 @@ public class JsonUtil {
 
     /**
      * 将list转换为json
+     *
      * @param fields String数组形式的字段列表
-     * @param data 传入的列表，内容需要为javaBean格式的类
+     * @param data   传入的列表，内容需要为javaBean格式的类
      * @return 返回转换好的json
      * @throws Exception 传入的字段列表或list内的对象格式不对抛出异常
      */
@@ -57,6 +60,7 @@ public class JsonUtil {
 
     /**
      * 将javaBean对象转换为带有状态码和消息的json
+     *
      * @param fields String数组形式的字段列表
      * @param object 传入的javaBean对象
      * @return 返回转换好的json
@@ -68,6 +72,7 @@ public class JsonUtil {
 
     /**
      * 将javaBean对象转换为简单的json
+     *
      * @param fields String数组形式的字段列表
      * @param object 传入的javaBean对象
      * @return 返回转换好的json

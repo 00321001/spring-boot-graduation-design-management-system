@@ -6,6 +6,7 @@ import cn.zcbigdata.mybits_demo.service.IAdminService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.Map;
 
 /**
  * @author yty
@@ -19,5 +20,10 @@ public class IAdminServiceImpl implements IAdminService {
     @Override
     public Admin adminLogin(Admin admin) {
         return this.adminMapper.adminLogin(admin);
+    }
+
+    @Override
+    public Integer resetPassword(Map<String, String> map) {
+        return this.adminMapper.resetPassword(map);
     }
 }

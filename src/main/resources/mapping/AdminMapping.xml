@@ -23,7 +23,10 @@
     </select>
     <!--根据传入的id和password在user表中插入新条目-->
     <update id="resetPassword" parameterType="Map">
-        UPDATE admin SET password = #{newPassword} WHERE id = #{id} AND password = #{oldPassword};
+        UPDATE admin
+        SET password = #{newPassword}
+        WHERE id = #{id}
+          AND password = #{oldPassword};
     </update>
 
 </mapper>

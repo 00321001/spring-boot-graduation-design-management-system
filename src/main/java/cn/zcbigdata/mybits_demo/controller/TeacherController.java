@@ -1,8 +1,6 @@
 package cn.zcbigdata.mybits_demo.controller;
 
-import cn.zcbigdata.mybits_demo.entity.Admin;
 import cn.zcbigdata.mybits_demo.entity.Teacher;
-import cn.zcbigdata.mybits_demo.service.IAdminService;
 import cn.zcbigdata.mybits_demo.service.ITeacherService;
 import cn.zcbigdata.mybits_demo.utils.JsonUtil;
 import cn.zcbigdata.mybits_demo.utils.UtilTools;
@@ -105,7 +103,7 @@ public class TeacherController {
         String userName = request.getParameter("userName");
         String nickName = request.getParameter("nickName");
         logger.info("userName：" + userName + "-----nickName：" + nickName);
-        if(!UtilTools.checkNull(new String[]{userName, nickName})){
+        if (!UtilTools.checkNull(new String[]{userName, nickName})) {
             return UtilTools.IS_NULL_RETURN_JSON;
         }
         Teacher teacher = new Teacher();
@@ -120,7 +118,7 @@ public class TeacherController {
     }
 
     /**
-     * 管理员修改教师接口Controller层实现，需要前台传回教师id:teacherid；用户名：userName；密码：password；昵称：nickName
+     * 管理员修改教师接口Controller层实现，需要前台传回教师id:id；用户名：userName；密码：password；昵称：nickName
      *
      * @param request HttpServletRequest
      * @return 提示是否成功的json
@@ -132,12 +130,12 @@ public class TeacherController {
         if (!UtilTools.checkLogin(session, 0)) {
             return UtilTools.NO_LOGIN_RETURN_JSON;
         }
-        String teacheridStr = request.getParameter("teacherid");
+        String teacheridStr = request.getParameter("id");
         String userName = request.getParameter("userName");
         String password = request.getParameter("password");
         String nickName = request.getParameter("nickName");
         logger.info("teacherid：" + teacheridStr + "-----userName：" + userName + "-----password：" + password + "-----nickName：" + nickName);
-        if(!UtilTools.checkNull(new String[]{userName, password, nickName, teacheridStr})){
+        if (!UtilTools.checkNull(new String[]{userName, password, nickName, teacheridStr})) {
             return UtilTools.IS_NULL_RETURN_JSON;
         }
         Teacher teacher = new Teacher();
@@ -168,13 +166,13 @@ public class TeacherController {
         }
         String pageStr = request.getParameter("page");
         String limitStr = request.getParameter(("limit"));
-        if(!UtilTools.checkNull(new String[]{pageStr, limitStr})){
+        if (!UtilTools.checkNull(new String[]{pageStr, limitStr})) {
             return UtilTools.IS_NULL_RETURN_JSON;
         }
         List<Teacher> teachers = this.teacherService.selectAll(Integer.valueOf(pageStr.trim()), Integer.valueOf(limitStr.trim()));
-        try{
+        try {
             return JsonUtil.listToLayJson(new String[]{"id", "userName", "password", "nickName"}, teachers);
-        }catch (Exception e){
+        } catch (Exception e) {
             logger.error(e.getStackTrace());
             return UtilTools.FAIL_RETURN_JSON;
         }
@@ -182,6 +180,7 @@ public class TeacherController {
 
     /**
      * 管理员查询教师总数接口Controller层实现，无需入参
+     *
      * @param request HttpServletRequest
      * @return 包含总数count的json
      */
@@ -197,7 +196,8 @@ public class TeacherController {
     }
 
     /**
-     * 根据id查询教师信息接口Controller层实现，需要前台传入教师id：teacherid
+     * 根据id查询教师信息接口Controller层实现，需要前台传入教师id：id
+     *
      * @param request HttpServletRequest
      * @return 包含教师信息的json
      */
@@ -208,21 +208,18 @@ public class TeacherController {
         if (!(UtilTools.checkLogin(session, 4))) {
             return UtilTools.NO_LOGIN_RETURN_JSON;
         }
-        String teacheridStr = request.getParameter("teacherid");
-        if(!UtilTools.checkNull(new String[]{teacheridStr})){
+        String teacheridStr = request.getParameter("id");
+        if (!UtilTools.checkNull(new String[]{teacheridStr})) {
             return UtilTools.IS_NULL_RETURN_JSON;
         }
         Teacher teacher = this.teacherService.selectTeacherById(Integer.valueOf(teacheridStr.trim()));
-        try{
+        try {
             return JsonUtil.objectToJson(new String[]{"id", "userName", "password", "nickName"}, teacher);
-        }catch (Exception e){
+        } catch (Exception e) {
             logger.error(e.getStackTrace());
             return UtilTools.FAIL_RETURN_JSON;
         }
     }
-
-
-
 
 
 }

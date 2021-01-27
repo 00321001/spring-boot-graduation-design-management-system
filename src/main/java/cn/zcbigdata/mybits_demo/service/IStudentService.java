@@ -37,4 +37,20 @@ public interface IStudentService {
      * @return 一个Map，存放有code：状态码；msg：提示信息
      */
     Map<String, String> teacherAddStudentsUseXml(Integer teacherid, byte[] file, String filePath);
+
+    /**
+     * 根据id修改学生信息的Service层方法
+     *
+     * @param student Student对象。存有id、userName、password、nickName
+     * @return 受影响行数
+     */
+    Integer teacherUpdateStudentById(Student student);
+
+    /**
+     * 根据id获取学生信息的Service层方法
+     *
+     * @param studentid 学生id
+     * @return 查询到的Student对象
+     */
+    Student selectStudentById(Integer studentid);
 }

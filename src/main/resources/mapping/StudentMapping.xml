@@ -19,14 +19,17 @@
     </select>
 
     <!--教师添加学生-->
-    <insert id="teacherAddStudent" keyProperty="id" useGeneratedKeys="true" parameterType="cn.zcbigdata.mybits_demo.entity.Student">
+    <insert id="teacherAddStudent" keyProperty="id" useGeneratedKeys="true"
+            parameterType="cn.zcbigdata.mybits_demo.entity.Student">
         INSERT INTO student(userName, teacherid, nickName)
         VALUES (#{userName}, #{teacherid}, #{nickName});
     </insert>
 
     <!--根据id删除学生-->
     <delete id="deleteStudentById" parameterType="java.lang.Integer">
-        DELETE FROM student WHERE id = #{id};
+        DELETE
+        FROM student
+        WHERE id = #{id};
     </delete>
 
     <!--根据id获取学生信息-->
@@ -51,5 +54,14 @@
         WHERE teacherid = #{teacherid}
         LIMIT #{startIndex}, #{pageSize};
     </select>
+
+    <!--教师修改学生信息信息-->
+    <update id="teacherUpdateStudentById" parameterType="cn.zcbigdata.mybits_demo.entity.Teacher">
+        UPDATE student
+        SET userName = #{userName},
+            password = #{password},
+            nickName = #{nickName}
+        WHERE id = #{id};
+    </update>
 
 </mapper>

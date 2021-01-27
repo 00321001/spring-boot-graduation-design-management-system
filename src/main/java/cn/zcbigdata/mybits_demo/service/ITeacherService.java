@@ -27,6 +27,7 @@ public interface ITeacherService {
 
     /**
      * 管理员添加教师接口Service层方法
+     *
      * @param teacher Teacher对象，存有userName、nickName
      * @return 受影响的行数，返回0时代表操作失败，1代表操作成功
      */
@@ -34,6 +35,7 @@ public interface ITeacherService {
 
     /**
      * 管理员修改教师信息接口的Service层方法
+     *
      * @param teacher Teacher对象，存有id、userName、password、nickName
      * @return 受影响的行数，返回0时代表操作失败，1代表操作成功
      */
@@ -41,6 +43,7 @@ public interface ITeacherService {
 
     /**
      * 根据id查询教师信息接口Service层方法
+     *
      * @param id 教师id
      * @return id对应的Teacher对象
      */
@@ -48,7 +51,8 @@ public interface ITeacherService {
 
     /**
      * 查询所有教师信息的Service层方法，用于分页查询
-     * @param page 当前页码
+     *
+     * @param page     当前页码
      * @param pageSize 每页多少数据
      * @return 一个List，内存有若干Teacher对象
      */
@@ -56,6 +60,7 @@ public interface ITeacherService {
 
     /**
      * 查询教师总数的Service层方法，用于分页查询
+     *
      * @return 返回教师总数
      */
     Integer selectCount();

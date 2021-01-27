@@ -24,6 +24,13 @@ public class NoticeController {
     @Resource
     private INoticeService noticeService;
 
+
+    /**
+     * 管理员和教师添加公告的controller层
+     *
+     * @param request HttpServletRequest
+     * @return 提示是否成功的json
+     */
     @RequestMapping(value = "/addNotice", method = RequestMethod.GET)
     @ResponseBody
     String addNotice(HttpServletRequest request) {
@@ -43,6 +50,12 @@ public class NoticeController {
         return UtilTools.SUCCESS_RETURN_JSON;
     }
 
+    /**
+     * 管理员和教师修改公告的controller层
+     *
+     * @param request HttpServletRequest
+     * @return 提示是否成功的json
+     */
     @RequestMapping(value = "/updateNotice", method = RequestMethod.GET)
     @ResponseBody
     String updateNotice(HttpServletRequest request) {
@@ -62,6 +75,12 @@ public class NoticeController {
         return UtilTools.SUCCESS_RETURN_JSON;
     }
 
+    /**
+     * 管理员和教师删除公告的controller层
+     *
+     * @param request HttpServletRequest
+     * @return 提示是否成功的json
+     */
     @RequestMapping(value = "/deleteNotice", method = RequestMethod.GET)
     @ResponseBody
     String deleteNotice(HttpServletRequest request) {
@@ -77,6 +96,12 @@ public class NoticeController {
         return UtilTools.SUCCESS_RETURN_JSON;
     }
 
+    /**
+     * 查询管理员公告的controller层
+     *
+     * @param request HttpServletRequest
+     * @return 提示是否成功的json
+     */
     @ResponseBody
     @RequestMapping(value = "/selectAdminNotice", method = RequestMethod.GET, produces = "text/plain;charset=utf-8")
     public String selectAdminNotice(HttpServletRequest request) throws Exception {
@@ -95,6 +120,12 @@ public class NoticeController {
         return JsonUtil.listToLayJson(colums, notices);
     }
 
+    /**
+     * 查询教师公告的controller层
+     *
+     * @param request HttpServletRequest
+     * @return 提示是否成功的json
+     */
     @ResponseBody
     @RequestMapping(value = "/selectTeacherNotice", method = RequestMethod.GET, produces = "text/plain;charset=utf-8")
     public String selectTeacherNotice(HttpServletRequest request) throws Exception {
@@ -113,6 +144,12 @@ public class NoticeController {
         return JsonUtil.listToLayJson(colums, notices);
     }
 
+    /**
+     * 查询管理员公告数量的controller层
+     *
+     * @param request HttpServletRequest
+     * @return 提示是否成功的json
+     */
     @ResponseBody
     @RequestMapping(value = "/selectAdminNoticeCount", method = RequestMethod.GET, produces = "text/plain;charset=utf-8")
     public String selectAdminNoticeCount(HttpServletRequest request) {
@@ -125,6 +162,12 @@ public class NoticeController {
         return "{\"code\":\"0000\",\"msg\":\"操作成功\",\"count\":\"" + data + "\"}";
     }
 
+    /**
+     * 查询教师公告数量的controller层
+     *
+     * @param request HttpServletRequest
+     * @return 提示是否成功的json
+     */
     @ResponseBody
     @RequestMapping(value = "/selectTeacherNoticeCount", method = RequestMethod.GET, produces = "text/plain;charset=utf-8")
     public String selectTeacherNoticeCount(HttpServletRequest request) {

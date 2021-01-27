@@ -13,23 +13,27 @@
         id,content,userid,flag
     </sql>
 
+    <!--管理员和教师公用添加公告接口-->
     <insert id="addNotice" parameterType="cn.zcbigdata.mybits_demo.entity.Notice">
         INSERT INTO notice (content,userid,flag)
         VALUES (#{content}, #{userid}, #{flag});
     </insert>
 
+    <!--管理员和教师公用修改公告接口-->
     <update id="updateNotice" parameterType="cn.zcbigdata.mybits_demo.entity.Notice">
         UPDATE notice
         SET content = #{content}
         WHERE id = #{id};
     </update>
 
+    <!--管理员和教师公用删除公告接口-->
     <delete id="deleteNotice" parameterType="java.lang.Integer">
         DELETE
         FROM notice
         WHERE id = #{id};
     </delete>
 
+    <!--查询管理员公告接口-->
     <select id="selectAdminNotice" resultMap="BaseResultMap" parameterType="java.lang.Integer">
         select
         id,content
@@ -38,6 +42,7 @@
         limit #{param1},#{param2};
     </select>
 
+    <!--查询教师公告接口-->
     <select id="selectTeacherNotice" resultMap="BaseResultMap" parameterType="java.lang.Integer">
         select
         id,content
@@ -46,12 +51,14 @@
         limit #{param1},#{param2};
     </select>
 
+    <!--查询管理员公告数量接口-->
     <select id="selectAdminNoticeCount" resultType="java.lang.Integer">
         select count(*)
         from notice
         where flag = 0;
     </select>
 
+    <!--查询教师公告数量接口-->
     <select id="selectTeacherNoticeCount" resultType="java.lang.Integer">
         select count(*)
         from notice

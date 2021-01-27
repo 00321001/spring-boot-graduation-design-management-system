@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.zcbigdata.mybits_demo.mapper.TitleMapper">
+
+        <resultMap id="BaseResultMap" type="cn.zcbigdata.mybits_demo.entity.Title">
+        <result column="id" jdbcType="INTEGER" property="id"/>
+        <result column="teacherid" jdbcType="INTEGER" property="teacherid"/>
+        <result column="title" jdbcType="VARCHAR" property="title"/>
+        <result column="flag" jdbcType="INTEGER" property="flag"/>
+        <result column="studentid" jdbcType="INTEGER" property="studentid"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,teacherid,title,flag,studentid
+    </sql>
+
+    <!--教师添加毕设题目接口-->
+    <insert id="addTitle" parameterType="cn.zcbigdata.mybits_demo.entity.Title">
+        INSERT INTO title (teacherid,title,flag)
+        VALUES (#{teacherid}, #{title}, #{flag});
+    </insert>
+
+    <!--教师修改毕设题目接口-->
+    <update id="updateTitle" parameterType="cn.zcbigdata.mybits_demo.entity.Title">
+        UPDATE title
+        SET title = #{title}
+        WHERE id = #{id};
+    </update>
+
+    <!--通过教师id查询毕设题目接口-->
+    <select id="selectTitleById" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        id,title,flag,studentid
+        from title
+        where teacherid = #{param1}
+        limit #{param2},#{param3};
+    </select>
+
+    <!--通过教师id查询毕设题目数量接口-->
+    <select id="selectTitleCountById" resultType="java.lang.Integer">
+        select count(*)
+        from title
+        where teacherid = #{param1};
+    </select>
+
+    <!--查询教师公告数量接口-->
+    <select id="selectTeacherNoticeCount" resultType="java.lang.Integer">
+        select count(*)
+        from title
+        where flag = 1;
+    </select>
+
+</mapper>

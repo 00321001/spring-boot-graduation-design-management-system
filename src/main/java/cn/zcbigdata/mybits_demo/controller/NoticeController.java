@@ -33,9 +33,9 @@ public class NoticeController {
      */
     @RequestMapping(value = "/addNotice", method = RequestMethod.GET)
     @ResponseBody
-    String addNotice(HttpServletRequest request) {
+    public String addNotice(HttpServletRequest request) {
         HttpSession session = request.getSession();
-        if (!UtilTools.checkLogin(session, 0)) {
+        if (!UtilTools.checkLogin(session, 4)) {
             return UtilTools.NO_LOGIN_RETURN_JSON;
         }
         String content = request.getParameter("content");
@@ -58,18 +58,18 @@ public class NoticeController {
      */
     @RequestMapping(value = "/updateNotice", method = RequestMethod.GET)
     @ResponseBody
-    String updateNotice(HttpServletRequest request) {
+    public String updateNotice(HttpServletRequest request) {
         HttpSession session = request.getSession();
-        if (!UtilTools.checkLogin(session, 0)) {
+        if (!UtilTools.checkLogin(session, 4)) {
             return UtilTools.NO_LOGIN_RETURN_JSON;
         }
         String content = request.getParameter("content");
-        String idstr = request.getParameter("id");
-        if (!UtilTools.checkNull(new String[]{content,idstr})) {
+        String idStr = request.getParameter("id");
+        if (!UtilTools.checkNull(new String[]{content,idStr})) {
             return UtilTools.IS_NULL_RETURN_JSON;
         }
         Notice notice = new Notice();
-        notice.setId(Integer.valueOf(idstr));
+        notice.setId(Integer.valueOf(idStr));
         notice.setContent(content);
         noticeService.updateNotice(notice);
         return UtilTools.SUCCESS_RETURN_JSON;
@@ -83,16 +83,16 @@ public class NoticeController {
      */
     @RequestMapping(value = "/deleteNotice", method = RequestMethod.GET)
     @ResponseBody
-    String deleteNotice(HttpServletRequest request) {
+    public String deleteNotice(HttpServletRequest request) {
         HttpSession session = request.getSession();
-        if (!UtilTools.checkLogin(session, 0)) {
+        if (!UtilTools.checkLogin(session, 4)) {
             return UtilTools.NO_LOGIN_RETURN_JSON;
         }
-        String idstr = request.getParameter("id");
-        if (!UtilTools.checkNull(new String[]{idstr})) {
+        String idStr = request.getParameter("id");
+        if (!UtilTools.checkNull(new String[]{idStr})) {
             return UtilTools.IS_NULL_RETURN_JSON;
         }
-        noticeService.deleteNotice(Integer.valueOf(idstr));
+        noticeService.deleteNotice(Integer.parseInt(idStr));
         return UtilTools.SUCCESS_RETURN_JSON;
     }
 
@@ -107,7 +107,7 @@ public class NoticeController {
     public String selectAdminNotice(HttpServletRequest request) throws Exception {
         request.setCharacterEncoding("utf-8");
         HttpSession session = request.getSession();
-        if (!UtilTools.checkLogin(session, 0)) {
+        if (!UtilTools.checkLogin(session, 4)) {
             return UtilTools.NO_LOGIN_RETURN_JSON;
         }
         String pageString = request.getParameter("page");
@@ -115,7 +115,7 @@ public class NoticeController {
         if (!UtilTools.checkNull(new String[]{pageString,limitString})) {
             return UtilTools.IS_NULL_RETURN_JSON;
         }
-        List<Notice> notices = noticeService.selectAdminNotice(Integer.valueOf(pageString), Integer.valueOf(limitString));
+        List<Notice> notices = noticeService.selectAdminNotice(Integer.parseInt(pageString), Integer.parseInt(limitString));
         String[] colums = {"id", "content"};
         return JsonUtil.listToLayJson(colums, notices);
     }
@@ -131,7 +131,7 @@ public class NoticeController {
     public String selectTeacherNotice(HttpServletRequest request) throws Exception {
         request.setCharacterEncoding("utf-8");
         HttpSession session = request.getSession();
-        if (!UtilTools.checkLogin(session, 0)) {
+        if (!UtilTools.checkLogin(session, 5)) {
             return UtilTools.NO_LOGIN_RETURN_JSON;
         }
         String pageString = request.getParameter("page");
@@ -139,7 +139,7 @@ public class NoticeController {
         if (!UtilTools.checkNull(new String[]{pageString,limitString})) {
             return UtilTools.IS_NULL_RETURN_JSON;
         }
-        List<Notice> notices = noticeService.selectTeacherNotice(Integer.valueOf(pageString), Integer.valueOf(limitString));
+        List<Notice> notices = noticeService.selectTeacherNotice(Integer.parseInt(pageString), Integer.parseInt(limitString));
         String[] colums = {"id", "content"};
         return JsonUtil.listToLayJson(colums, notices);
     }
@@ -154,7 +154,7 @@ public class NoticeController {
     @RequestMapping(value = "/selectAdminNoticeCount", method = RequestMethod.GET, produces = "text/plain;charset=utf-8")
     public String selectAdminNoticeCount(HttpServletRequest request) {
         HttpSession session = request.getSession();
-        if (!UtilTools.checkLogin(session, 0)) {
+        if (!UtilTools.checkLogin(session, 4)) {
             return UtilTools.NO_LOGIN_RETURN_JSON;
         }
         int count = noticeService.selectAdminNoticeCount();
@@ -172,7 +172,7 @@ public class NoticeController {
     @RequestMapping(value = "/selectTeacherNoticeCount", method = RequestMethod.GET, produces = "text/plain;charset=utf-8")
     public String selectTeacherNoticeCount(HttpServletRequest request) {
         HttpSession session = request.getSession();
-        if (!UtilTools.checkLogin(session, 0)) {
+        if (!UtilTools.checkLogin(session, 5)) {
             return UtilTools.NO_LOGIN_RETURN_JSON;
         }
         int count = noticeService.selectTeacherNoticeCount();

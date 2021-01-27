@@ -44,7 +44,7 @@ public class UtilTools {
      * 用于检查是否登录的方法
      *
      * @param session 一个HttpSession对象
-     * @param type    期望的用户类型：管理员-0；教师-1；学生-2
+     * @param type    期望的用户类型：0-管理员；1-教师；2-学生；3-所有登录用户；4-管理员+教师；5-教师+学生；6-管理员+学生
      * @return 用户已经登录返回true，否则返回false
      */
     public static boolean checkLogin(HttpSession session, int type) {
@@ -53,7 +53,23 @@ public class UtilTools {
         if (useridStr == null || userTypeStr == null) {
             return false;
         }
-        return Integer.parseInt(userTypeStr) == type;
+        switch (type) {
+            case 0:
+            case 1:
+            case 2:
+                return Integer.parseInt(userTypeStr) == type;
+            case 3:
+                return true;
+            case 4:
+                return (Integer.parseInt(userTypeStr) == 0 || Integer.parseInt(userTypeStr) == 1);
+            case 5:
+                return (Integer.parseInt(userTypeStr) == 1 || Integer.parseInt(userTypeStr) == 2);
+            case 6:
+                return (Integer.parseInt(userTypeStr) == 0 || Integer.parseInt(userTypeStr) == 2);
+            default:
+                return false;
+        }
+
     }
 
 }

@@ -2,6 +2,7 @@ package cn.zcbigdata.mybits_demo.service;
 
 import cn.zcbigdata.mybits_demo.entity.Teacher;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -23,4 +24,40 @@ public interface ITeacherService {
      * @return 受影响的行数，返回0时代表操作失败，1代表操作成功
      */
     Integer resetPassword(Map<String, String> map);
+
+    /**
+     * 管理员添加教师接口Service层方法
+     * @param teacher Teacher对象，存有userName、nickName
+     * @return 受影响的行数，返回0时代表操作失败，1代表操作成功
+     */
+    Integer adminAddTeacher(Teacher teacher);
+
+    /**
+     * 管理员修改教师信息接口的Service层方法
+     * @param teacher Teacher对象，存有id、userName、password、nickName
+     * @return 受影响的行数，返回0时代表操作失败，1代表操作成功
+     */
+    Integer adminUpdateTeacher(Teacher teacher);
+
+    /**
+     * 根据id查询教师信息接口Service层方法
+     * @param id 教师id
+     * @return id对应的Teacher对象
+     */
+    Teacher selectTeacherById(Integer id);
+
+    /**
+     * 查询所有教师信息的Service层方法，用于分页查询
+     * @param page 当前页码
+     * @param pageSize 每页多少数据
+     * @return 一个List，内存有若干Teacher对象
+     */
+    List<Teacher> selectAll(Integer page, Integer pageSize);
+
+    /**
+     * 查询教师总数的Service层方法，用于分页查询
+     * @return 返回教师总数
+     */
+    Integer selectCount();
+
 }

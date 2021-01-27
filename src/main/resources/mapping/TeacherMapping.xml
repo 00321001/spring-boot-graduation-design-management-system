@@ -15,12 +15,14 @@
         WHERE userName = #{userName}
           AND password = #{password};
     </select>
+
     <!--根据id获取教师信息-->
     <select id="selectTeacherById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
         SELECT *
         FROM teacher
         WHERE id = #{id};
     </select>
+
     <!--根据旧密码和用户id修改密码-->
     <update id="resetPassword" parameterType="Map">
         UPDATE teacher
@@ -28,5 +30,33 @@
         WHERE id = #{id}
           AND password = #{oldPassword};
     </update>
+
+    <!--管理员添加教师-->
+    <insert id="adminAddTeacher" parameterType="cn.zcbigdata.mybits_demo.entity.Teacher">
+        INSERT INTO teacher(userName, nickName)
+        values (#{userName}, #{nickName});
+    </insert>
+
+    <!--管理员修改教师信息-->
+    <update id="adminUpdateTeacher" parameterType="cn.zcbigdata.mybits_demo.entity.Teacher">
+        UPDATE teacher
+        SET userName = #{userName},
+            password = #{password},
+            nickName = #{nickName}
+        WHERE id = #{id};
+    </update>
+
+    <!--管理员查询所有教师-->
+    <select id="selectAll" resultMap="BaseResultMap" parameterType="Map">
+        SELECT *
+        FROM teacher
+        LIMIT #{startIndex}, #{pageSize};
+    </select>
+
+    <!--管理员查询教师总数-->
+    <select id="selectCount" resultType="java.lang.Integer">
+        SELECT COUNT(*)
+        FROM teacher;
+    </select>
 
 </mapper>

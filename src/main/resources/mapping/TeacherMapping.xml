@@ -6,6 +6,7 @@
         <result column="id" jdbcType="INTEGER" property="id"/>
         <result column="userName" jdbcType="VARCHAR" property="userName"/>
         <result column="password" jdbcType="VARCHAR" property="password"/>
+        <result column="nickName" jdbcType="VARCHAR" property="nickName"/>
     </resultMap>
 
     <!--根据传入的userName和password与数据库进行比对，返回Teacher对象-->

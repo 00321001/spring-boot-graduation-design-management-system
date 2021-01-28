@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.zcbigdata.mybits_demo.mapper.OpeningReportMapper">
+
+    <resultMap id="BaseResultMap" type="cn.zcbigdata.mybits_demo.entity.OpeningReport">
+        <result column="id" jdbcType="INTEGER" property="id"/>
+        <result column="content" jdbcType="VARCHAR" property="content"/>
+        <result column="comments" jdbcType="VARCHAR" property="comments"/>
+        <result column="studentid" jdbcType="INTEGER" property="studentid"/>
+        <result column="teacherid" jdbcType="INTEGER" property="teacherid"/>
+        <result column="flag" jdbcType="INTEGER" property="flag"/>
+    </resultMap>
+
+    <!--根据教师id获取开题报告-->
+    <select id="selectOpeningReportByTeacherid" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        SELECT *
+        FROM `opening-report`
+        WHERE teacherid = #{id};
+    </select>
+    <!--根据学生id查询开题报告-->
+    <select id="selectOpeningReportByStudent" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        SELECT *
+        FROM `opening-report`
+        WHERE studentid = #{id};
+    </select>
+    <!--教师审核开题报告并添加评语-->
+    <update id="reviewOpeningReport" parameterType="cn.zcbigdata.mybits_demo.entity.OpeningReport">
+        UPDATE `opening-report`
+        SET comments = #{comments},
+            flag     = #{flag}
+        WHERE id = #{id};
+    </update>
+
+    <!--根据报告id获取报告信息-->
+    <select id="selectOpeningReportById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        SELECT *
+        FROM `opening-report`
+        WHERE id = #{id};
+    </select>
+
+    <!--添加开题报告-->
+    <insert id="addOpeningReport" parameterType="cn.zcbigdata.mybits_demo.entity.OpeningReport">
+        INSERT INTO `opening-report`(content, studentid, teacherid, flag)
+        VALUES (#{content}, #{studentid}, #{teacherid}, #{flag});
+    </insert>
+
+</mapper>

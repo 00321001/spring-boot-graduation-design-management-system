@@ -29,6 +29,7 @@ public class TitleController {
      * 请求方式：GET
      * 入参：毕设题目：title；flag设置为0；teacherid从session中获取
      * 出参：提示是否成功的json
+     *
      * @param request HttpServletRequest
      * @return 提示是否成功的json
      */
@@ -56,6 +57,7 @@ public class TitleController {
      * 请求方式：GET
      * 入参：毕设题目：title；该毕设题目的id：id
      * 出参：提示是否成功的json
+     *
      * @param request HttpServletRequest
      * @return 提示是否成功的json
      */
@@ -68,7 +70,7 @@ public class TitleController {
         }
         String title = request.getParameter("title");
         String idStr = request.getParameter("id");
-        if (!UtilTools.checkNull(new String[]{title,idStr})) {
+        if (!UtilTools.checkNull(new String[]{title, idStr})) {
             return UtilTools.IS_NULL_RETURN_JSON;
         }
         Title titles = new Title();
@@ -88,6 +90,7 @@ public class TitleController {
      * ②如果该用户为学生，则可以通过搜索自己老师的id，并且看到的毕设题目都是没有被选的（flag=0，studentid=0），其他的不会被获取：
      * 入参：页码：page；数据量：limit；教师id：teacherid
      * 出参：毕设题目ID：id；毕设题目：title；标记：flag（为0）；学生id：studentid（为空）
+     *
      * @param request HttpServletRequest
      * @return 提示是否成功的json
      */
@@ -101,20 +104,20 @@ public class TitleController {
         }
         String pageString = request.getParameter("page");
         String limitString = request.getParameter("limit");
-        if (!UtilTools.checkNull(new String[]{pageString,limitString})) {
+        if (!UtilTools.checkNull(new String[]{pageString, limitString})) {
             return UtilTools.IS_NULL_RETURN_JSON;
         }
         List<Title> titles;
-        if(Integer.parseInt((String)session.getAttribute("userType")) == 2){
+        if (Integer.parseInt((String) session.getAttribute("userType")) == 2) {
             String teacheridStr = request.getParameter("teacherid");
             if (!UtilTools.checkNull(new String[]{teacheridStr})) {
                 return UtilTools.IS_NULL_RETURN_JSON;
             }
-            titles = titleService.selectNotTitleByTeacherId(Integer.parseInt(teacheridStr.trim()),Integer.parseInt(pageString.trim()), Integer.parseInt(limitString.trim()));
-        }else{
-            titles = titleService.selectTitleByTeacherId(Integer.parseInt((String)session.getAttribute("userid")),Integer.parseInt(pageString.trim()), Integer.parseInt(limitString.trim()));
+            titles = titleService.selectNotTitleByTeacherId(Integer.parseInt(teacheridStr.trim()), Integer.parseInt(pageString.trim()), Integer.parseInt(limitString.trim()));
+        } else {
+            titles = titleService.selectTitleByTeacherId(Integer.parseInt((String) session.getAttribute("userid")), Integer.parseInt(pageString.trim()), Integer.parseInt(limitString.trim()));
         }
-        String[] colums = {"id", "title","flag","studentid"};
+        String[] colums = {"id", "title", "flag", "studentid"};
         return JsonUtil.listToLayJson(colums, titles);
     }
 
@@ -122,8 +125,9 @@ public class TitleController {
      * 通过教师id查询毕设题目数量的controller层，教师查询全部题目，学生查询还没有被选的题目
      * 请求方式：GET
      * 入参：①教师端：教师id：teacherid为session中的userid
-     *      ②学生端：教师id：teacherid
+     * ②学生端：教师id：teacherid
      * 出参：提示是否成功和数据数量的json
+     *
      * @param request HttpServletRequest
      * @return 提示是否成功的json
      */
@@ -135,13 +139,13 @@ public class TitleController {
             return UtilTools.NO_LOGIN_RETURN_JSON;
         }
         int count;
-        if(Integer.parseInt((String)session.getAttribute("userType")) == 2){
+        if (Integer.parseInt((String) session.getAttribute("userType")) == 2) {
             String teacheridStr = request.getParameter("teacherid");
             if (!UtilTools.checkNull(new String[]{teacheridStr})) {
                 return UtilTools.IS_NULL_RETURN_JSON;
             }
             count = titleService.selectNotTitleCountByTeacherId(Integer.parseInt(teacheridStr.trim()));
-        }else{
+        } else {
             count = titleService.selectTitleCountByTeacherId(Integer.parseInt((String) session.getAttribute("userid")));
         }
         String data = String.valueOf(count);
@@ -153,6 +157,7 @@ public class TitleController {
      * 请求方式：GET
      * 入参：学生id：student为session中的userid
      * 出参：毕设题目id：id；毕设题目：title；教师id：teacherid
+     *
      * @param request HttpServletRequest
      * @return 提示是否成功的json
      */
@@ -165,7 +170,7 @@ public class TitleController {
             return UtilTools.NO_LOGIN_RETURN_JSON;
         }
         List<Title> titles = titleService.selectTitleByStudentId(Integer.parseInt((String) session.getAttribute("userid")));
-        String[] colums = {"id", "title","teacherid"};
+        String[] colums = {"id", "title", "teacherid"};
         return JsonUtil.listToLayJson(colums, titles);
     }
 
@@ -174,6 +179,7 @@ public class TitleController {
      * 请求方式：GET
      * 入参：学生id：studentid为session中的userid；毕设题目id：id
      * 出参：提示是否成功的json
+     *
      * @param request HttpServletRequest
      * @return 提示是否成功的json
      */
@@ -184,7 +190,7 @@ public class TitleController {
         if (!UtilTools.checkLogin(session, 2)) {
             return UtilTools.NO_LOGIN_RETURN_JSON;
         }
-        if(titleService.selectTitleCountByStudentId(Integer.parseInt((String) session.getAttribute("userid"))) > 0){
+        if (titleService.selectTitleCountByStudentId(Integer.parseInt((String) session.getAttribute("userid"))) > 0) {
             return UtilTools.FAIL_RETURN_JSON;
         }
         String idStr = request.getParameter("id");
@@ -204,6 +210,7 @@ public class TitleController {
      * 请求方式：GET
      * 入参：自拟题目：title；学生id：studentid为session中的userid；教师id：teacherid
      * 出参：提示是否成功的json
+     *
      * @param request HttpServletRequest
      * @return 提示是否成功的json
      */
@@ -214,12 +221,12 @@ public class TitleController {
         if (!UtilTools.checkLogin(session, 2)) {
             return UtilTools.NO_LOGIN_RETURN_JSON;
         }
-        if(titleService.selectTitleCountByStudentId(Integer.parseInt((String) session.getAttribute("userid"))) > 0){
+        if (titleService.selectTitleCountByStudentId(Integer.parseInt((String) session.getAttribute("userid"))) > 0) {
             return UtilTools.FAIL_RETURN_JSON;
         }
         String teacheridStr = request.getParameter("teacherid");
         String stuTitle = request.getParameter("title");
-        if (!UtilTools.checkNull(new String[]{teacheridStr,stuTitle})) {
+        if (!UtilTools.checkNull(new String[]{teacheridStr, stuTitle})) {
             return UtilTools.IS_NULL_RETURN_JSON;
         }
         Title title = new Title();
@@ -236,6 +243,7 @@ public class TitleController {
      * 请求方式：GET
      * 入参：页码：page；数据量：limit；教师id：teacherid从session中的userid中获取
      * 出参：毕设题目ID：id；毕设题目：title；标记：flag；学生id：studentid
+     *
      * @param request HttpServletRequest
      * @return 提示是否成功的json
      */
@@ -249,11 +257,11 @@ public class TitleController {
         }
         String pageString = request.getParameter("page");
         String limitString = request.getParameter("limit");
-        if (!UtilTools.checkNull(new String[]{pageString,limitString})) {
+        if (!UtilTools.checkNull(new String[]{pageString, limitString})) {
             return UtilTools.IS_NULL_RETURN_JSON;
         }
-        List<Title> titles = titleService.selectStuTitle(Integer.parseInt((String)session.getAttribute("userid")),Integer.parseInt(pageString.trim()), Integer.parseInt(limitString.trim()));
-        String[] colums = {"id", "title","flag","studentid"};
+        List<Title> titles = titleService.selectStuTitle(Integer.parseInt((String) session.getAttribute("userid")), Integer.parseInt(pageString.trim()), Integer.parseInt(limitString.trim()));
+        String[] colums = {"id", "title", "flag", "studentid"};
         return JsonUtil.listToLayJson(colums, titles);
     }
 
@@ -262,6 +270,7 @@ public class TitleController {
      * 请求方式：GET
      * 入参：教师id：teacherid为session中的userid
      * 出参：提示是否成功和数据数量的json
+     *
      * @param request HttpServletRequest
      * @return 提示是否成功的json
      */
@@ -282,6 +291,7 @@ public class TitleController {
      * 请求方式：GET
      * 入参：自拟题目id：id；标记：flag为3
      * 出参：提示是否成功的json
+     *
      * @param request HttpServletRequest
      * @return 提示是否成功的json
      */
@@ -309,6 +319,7 @@ public class TitleController {
      * 请求方式：GET
      * 入参：自拟题目id：id；标记：flag为2
      * 出参：提示是否成功的json
+     *
      * @param request HttpServletRequest
      * @return 提示是否成功的json
      */

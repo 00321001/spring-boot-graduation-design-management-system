@@ -30,6 +30,7 @@ public class NoticeController {
      * 请求方式：GET
      * 入参：公告内容：content；标记：flag为session中的userType；用户id：userid为session中的userid
      * 出参：提示是否成功的json
+     *
      * @param request HttpServletRequest
      * @return 提示是否成功的json
      */
@@ -57,6 +58,7 @@ public class NoticeController {
      * 请求方式：GET
      * 入参：公告内容：content；公告id：id
      * 出参：提示是否成功的json
+     *
      * @param request HttpServletRequest
      * @return 提示是否成功的json
      */
@@ -69,7 +71,7 @@ public class NoticeController {
         }
         String content = request.getParameter("content");
         String idStr = request.getParameter("id");
-        if (!UtilTools.checkNull(new String[]{content,idStr})) {
+        if (!UtilTools.checkNull(new String[]{content, idStr})) {
             return UtilTools.IS_NULL_RETURN_JSON;
         }
         Notice notice = new Notice();
@@ -84,6 +86,7 @@ public class NoticeController {
      * 请求方式：GET
      * 入参：公告id：id
      * 出参：提示是否成功的json
+     *
      * @param request HttpServletRequest
      * @return 提示是否成功的json
      */
@@ -107,6 +110,7 @@ public class NoticeController {
      * 请求方式：GET
      * 入参：页码：page；数据量：limit
      * 出参：公告id：id；公告内容：content
+     *
      * @param request HttpServletRequest
      * @return 提示是否成功的json
      */
@@ -120,7 +124,7 @@ public class NoticeController {
         }
         String pageString = request.getParameter("page");
         String limitString = request.getParameter("limit");
-        if (!UtilTools.checkNull(new String[]{pageString,limitString})) {
+        if (!UtilTools.checkNull(new String[]{pageString, limitString})) {
             return UtilTools.IS_NULL_RETURN_JSON;
         }
         List<Notice> notices = noticeService.selectAdminNotice(Integer.parseInt(pageString.trim()), Integer.parseInt(limitString.trim()));
@@ -133,6 +137,7 @@ public class NoticeController {
      * 请求方式：GET
      * 入参：页码：page；数据量：limit
      * 出参：公告id：id；公告内容：content
+     *
      * @param request HttpServletRequest
      * @return 提示是否成功的json
      */
@@ -146,7 +151,7 @@ public class NoticeController {
         }
         String pageString = request.getParameter("page");
         String limitString = request.getParameter("limit");
-        if (!UtilTools.checkNull(new String[]{pageString,limitString})) {
+        if (!UtilTools.checkNull(new String[]{pageString, limitString})) {
             return UtilTools.IS_NULL_RETURN_JSON;
         }
         List<Notice> notices = noticeService.selectTeacherNotice(Integer.parseInt(pageString.trim()), Integer.parseInt(limitString.trim()));
@@ -159,6 +164,7 @@ public class NoticeController {
      * 请求方式：GET
      * 入参：无
      * 出参：提示是否返回成功和数据总数量的json
+     *
      * @param request HttpServletRequest
      * @return 提示是否成功的json
      */
@@ -179,6 +185,7 @@ public class NoticeController {
      * 请求方式：GET
      * 入参：无
      * 出参：提示是否返回成功和数据总数量的json
+     *
      * @param request HttpServletRequest
      * @return 提示是否成功的json
      */

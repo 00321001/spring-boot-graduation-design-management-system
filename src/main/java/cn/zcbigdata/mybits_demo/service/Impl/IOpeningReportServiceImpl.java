@@ -74,8 +74,8 @@ public class IOpeningReportServiceImpl implements IOpeningReportService {
     @Override
     public Integer addOpeningReport(OpeningReport openingReport) {
         List<OpeningReport> openingReports = this.openingReportMapper.selectOpeningReportByStudent(openingReport.getId());
-        for (OpeningReport openingReport1:openingReports) {
-            if(openingReport1.getFlag().equals(1) || openingReport1.getFlag().equals(0)){
+        for (OpeningReport openingReport1 : openingReports) {
+            if (openingReport1.getFlag().equals(1) || openingReport1.getFlag().equals(0)) {
                 return 0;
             }
         }

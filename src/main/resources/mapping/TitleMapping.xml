@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.zcbigdata.mybits_demo.mapper.TitleMapper">
 
-        <resultMap id="BaseResultMap" type="cn.zcbigdata.mybits_demo.entity.Title">
+    <resultMap id="BaseResultMap" type="cn.zcbigdata.mybits_demo.entity.Title">
         <result column="id" jdbcType="INTEGER" property="id"/>
         <result column="teacherid" jdbcType="INTEGER" property="teacherid"/>
         <result column="title" jdbcType="VARCHAR" property="title"/>
@@ -16,7 +16,7 @@
 
     <!--教师添加毕设题目接口-->
     <insert id="addTitle" parameterType="cn.zcbigdata.mybits_demo.entity.Title">
-        INSERT INTO title (teacherid,title,flag)
+        INSERT INTO title (teacherid, title, flag)
         VALUES (#{teacherid}, #{title}, #{flag});
     </insert>
 
@@ -29,15 +29,17 @@
 
     <!--通过教师id查询毕设题目接口-->
     <select id="selectTitleByTeacherId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
-        select
-        id,title,flag,studentid
+        select id,
+               title,
+               flag,
+               studentid
         from title
         where teacherid = #{param1}
         limit #{param2},#{param3};
     </select>
 
     <!--通过教师id查询毕设题目数量接口-->
-    <select id="selectTitleCountByTeacherId" resultType="java.lang.Integer" parameterType="java.lang.Integer" >
+    <select id="selectTitleCountByTeacherId" resultType="java.lang.Integer" parameterType="java.lang.Integer">
         select count(*)
         from title
         where teacherid = #{teacherid};
@@ -45,10 +47,13 @@
 
     <!--通过教师id查询没有被选的毕设题目接口-->
     <select id="selectNotTitleByTeacherId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
-        select
-        id,title,flag,studentid
+        select id,
+               title,
+               flag,
+               studentid
         from title
-        where teacherid = #{param1} and flag = 0
+        where teacherid = #{param1}
+          and flag = 0
         limit #{param2},#{param3};
     </select>
 
@@ -56,13 +61,15 @@
     <select id="selectNotTitleCountByTeacherId" resultType="java.lang.Integer" parameterType="java.lang.Integer">
         select count(*)
         from title
-        where teacherid = #{teacherid} and flag = 0;
+        where teacherid = #{teacherid}
+          and flag = 0;
     </select>
 
     <!--通过学生id查询毕设题目接口-->
     <select id="selectTitleByStudentId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
-        select
-        id,title,teacherid
+        select id,
+               title,
+               teacherid
         from title
         where studentid = #{studentid};
     </select>
@@ -78,22 +85,25 @@
     <update id="chooseTitle" parameterType="cn.zcbigdata.mybits_demo.entity.Title">
         UPDATE title
         SET studentid = #{studentid},
-            flag = #{flag}
+            flag      = #{flag}
         WHERE id = #{id};
     </update>
 
     <!--学生提交自拟毕设题目接口-->
     <insert id="addStuTitle" parameterType="cn.zcbigdata.mybits_demo.entity.Title">
-        INSERT INTO title (title,studentid,teacherid,flag)
+        INSERT INTO title (title, studentid, teacherid, flag)
         VALUES (#{title}, #{studentid}, #{teacherid}, #{flag});
     </insert>
 
     <!--通过教师id查询自拟毕设题目接口-->
     <select id="selectStuTitle" resultMap="BaseResultMap" parameterType="java.lang.Integer">
-        select
-        id,title,flag,studentid
+        select id,
+               title,
+               flag,
+               studentid
         from title
-        where teacherid = #{param1} and flag = 1
+        where teacherid = #{param1}
+          and flag = 1
         limit #{param2},#{param3};
     </select>
 
@@ -101,7 +111,8 @@
     <select id="selectStuTitleCount" resultType="java.lang.Integer" parameterType="java.lang.Integer">
         select count(*)
         from title
-        where teacherid = #{teacherid} and flag = 1;
+        where teacherid = #{teacherid}
+          and flag = 1;
     </select>
 
     <!--教师审核自拟毕设题目并通过接口-->

@@ -15,7 +15,7 @@
 
     <!--管理员和教师公用添加公告接口-->
     <insert id="addNotice" parameterType="cn.zcbigdata.mybits_demo.entity.Notice">
-        INSERT INTO notice (content,userid,flag)
+        INSERT INTO notice (content, userid, flag)
         VALUES (#{content}, #{userid}, #{flag});
     </insert>
 
@@ -35,8 +35,8 @@
 
     <!--查询管理员公告接口-->
     <select id="selectAdminNotice" resultMap="BaseResultMap" parameterType="java.lang.Integer">
-        select
-        id,content
+        select id,
+               content
         from notice
         where flag = 0
         limit #{param1},#{param2};
@@ -44,8 +44,8 @@
 
     <!--查询教师公告接口-->
     <select id="selectTeacherNotice" resultMap="BaseResultMap" parameterType="java.lang.Integer">
-        select
-        id,content
+        select id,
+               content
         from notice
         where flag = 1
         limit #{param1},#{param2};

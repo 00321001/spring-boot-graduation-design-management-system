@@ -148,9 +148,9 @@ public class OpeningReportController {
         openingReport.setStudentid(Integer.valueOf((String) session.getAttribute("userid")));
         openingReport.setContent(content.trim());
         int flag = this.openingReportService.addOpeningReport(openingReport);
-        if(flag == 1){
+        if (flag == 1) {
             return UtilTools.SUCCESS_RETURN_JSON;
-        }else {
+        } else {
             return UtilTools.FAIL_RETURN_JSON;
         }
     }

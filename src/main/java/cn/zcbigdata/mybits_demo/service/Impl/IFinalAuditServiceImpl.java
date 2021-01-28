@@ -74,8 +74,8 @@ public class IFinalAuditServiceImpl implements IFinalAuditService {
     @Override
     public Integer addFinalAudit(FinalAudit finalAudit) {
         List<FinalAudit> finalAudits = this.finalAuditMapper.selectFinalAuditByStudent(finalAudit.getId());
-        for (FinalAudit finalAudit1:finalAudits) {
-            if(finalAudit1.getFlag().equals(1) || finalAudit1.getFlag().equals(0)){
+        for (FinalAudit finalAudit1 : finalAudits) {
+            if (finalAudit1.getFlag().equals(1) || finalAudit1.getFlag().equals(0)) {
                 return 0;
             }
         }

@@ -28,6 +28,7 @@ public class MidtermReviewController {
      * 请求方式：GET
      * 入参：页码：page；数据量：limit；教师id：teacherid从session中的userid中获取
      * 出参：中期论文ID：id；中期论文：content；评语：comments；学生id：studentid；教师id：teacherid；标记：flag
+     *
      * @param request HttpServletRequest
      * @return 提示是否成功的json
      */
@@ -41,11 +42,11 @@ public class MidtermReviewController {
         }
         String pageString = request.getParameter("page");
         String limitString = request.getParameter("limit");
-        if (!UtilTools.checkNull(new String[]{pageString,limitString})) {
+        if (!UtilTools.checkNull(new String[]{pageString, limitString})) {
             return UtilTools.IS_NULL_RETURN_JSON;
         }
-        List<MidtermReview> midtermReviews = midtermReviewService.selectMidtermByTeacherId(Integer.parseInt((String)session.getAttribute("userid")),Integer.parseInt(pageString.trim()), Integer.parseInt(limitString.trim()));
-        String[] colums = {"id", "content","comments","studentid","teacherid","flag"};
+        List<MidtermReview> midtermReviews = midtermReviewService.selectMidtermByTeacherId(Integer.parseInt((String) session.getAttribute("userid")), Integer.parseInt(pageString.trim()), Integer.parseInt(limitString.trim()));
+        String[] colums = {"id", "content", "comments", "studentid", "teacherid", "flag"};
         return JsonUtil.listToLayJson(colums, midtermReviews);
     }
 
@@ -54,6 +55,7 @@ public class MidtermReviewController {
      * 请求方式：GET
      * 入参：教师id：teacherid为session中的userid
      * 出参：提示是否成功和数据数量的json
+     *
      * @param request HttpServletRequest
      * @return 提示是否成功的json
      */
@@ -74,6 +76,7 @@ public class MidtermReviewController {
      * 请求方式：GET
      * 入参：学生id：studentid从session中的userid中获取
      * 出参：中期论文ID：id；中期论文：content；评语：comments；学生id：studentid；教师id：teacherid；标记：flag
+     *
      * @param request HttpServletRequest
      * @return 提示是否成功的json
      */
@@ -85,8 +88,8 @@ public class MidtermReviewController {
         if (!UtilTools.checkLogin(session, 2)) {
             return UtilTools.NO_LOGIN_RETURN_JSON;
         }
-        List<MidtermReview> midtermReviews = midtermReviewService.selectMidtermByStudentId(Integer.parseInt((String)session.getAttribute("userid")));
-        String[] colums = {"id", "content","comments","studentid","teacherid","flag"};
+        List<MidtermReview> midtermReviews = midtermReviewService.selectMidtermByStudentId(Integer.parseInt((String) session.getAttribute("userid")));
+        String[] colums = {"id", "content", "comments", "studentid", "teacherid", "flag"};
         return JsonUtil.listToLayJson(colums, midtermReviews);
     }
 
@@ -95,6 +98,7 @@ public class MidtermReviewController {
      * 请求方式：GET
      * 入参：中期论文id：id；标记：flag为1；评语：comments
      * 出参：提示是否成功的json
+     *
      * @param request HttpServletRequest
      * @return 提示是否成功的json
      */
@@ -108,7 +112,7 @@ public class MidtermReviewController {
         }
         String idStr = request.getParameter("id");
         String comments = request.getParameter("comments");
-        if (!UtilTools.checkNull(new String[]{idStr,comments})) {
+        if (!UtilTools.checkNull(new String[]{idStr, comments})) {
             return UtilTools.IS_NULL_RETURN_JSON;
         }
         MidtermReview midtermReview = new MidtermReview();
@@ -124,6 +128,7 @@ public class MidtermReviewController {
      * 请求方式：GET
      * 入参：中期论文id：id；标记：flag为2；评语：comments
      * 出参：提示是否成功的json
+     *
      * @param request HttpServletRequest
      * @return 提示是否成功的json
      */
@@ -137,7 +142,7 @@ public class MidtermReviewController {
         }
         String idStr = request.getParameter("id");
         String comments = request.getParameter("comments");
-        if (!UtilTools.checkNull(new String[]{idStr,comments})) {
+        if (!UtilTools.checkNull(new String[]{idStr, comments})) {
             return UtilTools.IS_NULL_RETURN_JSON;
         }
         MidtermReview midtermReview = new MidtermReview();
@@ -153,6 +158,7 @@ public class MidtermReviewController {
      * 请求方式：GET
      * 入参：中期论文：content；学生id：studentid为session中的userid；教师id：teacherid；标记：flag为0
      * 出参：提示是否成功的json
+     *
      * @param request HttpServletRequest
      * @return 提示是否成功的json
      */
@@ -163,12 +169,12 @@ public class MidtermReviewController {
         if (!UtilTools.checkLogin(session, 2)) {
             return UtilTools.NO_LOGIN_RETURN_JSON;
         }
-        if(midtermReviewService.selectMidtermCountByStudentId(Integer.parseInt((String) session.getAttribute("userid"))) > 0){
+        if (midtermReviewService.selectMidtermCountByStudentId(Integer.parseInt((String) session.getAttribute("userid"))) > 0) {
             return UtilTools.FAIL_RETURN_JSON;
         }
         String content = request.getParameter("content");
         String teacheridStr = request.getParameter("teacherid");
-        if (!UtilTools.checkNull(new String[]{content,teacheridStr})) {
+        if (!UtilTools.checkNull(new String[]{content, teacheridStr})) {
             return UtilTools.IS_NULL_RETURN_JSON;
         }
         MidtermReview midtermReview = new MidtermReview();
@@ -185,6 +191,7 @@ public class MidtermReviewController {
      * 请求方式：GET
      * 入参：中期论文id：id
      * 出参：中期论文ID：id；中期论文：content；评语：comments；学生id：studentid；教师id：teacherid；标记：flag
+     *
      * @param request HttpServletRequest
      * @return 提示是否成功的json
      */
@@ -198,7 +205,7 @@ public class MidtermReviewController {
         }
         String idStr = request.getParameter("id");
         List<MidtermReview> midtermReviews = midtermReviewService.selectMidtermById(Integer.parseInt(idStr.trim()));
-        String[] colums = {"id", "content","comments","studentid","teacherid","flag"};
+        String[] colums = {"id", "content", "comments", "studentid", "teacherid", "flag"};
         return JsonUtil.listToLayJson(colums, midtermReviews);
     }
 }

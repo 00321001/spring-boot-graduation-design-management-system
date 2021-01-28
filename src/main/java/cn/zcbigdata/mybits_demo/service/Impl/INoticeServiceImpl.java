@@ -32,7 +32,7 @@ public class INoticeServiceImpl implements INoticeService {
     @Override
     public List<Notice> selectAdminNotice(int page, int limit) {
         int pageIndex = (page - 1) * limit;
-        return this.noticeMapper.selectAdminNotice(pageIndex,limit);
+        return this.noticeMapper.selectAdminNotice(pageIndex, limit);
     }
 
     @Override

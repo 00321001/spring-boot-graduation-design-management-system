@@ -12,11 +12,11 @@ public interface NoticeMapper {
 
     int deleteNotice(int id);
 
-    List<Notice> selectAdminNotice(int page,int limit);
+    List<Notice> selectAdminNotice(int page, int limit);
 
     int selectAdminNoticeCount();
 
-    List<Notice> selectTeacherNotice(int page,int limit);
+    List<Notice> selectTeacherNotice(int page, int limit);
 
     int selectTeacherNoticeCount();
 

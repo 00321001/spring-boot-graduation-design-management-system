@@ -17,54 +17,51 @@
 
     <!--通过教师id查询中期论文接口-->
     <select id="selectMidtermByTeacherId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
-        select
-        *
-        from midterm-review
+        select *
+        from `midterm-review`
         where teacherid = #{param1}
         limit #{param2},#{param3};
     </select>
 
     <!--通过教师id查询中期论文数量接口-->
-    <select id="selectMidtermCountByTeacherId" resultType="java.lang.Integer" parameterType="java.lang.Integer" >
+    <select id="selectMidtermCountByTeacherId" resultType="java.lang.Integer" parameterType="java.lang.Integer">
         select count(*)
-        from midterm-review
+        from `midterm-review`
         where teacherid = #{teacherid};
     </select>
 
     <!--通过学生id查询中期论文接口-->
     <select id="selectMidtermByStudentId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
-        select
-        *
-        from midterm-review
+        select *
+        from `midterm-review`
         where studentid = #{studentid}
     </select>
 
     <!--教师审核中期论文接口-->
     <update id="checkMidterm" parameterType="cn.zcbigdata.mybits_demo.entity.MidtermReview">
-        UPDATE midterm-review
+        UPDATE `midterm-review`
         SET comments = #{comments},
-            flag = #{flag}
-        WHERE id = #{id};
+            flag = #{flag} WHERE id = #{id};
     </update>
 
     <!--通过学生id查询中期论文数量接口-->
     <select id="selectMidtermCountByStudentId" resultType="java.lang.Integer" parameterType="java.lang.Integer">
         select count(*)
         from title
-        where studentid = #{studentid} and (flag = 0 or flag = 1);
+        where studentid = #{studentid}
+          and (flag = 0 or flag = 1);
     </select>
 
     <!--学生提交中期论文接口-->
     <insert id="addMidterm" parameterType="cn.zcbigdata.mybits_demo.entity.MidtermReview">
-        INSERT INTO midterm-review (content,studentid,teacherid,flag)
+        INSERT INTO `midterm-review` (content, studentid, teacherid, flag)
         VALUES (#{content}, #{studentid}, #{teacherid}, #{flag});
     </insert>
 
     <!--通过中期论文id查询中期论文接口-->
     <select id="selectMidtermById" resultMap="BaseResultMap" parameterType="java.lang.Integer">
-        select
-        *
-        from midterm-review
+        select *
+        from `midterm-review`
         where id = #{id}
     </select>
 

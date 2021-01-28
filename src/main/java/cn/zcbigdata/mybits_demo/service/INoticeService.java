@@ -15,7 +15,7 @@ public interface INoticeService {
 
     int selectAdminNoticeCount();
 
-    List<Notice> selectTeacherNotice(int page,int limit);
+    List<Notice> selectTeacherNotice(int page, int limit);
 
     int selectTeacherNoticeCount();
 }

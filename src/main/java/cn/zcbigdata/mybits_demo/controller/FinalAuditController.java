@@ -148,9 +148,9 @@ public class FinalAuditController {
         finalAudit.setStudentid(Integer.valueOf((String) session.getAttribute("userid")));
         finalAudit.setContent(content.trim());
         int flag = this.finalAuditService.addFinalAudit(finalAudit);
-        if(flag == 1){
+        if (flag == 1) {
             return UtilTools.SUCCESS_RETURN_JSON;
-        }else {
+        } else {
             return UtilTools.FAIL_RETURN_JSON;
         }
     }

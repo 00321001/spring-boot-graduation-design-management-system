@@ -34,17 +34,10 @@ public class StudentController {
     private String nginxPath;
 
     /**
-     * 返回批量添加学生测试页面的接口
-     *
-     * @return 返回批量添加学生测试页面
-     */
-    @RequestMapping(value = "/test", method = RequestMethod.GET)
-    public String testPage() {
-        return "test";
-    }
-
-    /**
-     * 根据教师id查询学生信息，需要前台传入当前页码page和每页数据条数limit
+     * 根据教师id查询学生信息接口，
+     * 请求方式：GET
+     * 入参：当前页码page；每页数据条数limit，
+     * 出参：layui风格的json
      *
      * @param request HttpServletRequest
      * @return layui风格的json
@@ -71,7 +64,10 @@ public class StudentController {
     }
 
     /**
-     * 教师添加单个学生的方法，需要前台传入用户名：userName和密码：password
+     * 教师添加单个学生接口，
+     * 请求方式：POST，
+     * 入参：用户名：userName和密码：password，
+     * 出参：包含响应码和提示信息的json
      *
      * @param request HttpServletRequest
      * @return 包含响应码和提示信息的json
@@ -101,7 +97,10 @@ public class StudentController {
     }
 
     /**
-     * 教师通过xml批量添加学生接口Controller层实现
+     * 教师通过xml批量添加学生接口
+     * 请求方式：POST
+     * 入参：xml文件：file
+     * 出参：包含响应码和提示信息的json
      *
      * @param file    前台传入的文件
      * @param session HttpSession
@@ -122,7 +121,7 @@ public class StudentController {
         logger.info("上传的文件是：" + fileName);
         //判断后缀是否为xml格式
         int pointIndex = fileName.lastIndexOf('.');
-        if (pointIndex < 0 || !"xml".equals(fileName.substring(pointIndex + 1))) {
+        if (pointIndex < 0 || !"xml".equalsIgnoreCase(fileName.substring(pointIndex + 1))) {
             logger.info("后缀不为xml");
             return "{\"code\":\"9999\",\"msg\":\"请上传后缀为xml格式的文件\"}";
         }
@@ -138,7 +137,10 @@ public class StudentController {
     }
 
     /**
-     * 教师修改学生信息接口Controller层实现，需要前台传入学生id：id；用户名：userName；密码：password；昵称：nickName
+     * 教师修改学生信息接口，
+     * 请求方式：POST，
+     * 入参：学生id：id；用户名：userName；密码：password；昵称：nickName，
+     * 出参：包含响应码和提示信息的json
      *
      * @param request HttpServletRequest
      * @param session HttpSession
@@ -172,10 +174,13 @@ public class StudentController {
     }
 
     /**
-     * 根据id查询学生信息接口Controller层实现，需要前台传入学生id：id
+     * 根据id查询学生信息接口，
+     * 请求方式：GET，
+     * 入参：学生id：id，
+     * 出参：包含学生信息的json
      *
      * @param request HttpServletRequest
-     * @return 包含教师信息的json
+     * @return 包含学生信息的json
      */
     @RequestMapping(value = "/selectStudentById", method = RequestMethod.GET)
     @ResponseBody

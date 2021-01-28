@@ -29,7 +29,10 @@ public class TeacherController {
     private ITeacherService teacherService;
 
     /**
-     * 教师登录接口Controller层实现，需要前台传回用户名：userName；密码：password
+     * 教师登录接口，
+     * 请求方式：GET，
+     * 入参：用户名：userName；密码：password，
+     * 出参：提示是否成功的json
      *
      * @param request HttpServletRequest
      * @return 提示是否成功的json
@@ -57,7 +60,10 @@ public class TeacherController {
     }
 
     /**
-     * 教师修改密码接口Controller层实现，需要前台传回旧密码：oldPassword；新密码：newPassword
+     * 教师修改密码接口，
+     * 请求方式：POST，
+     * 入参：旧密码：oldPassword；新密码：newPassword，
+     * 出参：提示是否成功的json
      *
      * @param request HttpServletRequest
      * @return 提示是否成功的json
@@ -88,7 +94,10 @@ public class TeacherController {
     }
 
     /**
-     * 管理员添加教师接口Controller层实现，需要前台传回用户名：userName；昵称：nickName
+     * 管理员添加教师接口，
+     * 请求方式：POST，
+     * 入参：用户名：userName；昵称：nickName，
+     * 出参：提示是否成功的json
      *
      * @param request HttpServletRequest
      * @return 提示是否成功的json
@@ -118,7 +127,10 @@ public class TeacherController {
     }
 
     /**
-     * 管理员修改教师接口Controller层实现，需要前台传回教师id:id；用户名：userName；密码：password；昵称：nickName
+     * 管理员修改教师接口，
+     * 请求方式：POST，
+     * 入参：教师id:id；用户名：userName；密码：password；昵称：nickName，
+     * 出参：提示是否成功的json
      *
      * @param request HttpServletRequest
      * @return 提示是否成功的json
@@ -152,7 +164,10 @@ public class TeacherController {
     }
 
     /**
-     * 管理员查询教师接口Controller层实现，需要前台传回当前页码：page；每页数量：limit
+     * 管理员查询教师接口，
+     * 请求方式：GET，
+     * 入参：当前页码：page；每页数量：limit，
+     * 出参：laiui风格的Json
      *
      * @param request HttpServletRequest
      * @return laiui风格的Json
@@ -179,7 +194,10 @@ public class TeacherController {
     }
 
     /**
-     * 管理员查询教师总数接口Controller层实现，无需入参
+     * 管理员查询教师总数接口，
+     * 请求方式：GET，
+     * 无需入参，
+     * 出参：包含总数count的json
      *
      * @param request HttpServletRequest
      * @return 包含总数count的json
@@ -196,7 +214,10 @@ public class TeacherController {
     }
 
     /**
-     * 根据id查询教师信息接口Controller层实现，需要前台传入教师id：id
+     * 根据id查询教师信息接口，
+     * 请求方式：GET，
+     * 入参：教师id：id，
+     * 出参：包含教师信息的json
      *
      * @param request HttpServletRequest
      * @return 包含教师信息的json

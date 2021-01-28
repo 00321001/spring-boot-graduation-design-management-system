@@ -1,1 +1,81 @@
 [INFO] [2021-01-28 10:40:47][cn.zcbigdata.mybits_demo.controller.TeacherController]userName：t2-----password：888888
+[INFO] [2021-01-28 14:46:53][cn.zcbigdata.mybits_demo.controller.TeacherController]userName：t2-----password：888888
+[INFO] [2021-01-28 14:47:06][cn.zcbigdata.mybits_demo.controller.TeacherController]oldPassword：888888-----newPassword：123456
+[INFO] [2021-01-28 14:47:31][cn.zcbigdata.mybits_demo.controller.TeacherController]oldPassword：888888-----newPassword：888888
+[INFO] [2021-01-28 14:47:45][cn.zcbigdata.mybits_demo.controller.TeacherController]oldPassword：123456-----newPassword：888888
+[INFO] [2021-01-28 14:48:44][cn.zcbigdata.mybits_demo.controller.AdminController]userName：admin-----password：admin
+[INFO] [2021-01-28 14:49:18][cn.zcbigdata.mybits_demo.controller.TeacherController]userName：teacher1-----nickName：teachername1
+[INFO] [2021-01-28 14:49:29][cn.zcbigdata.mybits_demo.controller.TeacherController]userName：teacher1-----nickName：teachername1
+[INFO] [2021-01-28 14:52:24][cn.zcbigdata.mybits_demo.controller.AdminController]userName：admin-----password：admin
+[INFO] [2021-01-28 14:52:28][cn.zcbigdata.mybits_demo.controller.TeacherController]userName：teacher1-----nickName：teachername1
+[ERROR] [2021-01-28 14:52:28][cn.zcbigdata.mybits_demo.service.Impl.ITeacherServiceImpl]org.springframework.dao.DuplicateKeyException: 
+### Error updating database.  Cause: java.sql.SQLIntegrityConstraintViolationException: Duplicate entry 'teacher1' for key 'userName'
+### The error may exist in file [D:\vm\spring-boot-graduation-design-management-system\target\classes\mapping\TeacherMapping.xml]
+### The error may involve cn.zcbigdata.mybits_demo.mapper.TeacherMapper.adminAddTeacher-Inline
+### The error occurred while setting parameters
+### SQL: INSERT INTO teacher(userName, nickName)         values (?, ?);
+### Cause: java.sql.SQLIntegrityConstraintViolationException: Duplicate entry 'teacher1' for key 'userName'
+; Duplicate entry 'teacher1' for key 'userName'; nested exception is java.sql.SQLIntegrityConstraintViolationException: Duplicate entry 'teacher1' for key 'userName'
+[INFO] [2021-01-28 14:54:46][cn.zcbigdata.mybits_demo.controller.TeacherController]teacherid：3-----userName：teacher1-----password：123456-----nickName：3123123
+[INFO] [2021-01-28 14:55:14][cn.zcbigdata.mybits_demo.controller.TeacherController]teacherid：3-----userName：t1-----password：123456-----nickName：3123123
+[INFO] [2021-01-28 14:56:40][cn.zcbigdata.mybits_demo.controller.AdminController]userName：admin-----password：admin
+[INFO] [2021-01-28 14:56:43][cn.zcbigdata.mybits_demo.controller.TeacherController]teacherid：3-----userName：t1-----password：123456-----nickName：3123123
+[ERROR] [2021-01-28 14:56:43][cn.zcbigdata.mybits_demo.service.Impl.ITeacherServiceImpl]org.springframework.dao.DuplicateKeyException: 
+### Error updating database.  Cause: java.sql.SQLIntegrityConstraintViolationException: Duplicate entry 't1' for key 'userName'
+### The error may exist in file [D:\vm\spring-boot-graduation-design-management-system\target\classes\mapping\TeacherMapping.xml]
+### The error may involve cn.zcbigdata.mybits_demo.mapper.TeacherMapper.adminUpdateTeacher-Inline
+### The error occurred while setting parameters
+### SQL: UPDATE teacher         SET userName = ?,             password = ?,             nickName = ?         WHERE id = ?;
+### Cause: java.sql.SQLIntegrityConstraintViolationException: Duplicate entry 't1' for key 'userName'
+; Duplicate entry 't1' for key 'userName'; nested exception is java.sql.SQLIntegrityConstraintViolationException: Duplicate entry 't1' for key 'userName'
+[INFO] [2021-01-28 15:00:06][cn.zcbigdata.mybits_demo.controller.AdminController]userName：admin-----password：admin
+[INFO] [2021-01-28 15:00:22][cn.zcbigdata.mybits_demo.controller.AdminController]userName：admin-----password：admin
+[INFO] [2021-01-28 15:04:54][cn.zcbigdata.mybits_demo.controller.TeacherController]userName：t2-----password：888888
+[INFO] [2021-01-28 15:11:07][cn.zcbigdata.mybits_demo.controller.TeacherController]上传的文件是：批量添加学生测试用xml.xMl
+[INFO] [2021-01-28 15:11:07][cn.zcbigdata.mybits_demo.service.Impl.IStudentServiceImpl]文件重命名为：7c49892b9bc6427881cbeb144b96403d.xml
+[INFO] [2021-01-28 15:11:08][cn.zcbigdata.mybits_demo.service.Impl.IStudentServiceImpl]操作成功
+[INFO] [2021-01-28 15:11:08][cn.zcbigdata.mybits_demo.controller.TeacherController]操作成功
+[INFO] [2021-01-28 15:11:26][cn.zcbigdata.mybits_demo.controller.TeacherController]上传的文件是：批量添加学生测试用xml.xMl
+[INFO] [2021-01-28 15:11:26][cn.zcbigdata.mybits_demo.service.Impl.IStudentServiceImpl]文件重命名为：bc14bf28c63f48e8b56333cf88f201f1.xml
+[INFO] [2021-01-28 15:11:26][cn.zcbigdata.mybits_demo.service.Impl.IStudentServiceImpl]插入数据库出现问题，可能是因为用户名冲突，出错位置为第1条数据，userName = 200001，已回滚操作
+[ERROR] [2021-01-28 15:11:26][cn.zcbigdata.mybits_demo.service.Impl.IStudentServiceImpl]org.springframework.dao.DuplicateKeyException: 
+### Error updating database.  Cause: java.sql.SQLIntegrityConstraintViolationException: Duplicate entry '200001' for key 'userName'
+### The error may exist in file [D:\vm\spring-boot-graduation-design-management-system\target\classes\mapping\StudentMapping.xml]
+### The error may involve cn.zcbigdata.mybits_demo.mapper.StudentMapper.teacherAddStudent-Inline
+### The error occurred while setting parameters
+### SQL: INSERT INTO student(userName, teacherid, nickName)         VALUES (?, ?, ?);
+### Cause: java.sql.SQLIntegrityConstraintViolationException: Duplicate entry '200001' for key 'userName'
+; Duplicate entry '200001' for key 'userName'; nested exception is java.sql.SQLIntegrityConstraintViolationException: Duplicate entry '200001' for key 'userName'
+[INFO] [2021-01-28 15:11:26][cn.zcbigdata.mybits_demo.controller.TeacherController]插入数据库出现问题，可能是因为用户名冲突，出错位置为第1条数据，userName = 200001，已回滚操作
+[INFO] [2021-01-28 15:11:31][cn.zcbigdata.mybits_demo.controller.TeacherController]上传的文件是：批量添加学生测试用xml.xMl
+[INFO] [2021-01-28 15:11:31][cn.zcbigdata.mybits_demo.service.Impl.IStudentServiceImpl]文件重命名为：72cc2459547b4e2c9fc111785ede7722.xml
+[INFO] [2021-01-28 15:11:32][cn.zcbigdata.mybits_demo.service.Impl.IStudentServiceImpl]插入数据库出现问题，可能是因为用户名冲突，出错位置为第1条数据，userName = 200001，已回滚操作
+[ERROR] [2021-01-28 15:11:32][cn.zcbigdata.mybits_demo.service.Impl.IStudentServiceImpl]org.springframework.dao.DuplicateKeyException: 
+### Error updating database.  Cause: java.sql.SQLIntegrityConstraintViolationException: Duplicate entry '200001' for key 'userName'
+### The error may exist in file [D:\vm\spring-boot-graduation-design-management-system\target\classes\mapping\StudentMapping.xml]
+### The error may involve cn.zcbigdata.mybits_demo.mapper.StudentMapper.teacherAddStudent-Inline
+### The error occurred while setting parameters
+### SQL: INSERT INTO student(userName, teacherid, nickName)         VALUES (?, ?, ?);
+### Cause: java.sql.SQLIntegrityConstraintViolationException: Duplicate entry '200001' for key 'userName'
+; Duplicate entry '200001' for key 'userName'; nested exception is java.sql.SQLIntegrityConstraintViolationException: Duplicate entry '200001' for key 'userName'
+[INFO] [2021-01-28 15:11:32][cn.zcbigdata.mybits_demo.controller.TeacherController]插入数据库出现问题，可能是因为用户名冲突，出错位置为第1条数据，userName = 200001，已回滚操作
+[INFO] [2021-01-28 15:15:12][cn.zcbigdata.mybits_demo.controller.TeacherController]userName：t2-----password：888888
+[ERROR] [2021-01-28 15:15:15][cn.zcbigdata.mybits_demo.service.Impl.IStudentServiceImpl]org.springframework.dao.DuplicateKeyException: 
+### Error updating database.  Cause: java.sql.SQLIntegrityConstraintViolationException: Duplicate entry '123123' for key 'userName'
+### The error may exist in file [D:\vm\spring-boot-graduation-design-management-system\target\classes\mapping\StudentMapping.xml]
+### The error may involve cn.zcbigdata.mybits_demo.mapper.StudentMapper.teacherUpdateStudentById-Inline
+### The error occurred while setting parameters
+### SQL: UPDATE student         SET userName = ?,             password = ?,             nickName = ?         WHERE id = ?;
+### Cause: java.sql.SQLIntegrityConstraintViolationException: Duplicate entry '123123' for key 'userName'
+; Duplicate entry '123123' for key 'userName'; nested exception is java.sql.SQLIntegrityConstraintViolationException: Duplicate entry '123123' for key 'userName'
+[INFO] [2021-01-28 15:39:16][cn.zcbigdata.mybits_demo.controller.TeacherController]userName：123123-----password：888888
+[INFO] [2021-01-28 15:42:20][cn.zcbigdata.mybits_demo.controller.TeacherController]userName：123123-----password：888888
+[INFO] [2021-01-28 15:48:55][cn.zcbigdata.mybits_demo.controller.TeacherController]userName：t2-----password：888888
+[INFO] [2021-01-28 15:51:26][cn.zcbigdata.mybits_demo.controller.TeacherController]userName：123123-----password：888888
+[INFO] [2021-01-28 15:54:06][cn.zcbigdata.mybits_demo.controller.TeacherController]userName：123123-----password：888888
+[INFO] [2021-01-28 15:54:57][cn.zcbigdata.mybits_demo.controller.TeacherController]userName：123123-----password：888888
+[INFO] [2021-01-28 15:56:10][cn.zcbigdata.mybits_demo.controller.TeacherController]userName：123123-----password：888888
+[INFO] [2021-01-28 16:07:03][cn.zcbigdata.mybits_demo.controller.TeacherController]userName：123123-----password：888888
+[INFO] [2021-01-28 16:08:21][cn.zcbigdata.mybits_demo.controller.TeacherController]userName：t2-----password：888888
+[INFO] [2021-01-28 16:10:44][cn.zcbigdata.mybits_demo.controller.TeacherController]userName：123123-----password：888888
+[INFO] [2021-01-28 16:15:02][cn.zcbigdata.mybits_demo.controller.TeacherController]userName：t2-----password：888888

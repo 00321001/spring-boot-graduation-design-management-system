@@ -3,6 +3,7 @@ package cn.zcbigdata.mybits_demo.service.Impl;
 import cn.zcbigdata.mybits_demo.entity.Teacher;
 import cn.zcbigdata.mybits_demo.mapper.TeacherMapper;
 import cn.zcbigdata.mybits_demo.service.ITeacherService;
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -17,6 +18,8 @@ import java.util.Map;
 public class ITeacherServiceImpl implements ITeacherService {
     @Resource
     private TeacherMapper teacherMapper;
+
+    private static final Logger logger = Logger.getLogger(ITeacherServiceImpl.class);
 
     /**
      * 教师登录的Service层方法
@@ -48,7 +51,12 @@ public class ITeacherServiceImpl implements ITeacherService {
      */
     @Override
     public Integer adminAddTeacher(Teacher teacher) {
-        return this.teacherMapper.adminAddTeacher(teacher);
+        try{
+            return this.teacherMapper.adminAddTeacher(teacher);
+        }catch (Exception e){
+            logger.error(e);
+            return 0;
+        }
     }
 
     /**
@@ -59,7 +67,12 @@ public class ITeacherServiceImpl implements ITeacherService {
      */
     @Override
     public Integer adminUpdateTeacher(Teacher teacher) {
-        return this.teacherMapper.adminUpdateTeacher(teacher);
+        try {
+            return this.teacherMapper.adminUpdateTeacher(teacher);
+        }catch (Exception e){
+            logger.error(e);
+            return 0;
+        }
     }
 
     /**

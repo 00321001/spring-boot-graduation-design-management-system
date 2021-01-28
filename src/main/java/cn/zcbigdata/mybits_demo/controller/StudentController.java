@@ -66,7 +66,7 @@ public class StudentController {
     /**
      * 教师添加单个学生接口，
      * 请求方式：POST，
-     * 入参：用户名：userName和密码：password，
+     * 入参：用户名：userName和昵称：nickName，
      * 出参：包含响应码和提示信息的json
      *
      * @param request HttpServletRequest

@@ -163,7 +163,12 @@ public class IStudentServiceImpl implements IStudentService {
      */
     @Override
     public Integer teacherUpdateStudentById(Student student) {
-        return this.studentMapper.teacherUpdateStudentById(student);
+        try {
+            return this.studentMapper.teacherUpdateStudentById(student);
+        }catch (Exception e){
+            logger.error(e);
+            return 0;
+        }
     }
 
     /**

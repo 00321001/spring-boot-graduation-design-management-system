@@ -79,6 +79,39 @@
 
 <script>
 
+    layui.use('layer', function () {
+        var layer = layui.layer;
+        checklogin();
+        function checklogin() {
+            var url = "/admin/loginCheck";
+            $.ajax({
+                type: "get", //指定提交的类型 get对应 doGet()方法，post--->doPost()犯法
+                url: url, //传输地址的URL
+                data: {}, //data代表我们的数据  key -value类型的数据
+                dataType: 'JSON',
+                async: false, //success和error代表是否返回成功，既后台给前台传输数据是否成功
+                success: function (res) {
+                    if (res.code == "7777") {
+                        layer.alert("请重新登陆",{closeBtn: 0},function () {
+                            parent.location.href = "/";
+                            window.location.href = "/";
+                        });
+                    }else{
+                        var html = $("#showUserName").html();
+                        html += res.data.userName;
+                        $("#showUserName").html(html);
+                    }
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    layer.alert("请重新登陆",{closeBtn: 0},function () {
+                        parent.location.href = "/";
+                        window.location.href = "/";
+                    });
+                }
+            });
+        }
+    });
+    
     layui.use('table', function () {
         var table = layui.table;
         var pagecount;
@@ -86,7 +119,7 @@
 
         function page() {
             $.ajax({
-                url: 'http://localhost:8080/notice/selectAdminNoticeCount',
+                url: '/notice/selectAdminNoticeCount',
                 dataType: 'json',
                 type: 'get',
                 async: false,
@@ -102,7 +135,7 @@
 
         table.render({
             elem: '#test'
-            , url: 'http://localhost:8080/notice/selectAdminNotice'
+            , url: '/notice/selectAdminNotice'
             , toolbar: '#toolbarDemo' //开启头部工具栏，并为其绑定左侧模板
             , defaultToolbar: ['filter', 'exports', 'print', { //自定义头部工具栏右侧图标。如无需自定义，去除该参数即可
                 title: '提示'
@@ -143,7 +176,7 @@
             form.on('submit(demo2)', function (data) {
                 console.log(JSON.stringify(data.field));
                 $.ajax({
-                    url: 'http://localhost:8080/notice/addNotice',
+                    url: '/notice/addNotice',
                     method: 'get',
                     data: data.field,
                     dataType: 'JSON',
@@ -156,7 +189,7 @@
                                 form.render();
                                 //刷新页面
                                 table.reload('test', {
-                                    url: 'http://localhost:8080/notice/selectAdminNotice'
+                                    url: '/notice/selectAdminNotice'
                                 });
                                 page();
                             } else if (res.code == "7777") {
@@ -182,7 +215,7 @@
             form.on('submit(demo3)', function (data) {
                 console.log(JSON.stringify(data.field));
                 $.ajax({
-                    url: 'http://localhost:8080/notice/updateNotice',
+                    url: '/notice/updateNotice',
                     method: 'get',
                     data: data.field,
                     dataType: 'JSON',
@@ -195,7 +228,7 @@
                                 form.render();
                                 //刷新页面
                                 table.reload('test', {
-                                    url: 'http://localhost:8080/notice/selectAdminNotice'
+                                    url: '/notice/selectAdminNotice'
                                 });
                                 page();
                             } else if (res.code == "7777") {
@@ -306,7 +339,7 @@
             var data = {
                 id
             };
-            var url = "http://localhost:8080/notice/deleteNotice";
+            var url = "/notice/deleteNotice";
             $.ajax({
                 type: "get", //指定提交的类型 get对应 doGet()方法，post--->doPost()犯法
                 url: url,    //传输地址的URL
@@ -320,7 +353,7 @@
                         layer.msg("删除成功");
                         //刷新页面
                         table.reload('test', {
-                            url: 'http://localhost:8080/notice/selectAdminNotice'
+                            url: '/notice/selectAdminNotice'
                         });
                     } else {
                         layer.msg("删除失败");

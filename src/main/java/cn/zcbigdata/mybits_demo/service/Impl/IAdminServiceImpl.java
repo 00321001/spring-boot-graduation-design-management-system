@@ -38,4 +38,15 @@ public class IAdminServiceImpl implements IAdminService {
     public Integer resetPassword(Map<String, String> map) {
         return this.adminMapper.resetPassword(map);
     }
+
+    /**
+     * 根据id获取管理员信息的Service层方法
+     *
+     * @param id 管理员id
+     * @return Admin对象，存有查询到的信息
+     */
+    @Override
+    public Admin selectAdminById(Integer id) {
+        return this.adminMapper.selectAdminById(id);
+    }
 }

@@ -2,6 +2,7 @@ package cn.zcbigdata.mybits_demo.controller;
 
 import cn.zcbigdata.mybits_demo.entity.Admin;
 import cn.zcbigdata.mybits_demo.service.IAdminService;
+import cn.zcbigdata.mybits_demo.utils.JsonUtil;
 import cn.zcbigdata.mybits_demo.utils.UtilTools;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
@@ -57,6 +58,44 @@ public class AdminController {
         session.setAttribute("userid", admin.getId().toString());
         session.setAttribute("userType", "0");
         return UtilTools.SUCCESS_RETURN_JSON;
+    }
+
+    /**
+     * 根据管理员id查询管理员信息接口
+     * 请求方式：GET
+     * 入参：无入参
+     * 出参：包含响应码和管理员信息的JSON
+     *
+     * @param session HttpSession
+     * @return 包含响应码和管理员信息的JSON
+     */
+    @RequestMapping(value = "/selectAdminById", method = RequestMethod.GET)
+    @ResponseBody
+    public String selectAdminById(HttpSession session) throws Exception {
+        if (!UtilTools.checkLogin(session, 0)) {
+            return UtilTools.NO_LOGIN_RETURN_JSON;
+        }
+        Admin admin = this.adminService.selectAdminById(Integer.valueOf((String) session.getAttribute("userid")));
+        return JsonUtil.objectToJson(new String[]{"id", "userName", "password", "nickName"}, admin);
+    }
+
+    /**
+     * 检查管理员登录接口
+     * 请求方式：GET
+     * 入参：无入参
+     * 出参：包含响应码和管理员id和用户名的JSON
+     *
+     * @param session HttpSession
+     * @return 包含响应码和管理员id和用户名的JSON
+     */
+    @RequestMapping(value = "/loginCheck", method = RequestMethod.GET)
+    @ResponseBody
+    public String loginCheck(HttpSession session) throws Exception {
+        if (!UtilTools.checkLogin(session, 0)) {
+            return UtilTools.NO_LOGIN_RETURN_JSON;
+        }
+        Admin admin = this.adminService.selectAdminById(Integer.valueOf((String) session.getAttribute("userid")));
+        return JsonUtil.objectToJson(new String[]{"id", "userName"}, admin);
     }
 
     /**

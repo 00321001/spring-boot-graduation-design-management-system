@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.zcbigdata.mybits_demo.mapper.FinalAuditMapper">
+
+    <resultMap id="BaseResultMap" type="cn.zcbigdata.mybits_demo.entity.FinalAudit">
+        <result column="id" jdbcType="INTEGER" property="id"/>
+        <result column="content" jdbcType="VARCHAR" property="content"/>
+        <result column="comments" jdbcType="VARCHAR" property="comments"/>
+        <result column="studentid" jdbcType="INTEGER" property="studentid"/>
+        <result column="teacherid" jdbcType="INTEGER" property="teacherid"/>
+        <result column="flag" jdbcType="INTEGER" property="flag"/>
+    </resultMap>
+
+    <!--根据教师id获取论文终稿-->
+    <select id="selectFinalAuditByTeacherid" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        SELECT *
+        FROM `final-audit`
+        WHERE teacherid = #{id};
+    </select>
+    <!--根据学生id查询论文终稿-->
+    <select id="selectFinalAuditByStudent" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        SELECT *
+        FROM `final-audit`
+        WHERE studentid = #{id};
+    </select>
+    <!--教师审核论文终稿并添加评语-->
+    <update id="reviewFinalAudit" parameterType="cn.zcbigdata.mybits_demo.entity.FinalAudit">
+        UPDATE `final-audit`
+        SET comments = #{comments},
+            flag     = #{flag}
+        WHERE id = #{id};
+    </update>
+
+    <!--根据报告id获取论文终稿-->
+    <select id="selectFinalAuditById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        SELECT *
+        FROM `final-audit`
+        WHERE id = #{id};
+    </select>
+
+    <!--添加论文终稿-->
+    <insert id="addFinalAudit" parameterType="cn.zcbigdata.mybits_demo.entity.OpeningReport">
+        INSERT INTO `final-audit`(content, studentid, teacherid, flag)
+        VALUES (#{content}, #{studentid}, #{teacherid}, #{flag});
+    </insert>
+
+</mapper>

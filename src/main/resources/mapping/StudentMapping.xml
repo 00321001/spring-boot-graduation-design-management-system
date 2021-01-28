@@ -55,6 +55,7 @@
         LIMIT #{startIndex}, #{pageSize};
     </select>
 
+
     <!--教师修改学生信息信息-->
     <update id="teacherUpdateStudentById" parameterType="cn.zcbigdata.mybits_demo.entity.Teacher">
         UPDATE student
@@ -63,5 +64,7 @@
             nickName = #{nickName}
         WHERE id = #{id};
     </update>
+
+
 
 </mapper>

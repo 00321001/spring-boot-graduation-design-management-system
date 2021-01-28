@@ -178,6 +178,17 @@ public class IStudentServiceImpl implements IStudentService {
     }
 
     /**
+     * 学生登录的Service层方法
+     *
+     * @param student Student对象，包含用户名和密码
+     * @return 返回查询到的学生对象
+     */
+    @Override
+    public Student studentLogin(Student student) {
+        return this.studentMapper.studentLogin(student);
+    }
+
+    /**
      * 删除文件的方法
      *
      * @param file File对象

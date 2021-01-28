@@ -53,4 +53,11 @@ public interface IStudentService {
      * @return 查询到的Student对象
      */
     Student selectStudentById(Integer studentid);
+
+    /**
+     * 学生登录的Service层方法
+     * @param student Student对象，包含用户名和密码
+     * @return 返回查询到的学生对象
+     */
+    Student studentLogin(Student student);
 }

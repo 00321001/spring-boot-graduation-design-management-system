@@ -201,4 +201,35 @@ public class StudentController {
             return UtilTools.FAIL_RETURN_JSON;
         }
     }
+
+    /**
+     * 学生登录接口Controller层实现；
+     * 请求方式：GET；
+     * 入参：用户名：userName；密码：password；
+     * 出参：提示是否成功的json；
+     *
+     * @param request HttpServletRequest
+     * @return 提示是否成功的json
+     */
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    @ResponseBody
+    public String login(HttpServletRequest request) {
+        String userName = request.getParameter("userName");
+        String password = request.getParameter("password");
+        logger.info("userName：" + userName + "-----password：" + password);
+        if (!UtilTools.checkNull(new String[]{userName, password})) {
+            return UtilTools.IS_NULL_RETURN_JSON;
+        }
+        Student student = new Student();
+        student.setUserName(userName.trim());
+        student.setPassword(password.trim());
+        student = this.studentService.studentLogin(student);
+        if (student == null) {
+            return UtilTools.FAIL_RETURN_JSON;
+        }
+        HttpSession session = request.getSession();
+        session.setAttribute("userid", student.getId().toString());
+        session.setAttribute("userType", "2");
+        return UtilTools.SUCCESS_RETURN_JSON;
+    }
 }

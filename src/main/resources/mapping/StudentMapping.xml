@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.zcbigdata.mybits_demo.mapper.StudentMapper">
+
+    <resultMap id="BaseResultMap" type="cn.zcbigdata.mybits_demo.entity.Student">
+        <result column="id" jdbcType="INTEGER" property="id"/>
+        <result column="userName" jdbcType="VARCHAR" property="userName"/>
+        <result column="password" jdbcType="VARCHAR" property="password"/>
+        <result column="teacherid" jdbcType="INTEGER" property="teacherid"/>
+        <result column="nickName" jdbcType="VARCHAR" property="nickName"/>
+    </resultMap>
+
+    <!--根据传入的userName和password与数据库进行比对，返回Student对象-->
+    <select id="studentLogin" resultMap="BaseResultMap" parameterType="cn.zcbigdata.mybits_demo.entity.Student">
+        SELECT *
+        FROM student
+        WHERE userName = #{userName}
+          AND password = #{password};
+    </select>
+
+    <!--教师添加学生-->
+    <insert id="teacherAddStudent" keyProperty="id" useGeneratedKeys="true"
+            parameterType="cn.zcbigdata.mybits_demo.entity.Student">
+        INSERT INTO student(userName, teacherid, nickName)
+        VALUES (#{userName}, #{teacherid}, #{nickName});
+    </insert>
+
+    <!--根据id删除学生-->
+    <delete id="deleteStudentById" parameterType="java.lang.Integer">
+        DELETE
+        FROM student
+        WHERE id = #{id};
+    </delete>
+
+    <!--根据id获取学生信息-->
+    <select id="selectStudentById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        SELECT *
+        FROM student
+        WHERE id = #{id};
+    </select>
+
+    <!--根据旧密码和用户id修改密码-->
+    <update id="resetPassword" parameterType="Map">
+        UPDATE student
+        SET password = #{newPassword}
+        WHERE id = #{id}
+          AND password = #{oldPassword};
+    </update>
+
+    <!--根据教师id查询对应的学生-->
+    <select id="selectStudentByTeacherid" resultMap="BaseResultMap" parameterType="map">
+        SELECT *
+        FROM student
+        WHERE teacherid = #{teacherid}
+        LIMIT #{startIndex}, #{pageSize};
+    </select>
+
+    <!--教师修改学生信息信息-->
+    <update id="teacherUpdateStudentById" parameterType="cn.zcbigdata.mybits_demo.entity.Teacher">
+        UPDATE student
+        SET userName = #{userName},
+            password = #{password},
+            nickName = #{nickName}
+        WHERE id = #{id};
+    </update>
+
+</mapper>

@@ -10,18 +10,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 /**
- * @author yty
+ * 页面跳转相关接口
+ *
+ * @author ts119
  */
 @Controller
-public class LoginController {
-
+public class IndexController {
     /**
      * 返回登录页面的Controller层方法
      *
      * @return 返回登录页面
      */
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    String loginPage() {
+    public String loginPage() {
         return "login";
     }
 
@@ -33,9 +34,19 @@ public class LoginController {
      */
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
     @ResponseBody
-    String logout(HttpServletRequest request) {
+    public String logout(HttpServletRequest request) {
         HttpSession session = request.getSession();
         session.invalidate();
         return UtilTools.SUCCESS_RETURN_JSON;
+    }
+
+    /**
+     * 返回批量添加学生测试页面的接口
+     *
+     * @return 返回批量添加学生测试页面
+     */
+    @RequestMapping(value = "/test", method = RequestMethod.GET)
+    public String testPage() {
+        return "test";
     }
 }

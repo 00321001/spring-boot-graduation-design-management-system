@@ -16,6 +16,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
+ * 管理员表相关接口
+ *
  * @author yty
  */
 @Controller
@@ -27,14 +29,17 @@ public class AdminController {
     private IAdminService adminService;
 
     /**
-     * 管理员登录接口Controller层实现，需要前台传回用户名：userName；密码：password
+     * 管理员登录接口Controller层实现；
+     * 请求方式：GET；
+     * 入参：用户名：userName；密码：password；
+     * 出参：提示是否成功的json；
      *
      * @param request HttpServletRequest
      * @return 提示是否成功的json
      */
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     @ResponseBody
-    String adminLogin(HttpServletRequest request) {
+    public String login(HttpServletRequest request) {
         String userName = request.getParameter("userName");
         String password = request.getParameter("password");
         logger.info("userName：" + userName + "-----password：" + password);
@@ -55,14 +60,17 @@ public class AdminController {
     }
 
     /**
-     * 管理员修改密码接口Controller层实现，需要前台传回旧密码：oldPassword；新密码：newPassword
+     * 管理员修改密码接口Controller层实现；
+     * 请求方式：POST；
+     * 入参：旧密码：oldPassword；新密码：newPassword
+     * 出参：提示是否成功的json
      *
      * @param request HttpServletRequest
      * @return 提示是否成功的json
      */
     @RequestMapping(value = "/resetPassword", method = RequestMethod.POST)
     @ResponseBody
-    String resetPassword(HttpServletRequest request) {
+    public String resetPassword(HttpServletRequest request) {
         HttpSession session = request.getSession();
         if (!UtilTools.checkLogin(session, 0)) {
             return UtilTools.NO_LOGIN_RETURN_JSON;

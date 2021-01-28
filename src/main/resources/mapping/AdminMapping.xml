@@ -6,6 +6,7 @@
         <result column="id" jdbcType="INTEGER" property="id"/>
         <result column="userName" jdbcType="VARCHAR" property="userName"/>
         <result column="password" jdbcType="VARCHAR" property="password"/>
+        <result column="nickName" jdbcType="VARCHAR" property="nickName"/>
     </resultMap>
 
     <!--根据传入的userName和password与数据库进行比对，返回Admin对象-->
@@ -21,7 +22,7 @@
         FROM admin
         WHERE id = #{id};
     </select>
-    <!--根据传入的id和password在user表中插入新条目-->
+    <!--根据旧密码和用户id修改密码-->
     <update id="resetPassword" parameterType="Map">
         UPDATE admin
         SET password = #{newPassword}

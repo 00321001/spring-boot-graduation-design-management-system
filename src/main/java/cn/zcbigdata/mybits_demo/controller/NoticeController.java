@@ -27,7 +27,9 @@ public class NoticeController {
 
     /**
      * 管理员和教师添加公告的controller层
-     *
+     * 请求方式：GET
+     * 入参：公告内容：content；标记：flag为session中的userType；用户id：userid为session中的userid
+     * 出参：提示是否成功的json
      * @param request HttpServletRequest
      * @return 提示是否成功的json
      */
@@ -52,7 +54,9 @@ public class NoticeController {
 
     /**
      * 管理员和教师修改公告的controller层
-     *
+     * 请求方式：GET
+     * 入参：公告内容：content；公告id：id
+     * 出参：提示是否成功的json
      * @param request HttpServletRequest
      * @return 提示是否成功的json
      */
@@ -77,7 +81,9 @@ public class NoticeController {
 
     /**
      * 管理员和教师删除公告的controller层
-     *
+     * 请求方式：GET
+     * 入参：公告id：id
+     * 出参：提示是否成功的json
      * @param request HttpServletRequest
      * @return 提示是否成功的json
      */
@@ -98,7 +104,9 @@ public class NoticeController {
 
     /**
      * 查询管理员公告的controller层
-     *
+     * 请求方式：GET
+     * 入参：页码：page；数据量：limit
+     * 出参：公告id：id；公告内容：content
      * @param request HttpServletRequest
      * @return 提示是否成功的json
      */
@@ -122,7 +130,9 @@ public class NoticeController {
 
     /**
      * 查询教师公告的controller层
-     *
+     * 请求方式：GET
+     * 入参：页码：page；数据量：limit
+     * 出参：公告id：id；公告内容：content
      * @param request HttpServletRequest
      * @return 提示是否成功的json
      */
@@ -146,7 +156,9 @@ public class NoticeController {
 
     /**
      * 查询管理员公告数量的controller层
-     *
+     * 请求方式：GET
+     * 入参：无
+     * 出参：提示是否返回成功和数据总数量的json
      * @param request HttpServletRequest
      * @return 提示是否成功的json
      */
@@ -164,7 +176,9 @@ public class NoticeController {
 
     /**
      * 查询教师公告数量的controller层
-     *
+     * 请求方式：GET
+     * 入参：无
+     * 出参：提示是否返回成功和数据总数量的json
      * @param request HttpServletRequest
      * @return 提示是否成功的json
      */

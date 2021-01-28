@@ -26,13 +26,65 @@ public class ITitleServiceImpl implements ITitleService {
     }
 
     @Override
-    public List<Title> selectTitleById(int teacherid, int page, int limit) {
+    public List<Title> selectTitleByTeacherId(int teacherid, int page, int limit) {
         int pageIndex = (page - 1) * limit;
-        return this.titleMapper.selectTitleById(teacherid, pageIndex, limit);
+        return this.titleMapper.selectTitleByTeacherId(teacherid, pageIndex, limit);
     }
 
     @Override
-    public int selectTitleCountById(int teacherid) {
-        return this.titleMapper.selectTitleCountById(teacherid);
+    public int selectTitleCountByTeacherId(int teacherid) {
+        return this.titleMapper.selectTitleCountByTeacherId(teacherid);
+    }
+
+    @Override
+    public List<Title> selectNotTitleByTeacherId(int teacherid, int page, int limit) {
+        int pageIndex = (page - 1) * limit;
+        return this.titleMapper.selectNotTitleByTeacherId(teacherid, pageIndex, limit);
+    }
+
+    @Override
+    public int selectNotTitleCountByTeacherId(int teacherid) {
+        return this.titleMapper.selectNotTitleCountByTeacherId(teacherid);
+    }
+
+    @Override
+    public List<Title> selectTitleByStudentId(int studentid) {
+        return this.titleMapper.selectTitleByStudentId(studentid);
+    }
+
+    @Override
+    public int selectTitleCountByStudentId(int studentid) {
+        return this.titleMapper.selectTitleCountByStudentId(studentid);
+    }
+
+    @Override
+    public int chooseTitle(Title title) {
+        return this.titleMapper.chooseTitle(title);
+    }
+
+    @Override
+    public int addStuTitle(Title title) {
+        return this.titleMapper.addStuTitle(title);
+    }
+
+    @Override
+    public List<Title> selectStuTitle(int teacherid, int page, int limit) {
+        int pageIndex = (page - 1) * limit;
+        return this.titleMapper.selectStuTitle(teacherid, pageIndex, limit);
+    }
+
+    @Override
+    public int selectStuTitleCount(int teacherid) {
+        return this.titleMapper.selectStuTitleCount(teacherid);
+    }
+
+    @Override
+    public int checkStuTitleTes(Title title) {
+        return this.titleMapper.checkStuTitleTes(title);
+    }
+
+    @Override
+    public int checkStuTitleNo(Title title) {
+        return this.titleMapper.checkStuTitleNo(title);
     }
 }

@@ -64,4 +64,22 @@ public class IOpeningReportServiceImpl implements IOpeningReportService {
     public OpeningReport selectOpeningReportById(Integer id) {
         return this.openingReportMapper.selectOpeningReportById(id);
     }
+
+    /**
+     * 添加开题报告的Service层方法
+     *
+     * @param openingReport OpeningReport对象，存有报告内容、学生id、教师id
+     * @return 受影响行数
+     */
+    @Override
+    public Integer addOpeningReport(OpeningReport openingReport) {
+        List<OpeningReport> openingReports = this.openingReportMapper.selectOpeningReportByStudent(openingReport.getId());
+        for (OpeningReport openingReport1:openingReports) {
+            if(openingReport1.getFlag().equals(1) || openingReport1.getFlag().equals(0)){
+                return 0;
+            }
+        }
+        openingReport.setFlag(0);
+        return this.openingReportMapper.addOpeningReport(openingReport);
+    }
 }

@@ -40,4 +40,12 @@ public interface OpeningReportMapper {
      * @return OpeningReport对象，存有相关信息
      */
     OpeningReport selectOpeningReportById(Integer id);
+
+    /**
+     * 添加开题报告的Mapper层方法
+     *
+     * @param openingReport OpeningReport对象，存有报告内容、学生id、教师id、审核标记
+     * @return 受影响行数
+     */
+    Integer addOpeningReport(OpeningReport openingReport);
 }

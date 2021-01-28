@@ -38,4 +38,10 @@
         WHERE id = #{id};
     </select>
 
+    <!--添加开题报告-->
+    <insert id="addOpeningReport" parameterType="cn.zcbigdata.mybits_demo.entity.OpeningReport">
+        INSERT INTO `opening-report`(content, studentid, teacherid, flag)
+        VALUES (#{content}, #{studentid}, #{teacherid}, #{flag});
+    </insert>
+
 </mapper>

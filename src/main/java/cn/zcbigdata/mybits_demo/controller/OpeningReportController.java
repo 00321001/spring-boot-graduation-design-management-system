@@ -121,4 +121,37 @@ public class OpeningReportController {
             return UtilTools.FAIL_RETURN_JSON;
         }
     }
+
+    /**
+     * 提交开题报告接口
+     * 请求方式：POST，
+     * 入参：报告内容：content；教师id：teacherid
+     * 出参：包含状态码和提示信息的json
+     *
+     * @param session HttpSession
+     * @param request HttpServletRequest
+     * @return 包含状态码和提示信息的json
+     */
+    @RequestMapping(value = "addOpeningReport", method = RequestMethod.POST)
+    @ResponseBody
+    public String addOpeningReport(HttpSession session, HttpServletRequest request) {
+        if (!UtilTools.checkLogin(session, 2)) {
+            return UtilTools.NO_LOGIN_RETURN_JSON;
+        }
+        String content = request.getParameter("content");
+        String teacherid = request.getParameter("teacherid");
+        if (!UtilTools.checkNull(new String[]{content, teacherid})) {
+            return UtilTools.IS_NULL_RETURN_JSON;
+        }
+        OpeningReport openingReport = new OpeningReport();
+        openingReport.setTeacherid(Integer.valueOf(teacherid.trim()));
+        openingReport.setStudentid(Integer.valueOf((String) session.getAttribute("userid")));
+        openingReport.setContent(content.trim());
+        int flag = this.openingReportService.addOpeningReport(openingReport);
+        if(flag == 1){
+            return UtilTools.SUCCESS_RETURN_JSON;
+        }else {
+            return UtilTools.FAIL_RETURN_JSON;
+        }
+    }
 }

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.zcbigdata.mybits_demo.mapper.MidtermReviewMapper">
+
+    <resultMap id="BaseResultMap" type="cn.zcbigdata.mybits_demo.entity.MidtermReview">
+        <result column="id" jdbcType="INTEGER" property="id"/>
+        <result column="content" jdbcType="VARCHAR" property="content"/>
+        <result column="comments" jdbcType="VARCHAR" property="comments"/>
+        <result column="studentid" jdbcType="INTEGER" property="studentid"/>
+        <result column="teacherid" jdbcType="INTEGER" property="teacherid"/>
+        <result column="flag" jdbcType="INTEGER" property="flag"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,content,comments,studentid,teacherid,flag
+    </sql>
+
+    <!--通过教师id查询中期论文接口-->
+    <select id="selectMidtermByTeacherId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        *
+        from midterm-review
+        where teacherid = #{param1}
+        limit #{param2},#{param3};
+    </select>
+
+    <!--通过教师id查询中期论文数量接口-->
+    <select id="selectMidtermCountByTeacherId" resultType="java.lang.Integer" parameterType="java.lang.Integer" >
+        select count(*)
+        from midterm-review
+        where teacherid = #{teacherid};
+    </select>
+
+    <!--通过学生id查询中期论文接口-->
+    <select id="selectMidtermByStudentId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        *
+        from midterm-review
+        where studentid = #{studentid}
+    </select>
+
+    <!--教师审核中期论文接口-->
+    <update id="checkMidterm" parameterType="cn.zcbigdata.mybits_demo.entity.MidtermReview">
+        UPDATE midterm-review
+        SET comments = #{comments},
+            flag = #{flag}
+        WHERE id = #{id};
+    </update>
+
+    <!--通过学生id查询中期论文数量接口-->
+    <select id="selectMidtermCountByStudentId" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+        select count(*)
+        from title
+        where studentid = #{studentid} and (flag = 0 or flag = 1);
+    </select>
+
+    <!--学生提交中期论文接口-->
+    <insert id="addMidterm" parameterType="cn.zcbigdata.mybits_demo.entity.MidtermReview">
+        INSERT INTO midterm-review (content,studentid,teacherid,flag)
+        VALUES (#{content}, #{studentid}, #{teacherid}, #{flag});
+    </insert>
+
+    <!--通过中期论文id查询中期论文接口-->
+    <select id="selectMidtermById" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        *
+        from midterm-review
+        where id = #{id}
+    </select>
+
+</mapper>

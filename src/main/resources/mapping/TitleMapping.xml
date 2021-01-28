@@ -105,14 +105,7 @@
     </select>
 
     <!--教师审核自拟毕设题目并通过接口-->
-    <update id="checkStuTitleTes" parameterType="cn.zcbigdata.mybits_demo.entity.Title">
-        UPDATE title
-        SET flag = #{flag}
-        WHERE id = #{id};
-    </update>
-
-    <!--教师审核自拟毕设题目并不通过接口-->
-    <update id="checkStuTitleNo" parameterType="cn.zcbigdata.mybits_demo.entity.Title">
+    <update id="checkStuTitle" parameterType="cn.zcbigdata.mybits_demo.entity.Title">
         UPDATE title
         SET flag = #{flag}
         WHERE id = #{id};

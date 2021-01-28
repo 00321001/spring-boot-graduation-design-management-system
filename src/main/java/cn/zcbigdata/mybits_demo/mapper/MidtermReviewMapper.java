@@ -1,0 +1,21 @@
+package cn.zcbigdata.mybits_demo.mapper;
+
+import cn.zcbigdata.mybits_demo.entity.MidtermReview;
+
+import java.util.List;
+
+public interface MidtermReviewMapper {
+    List<MidtermReview> selectMidtermByTeacherId(int teacherid, int page, int limit);
+
+    int selectMidtermCountByTeacherId(int teacherid);
+
+    List<MidtermReview> selectMidtermByStudentId(int studentid);
+
+    int checkMidterm(MidtermReview midtermReview);
+
+    int selectMidtermCountByStudentId(int studentid);
+
+    int addMidterm(MidtermReview midtermReview);
+
+    List<MidtermReview> selectMidtermById(int id);
+}

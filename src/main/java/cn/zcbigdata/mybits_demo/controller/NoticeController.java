@@ -45,7 +45,7 @@ public class NoticeController {
             return UtilTools.IS_NULL_RETURN_JSON;
         }
         Notice notice = new Notice();
-        notice.setContent(content);
+        notice.setContent(content.trim());
         notice.setFlag(Integer.valueOf((String) session.getAttribute("userType")));
         notice.setUserid(Integer.valueOf((String) session.getAttribute("userid")));
         noticeService.addNotice(notice);
@@ -73,8 +73,8 @@ public class NoticeController {
             return UtilTools.IS_NULL_RETURN_JSON;
         }
         Notice notice = new Notice();
-        notice.setId(Integer.valueOf(idStr));
-        notice.setContent(content);
+        notice.setId(Integer.valueOf(idStr.trim()));
+        notice.setContent(content.trim());
         noticeService.updateNotice(notice);
         return UtilTools.SUCCESS_RETURN_JSON;
     }
@@ -98,7 +98,7 @@ public class NoticeController {
         if (!UtilTools.checkNull(new String[]{idStr})) {
             return UtilTools.IS_NULL_RETURN_JSON;
         }
-        noticeService.deleteNotice(Integer.parseInt(idStr));
+        noticeService.deleteNotice(Integer.parseInt(idStr.trim()));
         return UtilTools.SUCCESS_RETURN_JSON;
     }
 
@@ -123,7 +123,7 @@ public class NoticeController {
         if (!UtilTools.checkNull(new String[]{pageString,limitString})) {
             return UtilTools.IS_NULL_RETURN_JSON;
         }
-        List<Notice> notices = noticeService.selectAdminNotice(Integer.parseInt(pageString), Integer.parseInt(limitString));
+        List<Notice> notices = noticeService.selectAdminNotice(Integer.parseInt(pageString.trim()), Integer.parseInt(limitString.trim()));
         String[] colums = {"id", "content"};
         return JsonUtil.listToLayJson(colums, notices);
     }
@@ -149,7 +149,7 @@ public class NoticeController {
         if (!UtilTools.checkNull(new String[]{pageString,limitString})) {
             return UtilTools.IS_NULL_RETURN_JSON;
         }
-        List<Notice> notices = noticeService.selectTeacherNotice(Integer.parseInt(pageString), Integer.parseInt(limitString));
+        List<Notice> notices = noticeService.selectTeacherNotice(Integer.parseInt(pageString.trim()), Integer.parseInt(limitString.trim()));
         String[] colums = {"id", "content"};
         return JsonUtil.listToLayJson(colums, notices);
     }

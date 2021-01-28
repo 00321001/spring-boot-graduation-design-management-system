@@ -79,12 +79,7 @@ public class ITitleServiceImpl implements ITitleService {
     }
 
     @Override
-    public int checkStuTitleTes(Title title) {
-        return this.titleMapper.checkStuTitleTes(title);
-    }
-
-    @Override
-    public int checkStuTitleNo(Title title) {
-        return this.titleMapper.checkStuTitleNo(title);
+    public int checkStuTitle(Title title) {
+        return this.titleMapper.checkStuTitle(title);
     }
 }

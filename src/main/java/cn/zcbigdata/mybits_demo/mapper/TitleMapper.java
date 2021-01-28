@@ -30,8 +30,6 @@ public interface TitleMapper {
 
     int selectStuTitleCount(int teacherid);
 
-    int checkStuTitleTes(Title title);
-
-    int checkStuTitleNo(Title title);
+    int checkStuTitle(Title title);
 
 }

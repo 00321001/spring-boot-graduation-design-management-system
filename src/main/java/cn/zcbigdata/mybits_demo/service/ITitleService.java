@@ -29,7 +29,6 @@ public interface ITitleService {
 
     int selectStuTitleCount(int teacherid);
 
-    int checkStuTitleTes(Title title);
+    int checkStuTitle(Title title);
 
-    int checkStuTitleNo(Title title);
 }

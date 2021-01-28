@@ -44,7 +44,7 @@ public class TitleController {
             return UtilTools.IS_NULL_RETURN_JSON;
         }
         Title titles = new Title();
-        titles.setTitle(title);
+        titles.setTitle(title.trim());
         titles.setFlag(0);
         titles.setTeacherid(Integer.valueOf((String) session.getAttribute("userid")));
         titleService.addTitle(titles);
@@ -72,8 +72,8 @@ public class TitleController {
             return UtilTools.IS_NULL_RETURN_JSON;
         }
         Title titles = new Title();
-        titles.setId(Integer.parseInt(idStr));
-        titles.setTitle(title);
+        titles.setId(Integer.parseInt(idStr.trim()));
+        titles.setTitle(title.trim());
         titleService.updateTitle(titles);
         return UtilTools.SUCCESS_RETURN_JSON;
     }
@@ -110,9 +110,9 @@ public class TitleController {
             if (!UtilTools.checkNull(new String[]{teacheridStr})) {
                 return UtilTools.IS_NULL_RETURN_JSON;
             }
-            titles = titleService.selectNotTitleByTeacherId(Integer.parseInt(teacheridStr),Integer.parseInt(pageString), Integer.parseInt(limitString));
+            titles = titleService.selectNotTitleByTeacherId(Integer.parseInt(teacheridStr.trim()),Integer.parseInt(pageString.trim()), Integer.parseInt(limitString.trim()));
         }else{
-            titles = titleService.selectTitleByTeacherId(Integer.parseInt((String)session.getAttribute("userid")),Integer.parseInt(pageString), Integer.parseInt(limitString));
+            titles = titleService.selectTitleByTeacherId(Integer.parseInt((String)session.getAttribute("userid")),Integer.parseInt(pageString.trim()), Integer.parseInt(limitString.trim()));
         }
         String[] colums = {"id", "title","flag","studentid"};
         return JsonUtil.listToLayJson(colums, titles);
@@ -140,7 +140,7 @@ public class TitleController {
             if (!UtilTools.checkNull(new String[]{teacheridStr})) {
                 return UtilTools.IS_NULL_RETURN_JSON;
             }
-            count = titleService.selectNotTitleCountByTeacherId(Integer.parseInt(teacheridStr));
+            count = titleService.selectNotTitleCountByTeacherId(Integer.parseInt(teacheridStr.trim()));
         }else{
             count = titleService.selectTitleCountByTeacherId(Integer.parseInt((String) session.getAttribute("userid")));
         }
@@ -192,7 +192,7 @@ public class TitleController {
             return UtilTools.IS_NULL_RETURN_JSON;
         }
         Title title = new Title();
-        title.setId(Integer.parseInt(idStr));
+        title.setId(Integer.parseInt(idStr.trim()));
         title.setFlag(3);
         title.setStudentid(Integer.parseInt((String) session.getAttribute("userid")));
         titleService.chooseTitle(title);
@@ -223,10 +223,10 @@ public class TitleController {
             return UtilTools.IS_NULL_RETURN_JSON;
         }
         Title title = new Title();
-        title.setTeacherid(Integer.parseInt(teacheridStr));
+        title.setTeacherid(Integer.parseInt(teacheridStr.trim()));
         title.setFlag(1);
         title.setStudentid(Integer.parseInt((String) session.getAttribute("userid")));
-        title.setTitle(stuTitle);
+        title.setTitle(stuTitle.trim());
         titleService.addStuTitle(title);
         return UtilTools.SUCCESS_RETURN_JSON;
     }
@@ -252,7 +252,7 @@ public class TitleController {
         if (!UtilTools.checkNull(new String[]{pageString,limitString})) {
             return UtilTools.IS_NULL_RETURN_JSON;
         }
-        List<Title> titles = titleService.selectStuTitle(Integer.parseInt((String)session.getAttribute("userid")),Integer.parseInt(pageString), Integer.parseInt(limitString));
+        List<Title> titles = titleService.selectStuTitle(Integer.parseInt((String)session.getAttribute("userid")),Integer.parseInt(pageString.trim()), Integer.parseInt(limitString.trim()));
         String[] colums = {"id", "title","flag","studentid"};
         return JsonUtil.listToLayJson(colums, titles);
     }
@@ -286,8 +286,8 @@ public class TitleController {
      * @return 提示是否成功的json
      */
     @ResponseBody
-    @RequestMapping(value = "/checkStuTitleTes", method = RequestMethod.GET, produces = "text/plain;charset=utf-8")
-    public String checkStuTitleTes(HttpServletRequest request) throws Exception {
+    @RequestMapping(value = "/checkStuTitleYes", method = RequestMethod.GET, produces = "text/plain;charset=utf-8")
+    public String checkStuTitleYes(HttpServletRequest request) throws Exception {
         request.setCharacterEncoding("utf-8");
         HttpSession session = request.getSession();
         if (!UtilTools.checkLogin(session, 1)) {
@@ -299,8 +299,8 @@ public class TitleController {
         }
         Title title = new Title();
         title.setFlag(3);
-        title.setId(Integer.parseInt(idStr));
-        titleService.checkStuTitleTes(title);
+        title.setId(Integer.parseInt(idStr.trim()));
+        titleService.checkStuTitle(title);
         return UtilTools.SUCCESS_RETURN_JSON;
     }
 
@@ -326,8 +326,8 @@ public class TitleController {
         }
         Title title = new Title();
         title.setFlag(2);
-        title.setId(Integer.parseInt(idStr));
-        titleService.checkStuTitleNo(title);
+        title.setId(Integer.parseInt(idStr.trim()));
+        titleService.checkStuTitle(title);
         return UtilTools.SUCCESS_RETURN_JSON;
     }
 }

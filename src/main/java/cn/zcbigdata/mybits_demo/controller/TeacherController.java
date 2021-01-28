@@ -127,6 +127,34 @@ public class TeacherController {
     }
 
     /**
+     * 管理员删除教师接口，
+     * 请求方式：POST，
+     * 入参：教师ID:id
+     * 出参：提示是否成功的json
+     *
+     * @param request HttpServletRequest
+     * @return 提示是否成功的json
+     */
+    @RequestMapping(value = "/adminDeleteTeacher", method = RequestMethod.POST)
+    @ResponseBody
+    public String adminDeleteTeacher(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        if (!UtilTools.checkLogin(session, 0)) {
+            return UtilTools.NO_LOGIN_RETURN_JSON;
+        }
+        String idStr = request.getParameter("id");
+        if (!UtilTools.checkNull(new String[]{idStr})) {
+            return UtilTools.IS_NULL_RETURN_JSON;
+        }
+        int flag = this.teacherService.adminDeleteTeacher(Integer.parseInt(idStr.trim()));
+        if (flag == 1) {
+            return UtilTools.SUCCESS_RETURN_JSON;
+        } else {
+            return UtilTools.FAIL_RETURN_JSON;
+        }
+    }
+
+    /**
      * 管理员修改教师接口，
      * 请求方式：POST，
      * 入参：教师id:id；用户名：userName；密码：password；昵称：nickName，

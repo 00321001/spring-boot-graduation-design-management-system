@@ -47,9 +47,8 @@
     <!--通过学生id查询中期论文数量接口-->
     <select id="selectMidtermCountByStudentId" resultType="java.lang.Integer" parameterType="java.lang.Integer">
         select count(*)
-        from title
-        where studentid = #{studentid}
-          and (flag = 0 or flag = 1);
+        from `midterm-review`
+        where studentid = #{studentid} and (flag = 0 or flag = 1);
     </select>
 
     <!--学生提交中期论文接口-->

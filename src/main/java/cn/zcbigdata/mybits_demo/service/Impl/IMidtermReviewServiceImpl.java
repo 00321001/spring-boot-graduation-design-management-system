@@ -37,7 +37,7 @@ public class IMidtermReviewServiceImpl implements IMidtermReviewService {
 
     @Override
     public int selectMidtermCountByStudentId(int studentid) {
-        return this.selectMidtermCountByStudentId(studentid);
+        return this.midtermReviewMapper.selectMidtermCountByStudentId(studentid);
     }
 
     @Override

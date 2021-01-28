@@ -34,6 +34,14 @@ public interface ITeacherService {
     Integer adminAddTeacher(Teacher teacher);
 
     /**
+     * 管理员删除教师接口Mapper层方法
+     *
+     * @param id 教师id
+     * @return 受影响的行数，返回0时代表操作失败，1代表操作成功
+     */
+    Integer adminDeleteTeacher(int id);
+
+    /**
      * 管理员修改教师信息接口的Service层方法
      *
      * @param teacher Teacher对象，存有id、userName、password、nickName

@@ -38,6 +38,13 @@
         values (#{userName}, #{nickName});
     </insert>
 
+    <!--管理员删除教师接口-->
+    <delete id="adminDeleteTeacher" parameterType="java.lang.Integer">
+        DELETE
+        FROM teacher
+        WHERE id = #{id};
+    </delete>
+
     <!--管理员修改教师信息-->
     <update id="adminUpdateTeacher" parameterType="cn.zcbigdata.mybits_demo.entity.Teacher">
         UPDATE teacher

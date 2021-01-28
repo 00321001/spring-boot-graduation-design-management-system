@@ -29,10 +29,7 @@
 
     <!--通过教师id查询毕设题目接口-->
     <select id="selectTitleByTeacherId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
-        select id,
-               title,
-               flag,
-               studentid
+        select *
         from title
         where teacherid = #{param1}
         limit #{param2},#{param3};
@@ -47,10 +44,7 @@
 
     <!--通过教师id查询没有被选的毕设题目接口-->
     <select id="selectNotTitleByTeacherId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
-        select id,
-               title,
-               flag,
-               studentid
+        select *
         from title
         where teacherid = #{param1}
           and flag = 0
@@ -67,9 +61,7 @@
 
     <!--通过学生id查询毕设题目接口-->
     <select id="selectTitleByStudentId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
-        select id,
-               title,
-               teacherid
+        select *
         from title
         where studentid = #{studentid};
     </select>
@@ -78,7 +70,7 @@
     <select id="selectTitleCountByStudentId" resultType="java.lang.Integer" parameterType="java.lang.Integer">
         select count(*)
         from title
-        where studentid = #{studentid};
+        where studentid = #{studentid} and (flag = 1 or flag = 2);
     </select>
 
     <!--学生选择毕设题目接口-->
@@ -115,7 +107,7 @@
           and flag = 1;
     </select>
 
-    <!--教师审核自拟毕设题目并通过接口-->
+    <!--教师审核自拟毕设题目接口-->
     <update id="checkStuTitle" parameterType="cn.zcbigdata.mybits_demo.entity.Title">
         UPDATE title
         SET flag = #{flag}

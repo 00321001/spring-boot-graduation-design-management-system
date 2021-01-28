@@ -59,6 +59,11 @@ public class ITeacherServiceImpl implements ITeacherService {
         }
     }
 
+    @Override
+    public Integer adminDeleteTeacher(int id) {
+        return this.teacherMapper.adminDeleteTeacher(id);
+    }
+
     /**
      * 管理员修改教师信息接口的Service层方法
      *

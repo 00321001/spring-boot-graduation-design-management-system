@@ -117,7 +117,7 @@ public class TitleController {
         } else {
             titles = titleService.selectTitleByTeacherId(Integer.parseInt((String) session.getAttribute("userid")), Integer.parseInt(pageString.trim()), Integer.parseInt(limitString.trim()));
         }
-        String[] colums = {"id", "title", "flag", "studentid"};
+        String[] colums = {"id", "title", "teacherid" ,"flag", "studentid"};
         return JsonUtil.listToLayJson(colums, titles);
     }
 
@@ -170,7 +170,7 @@ public class TitleController {
             return UtilTools.NO_LOGIN_RETURN_JSON;
         }
         List<Title> titles = titleService.selectTitleByStudentId(Integer.parseInt((String) session.getAttribute("userid")));
-        String[] colums = {"id", "title", "teacherid"};
+        String[] colums = {"id", "title", "teacherid" ,"flag", "studentid"};
         return JsonUtil.listToLayJson(colums, titles);
     }
 
@@ -199,7 +199,7 @@ public class TitleController {
         }
         Title title = new Title();
         title.setId(Integer.parseInt(idStr.trim()));
-        title.setFlag(3);
+        title.setFlag(1);
         title.setStudentid(Integer.parseInt((String) session.getAttribute("userid")));
         titleService.chooseTitle(title);
         return UtilTools.SUCCESS_RETURN_JSON;
@@ -231,7 +231,7 @@ public class TitleController {
         }
         Title title = new Title();
         title.setTeacherid(Integer.parseInt(teacheridStr.trim()));
-        title.setFlag(1);
+        title.setFlag(2);
         title.setStudentid(Integer.parseInt((String) session.getAttribute("userid")));
         title.setTitle(stuTitle.trim());
         titleService.addStuTitle(title);
@@ -308,7 +308,7 @@ public class TitleController {
             return UtilTools.IS_NULL_RETURN_JSON;
         }
         Title title = new Title();
-        title.setFlag(3);
+        title.setFlag(1);
         title.setId(Integer.parseInt(idStr.trim()));
         titleService.checkStuTitle(title);
         return UtilTools.SUCCESS_RETURN_JSON;
@@ -336,7 +336,7 @@ public class TitleController {
             return UtilTools.IS_NULL_RETURN_JSON;
         }
         Title title = new Title();
-        title.setFlag(2);
+        title.setFlag(3);
         title.setId(Integer.parseInt(idStr.trim()));
         titleService.checkStuTitle(title);
         return UtilTools.SUCCESS_RETURN_JSON;

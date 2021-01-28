@@ -72,7 +72,7 @@ public class MidtermReviewController {
     }
 
     /**
-     * 通过教师id查询中期论文的controller层
+     * 通过学生id查询中期论文的controller层
      * 请求方式：GET
      * 入参：学生id：studentid从session中的userid中获取
      * 出参：中期论文ID：id；中期论文：content；评语：comments；学生id：studentid；教师id：teacherid；标记：flag
@@ -164,7 +164,7 @@ public class MidtermReviewController {
      */
     @RequestMapping(value = "/addMidterm", method = RequestMethod.GET)
     @ResponseBody
-    public String addMidterm(HttpServletRequest request) {
+    public String addMidterm(HttpServletRequest request) throws Exception{
         HttpSession session = request.getSession();
         if (!UtilTools.checkLogin(session, 2)) {
             return UtilTools.NO_LOGIN_RETURN_JSON;
@@ -187,7 +187,7 @@ public class MidtermReviewController {
     }
 
     /**
-     * 通过中期id查询中期论文的controller层
+     * 通过中期论文id查询中期论文的controller层
      * 请求方式：GET
      * 入参：中期论文id：id
      * 出参：中期论文ID：id；中期论文：content；评语：comments；学生id：studentid；教师id：teacherid；标记：flag

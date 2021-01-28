@@ -41,6 +41,39 @@ public class IndexController {
     }
 
     /**
+     * 跳转管理员端接口，无需入参
+     *
+     * @param request HttpServletRequest
+     * @return 返回状态码和提示信息
+     */
+    @RequestMapping(value = "/admin", method = RequestMethod.GET)
+    public String admin(HttpServletRequest request) {
+        return "back1";
+    }
+
+    /**
+     * 跳转管理员公告信息管理页面接口，无需入参
+     *
+     * @param request HttpServletRequest
+     * @return 返回状态码和提示信息
+     */
+    @RequestMapping(value = "/GoAdminNotice", method = RequestMethod.GET)
+    public String GoAdminNotice(HttpServletRequest request) {
+        return "adminNotice";
+    }
+
+    /**
+     * 跳转教师信息管理页面接口，无需入参
+     *
+     * @param request HttpServletRequest
+     * @return 返回状态码和提示信息
+     */
+    @RequestMapping(value = "/GoTeacher", method = RequestMethod.GET)
+    public String GoTeacher(HttpServletRequest request) {
+        return "teacherManage";
+    }
+
+    /**
      * 返回批量添加学生测试页面的接口
      *
      * @return 返回批量添加学生测试页面

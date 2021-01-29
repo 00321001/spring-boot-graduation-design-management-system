@@ -194,6 +194,28 @@ public class IStudentServiceImpl implements IStudentService {
     }
 
     /**
+     * 根据教师id获取学生数量的service层方法
+     *
+     * @param id 教师id
+     * @return 学生数量
+     */
+    @Override
+    public Integer selectCountByTeacherid(Integer id) {
+        return this.studentMapper.selectCountByTeacherid(id);
+    }
+
+    /**
+     * 通过id删除学生的Service层方法
+     *
+     * @param id 学生id
+     * @return 受影响行数
+     */
+    @Override
+    public Integer deleteById(Integer id) {
+        return this.studentMapper.deleteById(id);
+    }
+
+    /**
      * 删除文件的方法
      *
      * @param file File对象

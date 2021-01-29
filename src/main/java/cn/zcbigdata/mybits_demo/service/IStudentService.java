@@ -60,4 +60,19 @@ public interface IStudentService {
      * @return 返回查询到的学生对象
      */
     Student studentLogin(Student student);
+
+    /**
+     * 根据教师id获取学生数量的service层方法
+     * @param id 教师id
+     * @return 学生数量
+     */
+    Integer selectCountByTeacherid(Integer id);
+
+    /**
+     * 通过id删除学生的Service层方法
+     * @param id 学生id
+     * @return 受影响行数
+     */
+    Integer deleteById(Integer id);
+
 }

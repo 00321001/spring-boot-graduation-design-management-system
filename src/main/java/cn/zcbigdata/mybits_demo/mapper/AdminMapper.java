@@ -23,4 +23,12 @@ public interface AdminMapper {
      * @return 受影响的行数，返回0时代表操作失败，1代表操作成功
      */
     Integer resetPassword(Map<String, String> map);
+
+    /**
+     * 根据id获取管理员信息的Mapper层方法
+     *
+     * @param id 管理员id
+     * @return Admin对象，存有查询到的信息
+     */
+    Admin selectAdminById(Integer id);
 }

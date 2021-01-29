@@ -28,9 +28,9 @@
         </ul>
         <ul class="layui-nav layui-layout-right">
             <li class="layui-nav-item">
-                <a href="javascript:">
+                <a href="javascript:" id="showUserName">
                     <img class="layui-nav-img" src="http://t.cn/RCzsdCq">
-                    admin
+
                 </a>
                 <dl class="layui-nav-child">
                     <dd><a href="">基本资料</a></dd>
@@ -82,29 +82,7 @@
 <script src="../static/layui/layui.js"></script>
 <script>
 
-    // checklogin();
-    //
-    // function checklogin() {
-    //     var url = "http://localhost:8080/user/checkUserLogin";
-    //     $.ajax({
-    //         type: "get", //指定提交的类型 get对应 doGet()方法，post--->doPost()犯法
-    //         url: url, //传输地址的URL
-    //         data: {}, //data代表我们的数据  key -value类型的数据
-    //         dataType: 'JSON',
-    //         async: false, //success和error代表是否返回成功，既后台给前台传输数据是否成功
-    //         success: function (res) {
-    //             if (res.code == "7777") {
-    //                 alert("请重新登陆");
-    //                 window.location.href = "http://localhost:8080/user/login";
-    //             }
-    //         },
-    //         error: function (XMLHttpRequest, textStatus, errorThrown) {
-    //             alert("请重新登陆");
-    //             window.location.href = "http://localhost:8080/user/login";
-    //
-    //         }
-    //     });
-    // }
+
 
     function logout() {
         var url = "http://localhost:8080/logout";
@@ -125,9 +103,38 @@
 
     //JavaScript代码区域
     //layui模块的使用
-    layui.use('element', function () {
+    layui.use(['element','layer'], function () {
         var $ = layui.jquery;    //  var $=layui.jquery;
         var element = layui.element; //Tab的切换功能，切换事件监听等，需要依赖element模块
+        var layer = layui.layer;
+
+        checklogin();
+        function checklogin() {
+            var url = "/admin/loginCheck";
+            $.ajax({
+                type: "get", //指定提交的类型 get对应 doGet()方法，post--->doPost()犯法
+                url: url, //传输地址的URL
+                data: {}, //data代表我们的数据  key -value类型的数据
+                dataType: 'JSON',
+                async: false, //success和error代表是否返回成功，既后台给前台传输数据是否成功
+                success: function (res) {
+                    if (res.code == "7777") {
+                        layer.alert("请重新登陆",{closeBtn: 0},function () {
+                            window.location.href = "/";
+                        });
+                    }else{
+                        var html = $("#showUserName").html();
+                        html += res.data.userName;
+                        $("#showUserName").html(html);
+                    }
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    alert("请重新登陆");
+                    window.location.href = "http://localhost:8080/user/login";
+
+                }
+            });
+        }
 
         //触发事件
         var active = {
@@ -137,7 +144,7 @@
                 //关于tabAdd的方法所传入的参数可看layui的开发文档中基础方法部分
                 element.tabAdd('demo', {
                     title: name,
-                    content: '<iframe data-frameid="' + id + '" scrolling="auto" frameborder="0" src="http://localhost:8080/' + url + '" style="width:100%;height:99%;"></iframe>',
+                    content: '<iframe data-frameid="' + id + '" scrolling="auto" frameborder="0" src="/' + url + '" style="width:100%;height:99%;"></iframe>',
                     id: id //规定好的id
                 })
                 CustomRightClick(id); //给tab绑定右击事件

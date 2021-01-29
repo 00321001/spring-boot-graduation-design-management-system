@@ -127,6 +127,16 @@ public class IndexController {
     }
 
     /**
+     * 跳转教师端学生管理页面接口
+     *
+     * @return 教师端学生管理页面
+     */
+    @RequestMapping(value = "/GoStudent", method = RequestMethod.GET)
+    public String teacher(){
+        return "studentManage";
+    }
+
+    /**
      * 返回批量添加学生测试页面的接口
      *
      * @return 返回批量添加学生测试页面

@@ -2,7 +2,9 @@ package cn.zcbigdata.mybits_demo.service;
 
 import cn.zcbigdata.mybits_demo.entity.FinalAudit;
 
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author yty
@@ -60,4 +62,12 @@ public interface IFinalAuditService {
      * @return 数量
      */
     Integer selectCountByTeacherIdAndFlag(Integer teacherid, Integer flag);
+
+    /**
+     * 下载开题报告的service层方法
+     * @param response HttpServletResponse
+     * @param id 开题报告id
+     * @return 存有状态码和提示信息的集合
+     */
+    Map<String, String> downloadFinalAudit(HttpServletResponse response, Integer id);
 }

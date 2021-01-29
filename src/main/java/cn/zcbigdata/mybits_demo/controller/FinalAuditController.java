@@ -6,14 +6,17 @@ import cn.zcbigdata.mybits_demo.service.IFinalAuditService;
 import cn.zcbigdata.mybits_demo.utils.JsonUtil;
 import cn.zcbigdata.mybits_demo.utils.UtilTools;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 论文终稿相关接口
@@ -164,5 +167,29 @@ public class FinalAuditController {
         } else {
             return UtilTools.FAIL_RETURN_JSON;
         }
+    }
+
+    /**
+     * 学生下载论文终稿接口，
+     * 请求方式：POST，
+     * 入参：开题报告id：id，
+     * 出参：含有响应码和提示信息的json，
+     * @param session HttpSession
+     * @param request HttpServletRequest
+     * @param response HttpServletResponse
+     * @return 含有响应码和提示信息的json
+     */
+    @PostMapping(value = "downloadFinalAudit")
+    @ResponseBody
+    public  String downloadFinalAudit(HttpSession session, HttpServletRequest request, HttpServletResponse response){
+        if (!UtilTools.checkLogin(session, 2)) {
+            return UtilTools.NO_LOGIN_RETURN_JSON;
+        }
+        String idStr = request.getParameter("id");
+        if(!UtilTools.checkNull(new String[]{idStr})){
+            return UtilTools.IS_NULL_RETURN_JSON;
+        }
+        Map<String, String> map = this.finalAuditService.downloadFinalAudit(response, Integer.valueOf(idStr.trim()));
+        return "{\"code\":\"" + map.get("code") + "\",\"msg\":\"" + map.get("msg") + "\"}";
     }
 }

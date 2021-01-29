@@ -3,16 +3,25 @@ package cn.zcbigdata.mybits_demo.service.Impl;
 import cn.zcbigdata.mybits_demo.entity.OpeningReport;
 import cn.zcbigdata.mybits_demo.mapper.OpeningReportMapper;
 import cn.zcbigdata.mybits_demo.service.IOpeningReportService;
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
+import java.io.*;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 /**
  * @author yty
  */
 @Service
 public class IOpeningReportServiceImpl implements IOpeningReportService {
+    private static final Logger logger = Logger.getLogger(IOpeningReportServiceImpl.class);
 
     @Resource
     private OpeningReportMapper openingReportMapper;
@@ -95,5 +104,58 @@ public class IOpeningReportServiceImpl implements IOpeningReportService {
     @Override
     public Integer selectCountByTeacherIdAndFlag(Integer teacherid, Integer flag) {
         return this.openingReportMapper.selectCountByTeacherIdAndFlag(teacherid, flag);
+    }
+
+    /**
+     * 下载开题报告的service层方法
+     * @param response HttpServletResponse
+     * @param id 开题报告id
+     * @return 存有状态码和提示信息的集合
+     */
+    @Override
+    public Map<String, String> downloadOpenReport(HttpServletResponse response, Integer id){
+        OpeningReport openingReport = this.selectOpeningReportById(id);
+        String content = openingReport.getContent() + "\n-----------------以下为教师评语-----------------\n" + openingReport.getComments();
+        response.setContentType("application/force-download");
+        response.setCharacterEncoding("utf-8");
+        String fileName = UUID.randomUUID().toString().replace("-", "") + ".txt";
+        response.addHeader("Content-disposition", "attachment;fileName=" + URLEncoder.encode(fileName));
+        Map<String, String> map= new HashMap<String, String>(2);
+        byte[] buff = new byte[1024];
+        BufferedInputStream bis = null;
+        OutputStream outputStream = null;
+        try{
+            outputStream = response.getOutputStream();
+            bis = new BufferedInputStream(new ByteArrayInputStream(content.getBytes(StandardCharsets.UTF_8)));
+            int read = bis.read(buff);
+            while (read != -1){
+                outputStream.write(buff, 0, buff.length);
+                outputStream.flush();
+                read = bis.read(buff);
+            }
+            map.put("code","0000");
+            map.put("msg", "下载成功");
+        }catch (Exception e){
+            logger.error(e);
+            map.put("code","9999");
+            map.put("msg", "下载失败");
+        }finally {
+            if (bis != null) {
+                try {
+                    bis.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (outputStream != null) {
+                try {
+                    outputStream.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        return map;
     }
 }

@@ -3,6 +3,7 @@ package cn.zcbigdata.mybits_demo.service;
 import cn.zcbigdata.mybits_demo.entity.Title;
 
 import java.util.List;
+import java.util.Map;
 
 public interface ITitleService {
     int addTitle(Title title);
@@ -32,5 +33,7 @@ public interface ITitleService {
     int selectStuTitleCount(int teacherid);
 
     int checkStuTitle(Title title);
+
+    Map<String, String> teacherAddTitleUseXml(Integer teacherid, byte[] file, String filePath);
 
 }

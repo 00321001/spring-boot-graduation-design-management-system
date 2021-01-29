@@ -33,6 +33,7 @@ public interface IStudentService {
      *
      * @param teacherid 教师id
      * @param file      上传的xml的二进制流
+     * @param file      上传的xml的二进制流
      * @param filePath  上传文件存储路径
      * @return 一个Map，存放有code：状态码；msg：提示信息
      */

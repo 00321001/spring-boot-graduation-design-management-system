@@ -15,9 +15,10 @@
     </sql>
 
     <!--教师添加毕设题目接口-->
-    <insert id="addTitle" parameterType="cn.zcbigdata.mybits_demo.entity.Title">
+    <insert id="addTitle" keyProperty="id" useGeneratedKeys="true"
+            parameterType="cn.zcbigdata.mybits_demo.entity.Title">
         INSERT INTO title (teacherid, title, flag)
-        VALUES (#{teacherid}, #{title}, #{flag});
+        VALUES (#{teacherid}, #{title}, 0);
     </insert>
 
     <!--教师修改毕设题目接口-->

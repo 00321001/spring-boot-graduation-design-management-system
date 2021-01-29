@@ -4,3 +4,174 @@
 [INFO] [2021-01-29 14:56:45][cn.zcbigdata.mybits_demo.controller.TeacherController]userName：tT-----password：888888
 [INFO] [2021-01-29 14:59:32][cn.zcbigdata.mybits_demo.controller.TeacherController]userName：tT-----password：88888888
 [INFO] [2021-01-29 14:59:38][cn.zcbigdata.mybits_demo.controller.TeacherController]userName：tT-----password：888888
+[INFO] [2021-01-29 15:07:44][cn.zcbigdata.mybits_demo.controller.TeacherController]userName：t2-----password：888888
+[INFO] [2021-01-29 15:07:51][cn.zcbigdata.mybits_demo.controller.TeacherController]userName：t2-----password：888888
+[INFO] [2021-01-29 15:08:06][cn.zcbigdata.mybits_demo.controller.TeacherController]userName：t2-----password：888888
+[INFO] [2021-01-29 15:08:19][cn.zcbigdata.mybits_demo.controller.AdminController]userName：admin-----password：admin
+[INFO] [2021-01-29 15:08:31][cn.zcbigdata.mybits_demo.controller.TeacherController]userName：t2-----password：888888
+[INFO] [2021-01-29 15:08:45][cn.zcbigdata.mybits_demo.controller.TeacherController]userName：t2-----password：888888
+[INFO] [2021-01-29 15:09:59][cn.zcbigdata.mybits_demo.controller.TeacherController]userName：t2-----password：888888
+[INFO] [2021-01-29 15:14:28][cn.zcbigdata.mybits_demo.controller.TeacherController]userName：t2-----password：888888
+[INFO] [2021-01-29 15:48:27][cn.zcbigdata.mybits_demo.controller.TeacherController]userName：t2-----password：888888
+[INFO] [2021-01-29 15:50:57][cn.zcbigdata.mybits_demo.controller.TeacherController]userName：t2-----password：888888
+[INFO] [2021-01-29 15:52:35][cn.zcbigdata.mybits_demo.controller.TeacherController]userName：t2-----password：888888
+[INFO] [2021-01-29 16:02:25][cn.zcbigdata.mybits_demo.controller.TeacherController]userName：t2-----password：888888
+[INFO] [2021-01-29 16:03:59][cn.zcbigdata.mybits_demo.controller.TeacherController]userName：t2-----password：888888
+[INFO] [2021-01-29 16:06:26][cn.zcbigdata.mybits_demo.controller.TeacherController]userName：t2-----password：888888
+[INFO] [2021-01-29 16:06:31][cn.zcbigdata.mybits_demo.controller.TitleController]上传的文件是：批量添加学生测试用xml.xml
+[INFO] [2021-01-29 16:06:31][cn.zcbigdata.mybits_demo.service.Impl.IStudentServiceImpl]路径D:\uploadFile\不存在，即将创建
+[INFO] [2021-01-29 16:06:31][cn.zcbigdata.mybits_demo.service.Impl.IStudentServiceImpl]路径创建成功！
+[INFO] [2021-01-29 16:06:31][cn.zcbigdata.mybits_demo.service.Impl.IStudentServiceImpl]文件重命名为：3629377e9a1f4e3e8d2c1b3d96bb949b.xml
+[INFO] [2021-01-29 16:06:31][cn.zcbigdata.mybits_demo.service.Impl.IStudentServiceImpl]解析xml出现问题，请检查xml文件格式
+[ERROR] [2021-01-29 16:06:31][cn.zcbigdata.mybits_demo.service.Impl.IStudentServiceImpl]java.lang.NullPointerException
+[INFO] [2021-01-29 16:06:31][cn.zcbigdata.mybits_demo.controller.TitleController]解析xml出现问题，请检查xml文件格式
+[INFO] [2021-01-29 16:06:52][cn.zcbigdata.mybits_demo.controller.TitleController]上传的文件是：毕设题目测试表格.xml
+[INFO] [2021-01-29 16:06:52][cn.zcbigdata.mybits_demo.service.Impl.IStudentServiceImpl]文件重命名为：e77ff8c7b6fc441dace9577d6a1230b9.xml
+[INFO] [2021-01-29 16:06:52][cn.zcbigdata.mybits_demo.service.Impl.IStudentServiceImpl]解析xml出现问题，请检查xml文件格式
+[ERROR] [2021-01-29 16:06:52][cn.zcbigdata.mybits_demo.service.Impl.IStudentServiceImpl]java.lang.NullPointerException
+[INFO] [2021-01-29 16:06:52][cn.zcbigdata.mybits_demo.controller.TitleController]解析xml出现问题，请检查xml文件格式
+[INFO] [2021-01-29 16:07:10][cn.zcbigdata.mybits_demo.controller.TitleController]上传的文件是：毕设题目测试表格.xml
+[INFO] [2021-01-29 16:07:10][cn.zcbigdata.mybits_demo.service.Impl.IStudentServiceImpl]文件重命名为：dd8f8ca225574860932b8a3cbe44bbc4.xml
+[INFO] [2021-01-29 16:07:10][cn.zcbigdata.mybits_demo.service.Impl.IStudentServiceImpl]解析xml出现问题，请检查xml文件格式
+[ERROR] [2021-01-29 16:07:10][cn.zcbigdata.mybits_demo.service.Impl.IStudentServiceImpl]java.lang.NullPointerException
+[INFO] [2021-01-29 16:07:10][cn.zcbigdata.mybits_demo.controller.TitleController]解析xml出现问题，请检查xml文件格式
+[INFO] [2021-01-29 16:07:31][cn.zcbigdata.mybits_demo.controller.TitleController]上传的文件是：批量添加学生测试用xml.xml
+[INFO] [2021-01-29 16:07:31][cn.zcbigdata.mybits_demo.service.Impl.IStudentServiceImpl]文件重命名为：b62c4187f7f74a208ac73d4bab4dfc75.xml
+[INFO] [2021-01-29 16:07:31][cn.zcbigdata.mybits_demo.service.Impl.IStudentServiceImpl]解析xml出现问题，请检查xml文件格式
+[ERROR] [2021-01-29 16:07:31][cn.zcbigdata.mybits_demo.service.Impl.IStudentServiceImpl]java.lang.NullPointerException
+[INFO] [2021-01-29 16:07:31][cn.zcbigdata.mybits_demo.controller.TitleController]解析xml出现问题，请检查xml文件格式
+[INFO] [2021-01-29 16:08:13][cn.zcbigdata.mybits_demo.controller.TitleController]上传的文件是：批量添加学生测试用xml.xml
+[INFO] [2021-01-29 16:08:13][cn.zcbigdata.mybits_demo.service.Impl.IStudentServiceImpl]文件重命名为：4448b473bcc1415291130fab051f3b57.xml
+[INFO] [2021-01-29 16:08:13][cn.zcbigdata.mybits_demo.service.Impl.IStudentServiceImpl]解析xml出现问题，请检查xml文件格式
+[ERROR] [2021-01-29 16:08:13][cn.zcbigdata.mybits_demo.service.Impl.IStudentServiceImpl]java.lang.NullPointerException
+[INFO] [2021-01-29 16:08:13][cn.zcbigdata.mybits_demo.controller.TitleController]解析xml出现问题，请检查xml文件格式
+[INFO] [2021-01-29 16:12:03][cn.zcbigdata.mybits_demo.controller.TeacherController]userName：t2-----password：888888
+[INFO] [2021-01-29 16:12:08][cn.zcbigdata.mybits_demo.controller.TitleController]上传的文件是：批量添加学生测试用xml.xml
+[INFO] [2021-01-29 16:12:08][cn.zcbigdata.mybits_demo.service.Impl.IStudentServiceImpl]文件重命名为：bdd01ade7390414dbada731e1a597053.xml
+[INFO] [2021-01-29 16:12:08][cn.zcbigdata.mybits_demo.service.Impl.IStudentServiceImpl]操作成功
+[INFO] [2021-01-29 16:12:08][cn.zcbigdata.mybits_demo.controller.TitleController]操作成功
+[INFO] [2021-01-29 16:12:49][cn.zcbigdata.mybits_demo.controller.TeacherController]userName：t2-----password：888888
+[INFO] [2021-01-29 16:12:54][cn.zcbigdata.mybits_demo.controller.TitleController]上传的文件是：批量添加学生测试用xml.xml
+[INFO] [2021-01-29 16:12:54][cn.zcbigdata.mybits_demo.service.Impl.IStudentServiceImpl]文件重命名为：3611f9550e7b4986bc7162c30c978a4e.xml
+[INFO] [2021-01-29 16:12:54][cn.zcbigdata.mybits_demo.service.Impl.IStudentServiceImpl]操作成功
+[INFO] [2021-01-29 16:12:54][cn.zcbigdata.mybits_demo.controller.TitleController]操作成功
+[INFO] [2021-01-29 16:13:24][cn.zcbigdata.mybits_demo.controller.TeacherController]userName：t2-----password：888888
+[INFO] [2021-01-29 16:13:28][cn.zcbigdata.mybits_demo.controller.TitleController]上传的文件是：批量添加学生测试用xml.xml
+[INFO] [2021-01-29 16:13:28][cn.zcbigdata.mybits_demo.service.Impl.IStudentServiceImpl]文件重命名为：11f45561a9df408fb7b80870549b6f20.xml
+[INFO] [2021-01-29 16:13:28][cn.zcbigdata.mybits_demo.service.Impl.IStudentServiceImpl]操作成功
+[INFO] [2021-01-29 16:13:28][cn.zcbigdata.mybits_demo.controller.TitleController]操作成功
+[INFO] [2021-01-29 16:14:03][cn.zcbigdata.mybits_demo.controller.TeacherController]userName：t2-----password：888888
+[INFO] [2021-01-29 16:14:08][cn.zcbigdata.mybits_demo.controller.TitleController]上传的文件是：批量添加学生测试用xml.xml
+[INFO] [2021-01-29 16:14:08][cn.zcbigdata.mybits_demo.service.Impl.IStudentServiceImpl]文件重命名为：43b4d84f06fe406aa2c1505867d302bd.xml
+[INFO] [2021-01-29 16:14:08][cn.zcbigdata.mybits_demo.service.Impl.IStudentServiceImpl]操作成功
+[INFO] [2021-01-29 16:14:08][cn.zcbigdata.mybits_demo.controller.TitleController]操作成功
+[INFO] [2021-01-29 16:14:35][cn.zcbigdata.mybits_demo.controller.TeacherController]userName：t2-----password：888888
+[INFO] [2021-01-29 16:14:39][cn.zcbigdata.mybits_demo.controller.TitleController]上传的文件是：批量添加学生测试用xml.xml
+[INFO] [2021-01-29 16:14:39][cn.zcbigdata.mybits_demo.service.Impl.IStudentServiceImpl]文件重命名为：41c7a2279c934a9c84c467f9dae62cca.xml
+[INFO] [2021-01-29 16:14:40][cn.zcbigdata.mybits_demo.service.Impl.IStudentServiceImpl]解析xml出现问题，请检查xml文件格式
+[ERROR] [2021-01-29 16:14:40][cn.zcbigdata.mybits_demo.service.Impl.IStudentServiceImpl]org.springframework.dao.DuplicateKeyException: 
+### Error updating database.  Cause: java.sql.SQLIntegrityConstraintViolationException: Duplicate entry '400002' for key 'title'
+### The error may exist in file [C:\Users\zzy\IdeaProjects\graduation-design-management-system\target\classes\mapping\TitleMapping.xml]
+### The error may involve cn.zcbigdata.mybits_demo.mapper.TitleMapper.addTitle-Inline
+### The error occurred while setting parameters
+### SQL: INSERT INTO title (teacherid, title, flag)         VALUES (?, ?, ?);
+### Cause: java.sql.SQLIntegrityConstraintViolationException: Duplicate entry '400002' for key 'title'
+; Duplicate entry '400002' for key 'title'; nested exception is java.sql.SQLIntegrityConstraintViolationException: Duplicate entry '400002' for key 'title'
+[INFO] [2021-01-29 16:14:40][cn.zcbigdata.mybits_demo.controller.TitleController]解析xml出现问题，请检查xml文件格式
+[INFO] [2021-01-29 16:15:28][cn.zcbigdata.mybits_demo.controller.StudentController]userName：t2-----password：888888
+[INFO] [2021-01-29 16:15:30][cn.zcbigdata.mybits_demo.controller.TeacherController]userName：t2-----password：888888
+[INFO] [2021-01-29 16:15:34][cn.zcbigdata.mybits_demo.controller.TitleController]上传的文件是：批量添加学生测试用xml.xml
+[INFO] [2021-01-29 16:15:34][cn.zcbigdata.mybits_demo.service.Impl.IStudentServiceImpl]文件重命名为：812a2e7250954a4a8ee8c49fb959c1f3.xml
+[INFO] [2021-01-29 16:15:34][cn.zcbigdata.mybits_demo.service.Impl.IStudentServiceImpl]解析xml出现问题，请检查xml文件格式
+[ERROR] [2021-01-29 16:15:34][cn.zcbigdata.mybits_demo.service.Impl.IStudentServiceImpl]java.lang.NullPointerException
+[INFO] [2021-01-29 16:15:34][cn.zcbigdata.mybits_demo.controller.TitleController]解析xml出现问题，请检查xml文件格式
+[INFO] [2021-01-29 16:20:11][cn.zcbigdata.mybits_demo.controller.StudentController]userName：t2-----password：888888
+[INFO] [2021-01-29 16:20:13][cn.zcbigdata.mybits_demo.controller.TeacherController]userName：t2-----password：888888
+[INFO] [2021-01-29 16:20:16][cn.zcbigdata.mybits_demo.controller.TitleController]上传的文件是：批量添加学生测试用xml.xml
+[INFO] [2021-01-29 16:20:16][cn.zcbigdata.mybits_demo.service.Impl.IStudentServiceImpl]文件重命名为：a9d64bf179b743a191fb025fc262458f.xml
+[INFO] [2021-01-29 16:20:16][cn.zcbigdata.mybits_demo.service.Impl.IStudentServiceImpl]解析xml出现问题，请检查xml文件格式
+[ERROR] [2021-01-29 16:20:16][cn.zcbigdata.mybits_demo.service.Impl.IStudentServiceImpl]org.springframework.dao.DuplicateKeyException: 
+### Error updating database.  Cause: java.sql.SQLIntegrityConstraintViolationException: Duplicate entry '400002' for key 'title'
+### The error may exist in file [C:\Users\zzy\IdeaProjects\graduation-design-management-system\target\classes\mapping\TitleMapping.xml]
+### The error may involve cn.zcbigdata.mybits_demo.mapper.TitleMapper.addTitle-Inline
+### The error occurred while setting parameters
+### SQL: INSERT INTO title (teacherid, title, flag)         VALUES (?, ?, ?);
+### Cause: java.sql.SQLIntegrityConstraintViolationException: Duplicate entry '400002' for key 'title'
+; Duplicate entry '400002' for key 'title'; nested exception is java.sql.SQLIntegrityConstraintViolationException: Duplicate entry '400002' for key 'title'
+[INFO] [2021-01-29 16:20:16][cn.zcbigdata.mybits_demo.controller.TitleController]解析xml出现问题，请检查xml文件格式
+[INFO] [2021-01-29 16:20:36][cn.zcbigdata.mybits_demo.controller.TitleController]上传的文件是：毕设题目测试表格.xml
+[INFO] [2021-01-29 16:20:36][cn.zcbigdata.mybits_demo.service.Impl.IStudentServiceImpl]文件重命名为：c216e25a409c47d6834c9e9cc984f42f.xml
+[INFO] [2021-01-29 16:20:36][cn.zcbigdata.mybits_demo.service.Impl.IStudentServiceImpl]解析xml出现问题，请检查xml文件格式
+[ERROR] [2021-01-29 16:20:36][cn.zcbigdata.mybits_demo.service.Impl.IStudentServiceImpl]java.lang.NullPointerException
+[INFO] [2021-01-29 16:20:36][cn.zcbigdata.mybits_demo.controller.TitleController]解析xml出现问题，请检查xml文件格式
+[INFO] [2021-01-29 16:22:02][cn.zcbigdata.mybits_demo.controller.TeacherController]userName：t2-----password：888888
+[INFO] [2021-01-29 16:22:07][cn.zcbigdata.mybits_demo.controller.TitleController]上传的文件是：毕设题目测试表格.xml
+[INFO] [2021-01-29 16:22:07][cn.zcbigdata.mybits_demo.service.Impl.IStudentServiceImpl]文件重命名为：c99bb543990541619f9ed40e2597b3eb.xml
+[INFO] [2021-01-29 16:22:07][cn.zcbigdata.mybits_demo.service.Impl.IStudentServiceImpl]解析xml出现问题，请检查xml文件格式
+[ERROR] [2021-01-29 16:22:07][cn.zcbigdata.mybits_demo.service.Impl.IStudentServiceImpl]java.lang.NullPointerException
+[INFO] [2021-01-29 16:22:07][cn.zcbigdata.mybits_demo.controller.TitleController]解析xml出现问题，请检查xml文件格式
+[INFO] [2021-01-29 16:22:15][cn.zcbigdata.mybits_demo.controller.TitleController]上传的文件是：批量添加学生测试用xml.xml
+[INFO] [2021-01-29 16:22:15][cn.zcbigdata.mybits_demo.service.Impl.IStudentServiceImpl]文件重命名为：ad28c0e0218046d5906ebecc3ac5bbcb.xml
+[INFO] [2021-01-29 16:22:16][cn.zcbigdata.mybits_demo.service.Impl.IStudentServiceImpl]解析xml出现问题，请检查xml文件格式
+[ERROR] [2021-01-29 16:22:16][cn.zcbigdata.mybits_demo.service.Impl.IStudentServiceImpl]org.springframework.dao.DuplicateKeyException: 
+### Error updating database.  Cause: java.sql.SQLIntegrityConstraintViolationException: Duplicate entry '400002' for key 'title'
+### The error may exist in file [C:\Users\zzy\IdeaProjects\graduation-design-management-system\target\classes\mapping\TitleMapping.xml]
+### The error may involve cn.zcbigdata.mybits_demo.mapper.TitleMapper.addTitle-Inline
+### The error occurred while setting parameters
+### SQL: INSERT INTO title (teacherid, title, flag)         VALUES (?, ?, ?);
+### Cause: java.sql.SQLIntegrityConstraintViolationException: Duplicate entry '400002' for key 'title'
+; Duplicate entry '400002' for key 'title'; nested exception is java.sql.SQLIntegrityConstraintViolationException: Duplicate entry '400002' for key 'title'
+[INFO] [2021-01-29 16:22:16][cn.zcbigdata.mybits_demo.controller.TitleController]解析xml出现问题，请检查xml文件格式
+[INFO] [2021-01-29 16:23:47][cn.zcbigdata.mybits_demo.controller.TeacherController]userName：t2-----password：888888
+[INFO] [2021-01-29 16:23:53][cn.zcbigdata.mybits_demo.controller.TitleController]上传的文件是：批量添加学生测试用xml.xml
+[INFO] [2021-01-29 16:23:53][cn.zcbigdata.mybits_demo.service.Impl.IStudentServiceImpl]文件重命名为：a1767a4d99e7403796977584d9693f90.xml
+[INFO] [2021-01-29 16:23:53][cn.zcbigdata.mybits_demo.service.Impl.IStudentServiceImpl]解析xml出现问题，请检查xml文件格式
+[ERROR] [2021-01-29 16:23:53][cn.zcbigdata.mybits_demo.service.Impl.IStudentServiceImpl]java.lang.NullPointerException
+[INFO] [2021-01-29 16:23:53][cn.zcbigdata.mybits_demo.controller.TitleController]解析xml出现问题，请检查xml文件格式
+[INFO] [2021-01-29 16:25:00][cn.zcbigdata.mybits_demo.controller.TeacherController]userName：t2-----password：888888
+[INFO] [2021-01-29 16:25:05][cn.zcbigdata.mybits_demo.controller.TitleController]上传的文件是：批量添加学生测试用xml.xml
+[INFO] [2021-01-29 16:25:05][cn.zcbigdata.mybits_demo.service.Impl.IStudentServiceImpl]文件重命名为：b18c90d139004d6b8ef9fc2e57245cc9.xml
+[INFO] [2021-01-29 16:25:05][cn.zcbigdata.mybits_demo.service.Impl.IStudentServiceImpl]解析xml出现问题，请检查xml文件格式
+[ERROR] [2021-01-29 16:25:05][cn.zcbigdata.mybits_demo.service.Impl.IStudentServiceImpl]org.springframework.dao.DuplicateKeyException: 
+### Error updating database.  Cause: java.sql.SQLIntegrityConstraintViolationException: Duplicate entry '400002' for key 'title'
+### The error may exist in file [C:\Users\zzy\IdeaProjects\graduation-design-management-system\target\classes\mapping\TitleMapping.xml]
+### The error may involve cn.zcbigdata.mybits_demo.mapper.TitleMapper.addTitle-Inline
+### The error occurred while setting parameters
+### SQL: INSERT INTO title (teacherid, title, flag)         VALUES (?, ?, ?);
+### Cause: java.sql.SQLIntegrityConstraintViolationException: Duplicate entry '400002' for key 'title'
+; Duplicate entry '400002' for key 'title'; nested exception is java.sql.SQLIntegrityConstraintViolationException: Duplicate entry '400002' for key 'title'
+[INFO] [2021-01-29 16:25:05][cn.zcbigdata.mybits_demo.controller.TitleController]解析xml出现问题，请检查xml文件格式
+[INFO] [2021-01-29 16:26:40][cn.zcbigdata.mybits_demo.controller.TeacherController]userName：t2-----password：888888
+[INFO] [2021-01-29 16:26:48][cn.zcbigdata.mybits_demo.controller.TitleController]上传的文件是：批量添加学生测试用xml.xml
+[INFO] [2021-01-29 16:26:48][cn.zcbigdata.mybits_demo.service.Impl.IStudentServiceImpl]文件重命名为：031a6b2ccede4de7ace6be83c7506220.xml
+[INFO] [2021-01-29 16:26:49][cn.zcbigdata.mybits_demo.service.Impl.IStudentServiceImpl]解析xml出现问题，请检查xml文件格式
+[ERROR] [2021-01-29 16:26:49][cn.zcbigdata.mybits_demo.service.Impl.IStudentServiceImpl]org.springframework.dao.DuplicateKeyException: 
+### Error updating database.  Cause: java.sql.SQLIntegrityConstraintViolationException: Duplicate entry '400002' for key 'title'
+### The error may exist in file [C:\Users\zzy\IdeaProjects\graduation-design-management-system\target\classes\mapping\TitleMapping.xml]
+### The error may involve cn.zcbigdata.mybits_demo.mapper.TitleMapper.addTitle-Inline
+### The error occurred while setting parameters
+### SQL: INSERT INTO title (teacherid, title, flag)         VALUES (?, ?, ?);
+### Cause: java.sql.SQLIntegrityConstraintViolationException: Duplicate entry '400002' for key 'title'
+; Duplicate entry '400002' for key 'title'; nested exception is java.sql.SQLIntegrityConstraintViolationException: Duplicate entry '400002' for key 'title'
+[INFO] [2021-01-29 16:26:49][cn.zcbigdata.mybits_demo.controller.TitleController]解析xml出现问题，请检查xml文件格式
+[INFO] [2021-01-29 16:28:59][cn.zcbigdata.mybits_demo.controller.TeacherController]userName：t2-----password：888888
+[INFO] [2021-01-29 16:29:04][cn.zcbigdata.mybits_demo.controller.TitleController]上传的文件是：批量添加学生测试用xml.xml
+[INFO] [2021-01-29 16:29:04][cn.zcbigdata.mybits_demo.service.Impl.IStudentServiceImpl]文件重命名为：ae1405763e4048d7ab119eef644ae7e9.xml
+[INFO] [2021-01-29 16:29:05][cn.zcbigdata.mybits_demo.service.Impl.IStudentServiceImpl]操作成功
+[INFO] [2021-01-29 16:29:05][cn.zcbigdata.mybits_demo.controller.TitleController]操作成功
+[INFO] [2021-01-29 16:31:33][cn.zcbigdata.mybits_demo.controller.TeacherController]userName：t2-----password：888888
+[INFO] [2021-01-29 16:31:39][cn.zcbigdata.mybits_demo.controller.TitleController]上传的文件是：批量添加学生测试用xml.xml
+[INFO] [2021-01-29 16:31:39][cn.zcbigdata.mybits_demo.service.Impl.IStudentServiceImpl]文件重命名为：12cf02640b7d416fa3d9859acb333f86.xml
+[INFO] [2021-01-29 16:31:39][cn.zcbigdata.mybits_demo.service.Impl.IStudentServiceImpl]操作成功
+[INFO] [2021-01-29 16:31:39][cn.zcbigdata.mybits_demo.controller.TitleController]操作成功
+[INFO] [2021-01-29 16:32:03][cn.zcbigdata.mybits_demo.controller.TitleController]上传的文件是：毕设题目测试表格.xml
+[INFO] [2021-01-29 16:32:03][cn.zcbigdata.mybits_demo.service.Impl.IStudentServiceImpl]文件重命名为：3487b513a9be4927b672ae251375e88e.xml
+[INFO] [2021-01-29 16:32:03][cn.zcbigdata.mybits_demo.service.Impl.IStudentServiceImpl]解析xml出现问题，请检查xml文件格式
+[ERROR] [2021-01-29 16:32:03][cn.zcbigdata.mybits_demo.service.Impl.IStudentServiceImpl]java.lang.NullPointerException
+[INFO] [2021-01-29 16:32:03][cn.zcbigdata.mybits_demo.controller.TitleController]解析xml出现问题，请检查xml文件格式
+[INFO] [2021-01-29 16:33:36][cn.zcbigdata.mybits_demo.controller.TitleController]上传的文件是：批量添加学生测试用xml.xml
+[INFO] [2021-01-29 16:33:36][cn.zcbigdata.mybits_demo.service.Impl.IStudentServiceImpl]文件重命名为：129c19e82e8c440dacc2b3232c01c946.xml
+[INFO] [2021-01-29 16:33:37][cn.zcbigdata.mybits_demo.service.Impl.IStudentServiceImpl]操作成功
+[INFO] [2021-01-29 16:33:37][cn.zcbigdata.mybits_demo.controller.TitleController]操作成功
+[INFO] [2021-01-29 16:35:08][cn.zcbigdata.mybits_demo.controller.StudentController]userName：t2-----password：888888
+[INFO] [2021-01-29 16:35:10][cn.zcbigdata.mybits_demo.controller.TeacherController]userName：t2-----password：888888

@@ -26,14 +26,19 @@ public class ITitleServiceImpl implements ITitleService {
     }
 
     @Override
-    public List<Title> selectTitleByTeacherId(int teacherid, int page, int limit) {
-        int pageIndex = (page - 1) * limit;
-        return this.titleMapper.selectTitleByTeacherId(teacherid, pageIndex, limit);
+    public int deleteTitle(int id) {
+        return this.titleMapper.deleteTitle(id);
     }
 
     @Override
-    public int selectTitleCountByTeacherId(int teacherid) {
-        return this.titleMapper.selectTitleCountByTeacherId(teacherid);
+    public List<Title> selectTitleByTeacherId(int teacherid,int flag , int page, int limit) {
+        int pageIndex = (page - 1) * limit;
+        return this.titleMapper.selectTitleByTeacherId(teacherid,flag, pageIndex, limit);
+    }
+
+    @Override
+    public int selectTitleCountByTeacherId(int teacherid,int flag) {
+        return this.titleMapper.selectTitleCountByTeacherId(teacherid,flag);
     }
 
     @Override

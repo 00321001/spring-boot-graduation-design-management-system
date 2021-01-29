@@ -81,6 +81,30 @@ public class TitleController {
     }
 
     /**
+     * 教师删除毕设题目的controller层
+     * 请求方式：GET
+     * 入参：该毕设题目的id：id
+     * 出参：提示是否成功的json
+     *
+     * @param request HttpServletRequest
+     * @return 提示是否成功的json
+     */
+    @RequestMapping(value = "/deleteTitle", method = RequestMethod.GET)
+    @ResponseBody
+    public String deleteTitle(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        if (!UtilTools.checkLogin(session, 1)) {
+            return UtilTools.NO_LOGIN_RETURN_JSON;
+        }
+        String idStr = request.getParameter("id");
+        if (!UtilTools.checkNull(new String[]{idStr})) {
+            return UtilTools.IS_NULL_RETURN_JSON;
+        }
+        titleService.deleteTitle(Integer.parseInt(idStr));
+        return UtilTools.SUCCESS_RETURN_JSON;
+    }
+
+    /**
      * 通过教师id查询毕设题目的controller层，教师查询全部题目，学生查询还没有被选的题目
      * 请求方式：GET
      * 需要前台传回的参数有两种情况：
@@ -115,7 +139,21 @@ public class TitleController {
             }
             titles = titleService.selectNotTitleByTeacherId(Integer.parseInt(teacheridStr.trim()), Integer.parseInt(pageString.trim()), Integer.parseInt(limitString.trim()));
         } else {
-            titles = titleService.selectTitleByTeacherId(Integer.parseInt((String) session.getAttribute("userid")), Integer.parseInt(pageString.trim()), Integer.parseInt(limitString.trim()));
+            String flagStr = request.getParameter("flag");
+            if (!UtilTools.checkNull(new String[]{flagStr})) {
+                return UtilTools.IS_NULL_RETURN_JSON;
+            }
+            if(Integer.parseInt(flagStr.trim()) == 0){
+                titles = titleService.selectTitleByTeacherId(Integer.parseInt((String) session.getAttribute("userid")), 0 ,Integer.parseInt(pageString.trim()), Integer.parseInt(limitString.trim()));
+            }else if(Integer.parseInt(flagStr.trim()) == 1){
+                titles = titleService.selectTitleByTeacherId(Integer.parseInt((String) session.getAttribute("userid")), 1 ,Integer.parseInt(pageString.trim()), Integer.parseInt(limitString.trim()));
+            }else if(Integer.parseInt(flagStr.trim()) == 2){
+                titles = titleService.selectTitleByTeacherId(Integer.parseInt((String) session.getAttribute("userid")), 2 ,Integer.parseInt(pageString.trim()), Integer.parseInt(limitString.trim()));
+            }else if(Integer.parseInt(flagStr.trim()) == 3){
+                titles = titleService.selectTitleByTeacherId(Integer.parseInt((String) session.getAttribute("userid")), 3 ,Integer.parseInt(pageString.trim()), Integer.parseInt(limitString.trim()));
+            }else{
+                return UtilTools.FAIL_RETURN_JSON;
+            }
         }
         String[] colums = {"id", "title", "teacherid" ,"flag", "studentid"};
         return JsonUtil.listToLayJson(colums, titles);
@@ -146,7 +184,21 @@ public class TitleController {
             }
             count = titleService.selectNotTitleCountByTeacherId(Integer.parseInt(teacheridStr.trim()));
         } else {
-            count = titleService.selectTitleCountByTeacherId(Integer.parseInt((String) session.getAttribute("userid")));
+            String flagStr = request.getParameter("flag");
+            if (!UtilTools.checkNull(new String[]{flagStr})) {
+                return UtilTools.IS_NULL_RETURN_JSON;
+            }
+            if(Integer.parseInt(flagStr.trim()) == 0){
+                count = titleService.selectTitleCountByTeacherId(Integer.parseInt((String) session.getAttribute("userid")),0);
+            }else if(Integer.parseInt(flagStr.trim()) == 1){
+                count = titleService.selectTitleCountByTeacherId(Integer.parseInt((String) session.getAttribute("userid")),1);
+            }else if(Integer.parseInt(flagStr.trim()) == 2){
+                count = titleService.selectTitleCountByTeacherId(Integer.parseInt((String) session.getAttribute("userid")),2);
+            }else if(Integer.parseInt(flagStr.trim()) == 3){
+                count = titleService.selectTitleCountByTeacherId(Integer.parseInt((String) session.getAttribute("userid")),3);
+            }else{
+                return UtilTools.FAIL_RETURN_JSON;
+            }
         }
         String data = String.valueOf(count);
         return "{\"code\":\"0000\",\"msg\":\"操作成功\",\"count\":\"" + data + "\"}";
@@ -289,7 +341,7 @@ public class TitleController {
     /**
      * 教师通过自拟毕设题目的controller层
      * 请求方式：GET
-     * 入参：自拟题目id：id；标记：flag为3
+     * 入参：自拟题目id：id；标记：flag为1
      * 出参：提示是否成功的json
      *
      * @param request HttpServletRequest
@@ -317,7 +369,7 @@ public class TitleController {
     /**
      * 教师不通过自拟毕设题目的controller层
      * 请求方式：GET
-     * 入参：自拟题目id：id；标记：flag为2
+     * 入参：自拟题目id：id；标记：flag为3
      * 出参：提示是否成功的json
      *
      * @param request HttpServletRequest

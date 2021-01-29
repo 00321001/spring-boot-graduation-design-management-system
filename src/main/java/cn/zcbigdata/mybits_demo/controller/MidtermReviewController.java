@@ -40,12 +40,22 @@ public class MidtermReviewController {
         if (!UtilTools.checkLogin(session, 1)) {
             return UtilTools.NO_LOGIN_RETURN_JSON;
         }
+        String flagStr = request.getParameter("flag");
         String pageString = request.getParameter("page");
         String limitString = request.getParameter("limit");
-        if (!UtilTools.checkNull(new String[]{pageString, limitString})) {
+        if (!UtilTools.checkNull(new String[]{flagStr,pageString, limitString})) {
             return UtilTools.IS_NULL_RETURN_JSON;
         }
-        List<MidtermReview> midtermReviews = midtermReviewService.selectMidtermByTeacherId(Integer.parseInt((String) session.getAttribute("userid")), Integer.parseInt(pageString.trim()), Integer.parseInt(limitString.trim()));
+        List<MidtermReview> midtermReviews;
+        if(Integer.parseInt(flagStr.trim()) == 0){
+            midtermReviews = midtermReviewService.selectMidtermByTeacherId(Integer.parseInt((String) session.getAttribute("userid")),0,Integer.parseInt(pageString.trim()), Integer.parseInt(limitString.trim()));
+        }else if(Integer.parseInt(flagStr.trim()) == 1){
+            midtermReviews = midtermReviewService.selectMidtermByTeacherId(Integer.parseInt((String) session.getAttribute("userid")),1,Integer.parseInt(pageString.trim()), Integer.parseInt(limitString.trim()));
+        }else if(Integer.parseInt(flagStr.trim()) == 2){
+            midtermReviews = midtermReviewService.selectMidtermByTeacherId(Integer.parseInt((String) session.getAttribute("userid")),2,Integer.parseInt(pageString.trim()), Integer.parseInt(limitString.trim()));
+        }else{
+            return UtilTools.FAIL_RETURN_JSON;
+        }
         String[] colums = {"id", "content", "comments", "studentid", "teacherid", "flag"};
         return JsonUtil.listToLayJson(colums, midtermReviews);
     }
@@ -66,7 +76,20 @@ public class MidtermReviewController {
         if (!UtilTools.checkLogin(session, 1)) {
             return UtilTools.NO_LOGIN_RETURN_JSON;
         }
-        int count = midtermReviewService.selectMidtermCountByTeacherId(Integer.parseInt((String) session.getAttribute("userid")));
+        int count;
+        String flagStr = request.getParameter("flag");
+        if (!UtilTools.checkNull(new String[]{flagStr})) {
+            return UtilTools.IS_NULL_RETURN_JSON;
+        }
+        if(Integer.parseInt(flagStr.trim()) == 0){
+            count = midtermReviewService.selectMidtermCountByTeacherId(Integer.parseInt((String) session.getAttribute("userid")),0);
+        }else if(Integer.parseInt(flagStr.trim()) == 1){
+            count = midtermReviewService.selectMidtermCountByTeacherId(Integer.parseInt((String) session.getAttribute("userid")),1);
+        }else if(Integer.parseInt(flagStr.trim()) == 2){
+            count = midtermReviewService.selectMidtermCountByTeacherId(Integer.parseInt((String) session.getAttribute("userid")),2);
+        }else{
+            return UtilTools.FAIL_RETURN_JSON;
+        }
         String data = String.valueOf(count);
         return "{\"code\":\"0000\",\"msg\":\"操作成功\",\"count\":\"" + data + "\"}";
     }

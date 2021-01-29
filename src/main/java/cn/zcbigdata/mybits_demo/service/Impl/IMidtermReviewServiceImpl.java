@@ -15,14 +15,14 @@ public class IMidtermReviewServiceImpl implements IMidtermReviewService {
     private MidtermReviewMapper midtermReviewMapper;
 
     @Override
-    public List<MidtermReview> selectMidtermByTeacherId(int teacherid, int page, int limit) {
+    public List<MidtermReview> selectMidtermByTeacherId(int teacherid, int flag ,int page, int limit) {
         int pageIndex = (page - 1) * limit;
-        return this.midtermReviewMapper.selectMidtermByTeacherId(teacherid, pageIndex, limit);
+        return this.midtermReviewMapper.selectMidtermByTeacherId(teacherid, flag,pageIndex, limit);
     }
 
     @Override
-    public int selectMidtermCountByTeacherId(int teacherid) {
-        return this.midtermReviewMapper.selectMidtermCountByTeacherId(teacherid);
+    public int selectMidtermCountByTeacherId(int teacherid,int flag) {
+        return this.midtermReviewMapper.selectMidtermCountByTeacherId(teacherid,flag);
     }
 
     @Override

@@ -27,19 +27,26 @@
         WHERE id = #{id};
     </update>
 
+    <!--教师删除毕设题目接口-->
+    <delete id="deleteTitle" parameterType="java.lang.Integer">
+        DELETE
+        FROM title
+        WHERE id = #{id};
+    </delete>
+
     <!--通过教师id查询毕设题目接口-->
     <select id="selectTitleByTeacherId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
         select *
         from title
-        where teacherid = #{param1}
-        limit #{param2},#{param3};
+        where teacherid = #{param1} and flag = #{param2}
+        limit #{param3},#{param4};
     </select>
 
     <!--通过教师id查询毕设题目数量接口-->
     <select id="selectTitleCountByTeacherId" resultType="java.lang.Integer" parameterType="java.lang.Integer">
         select count(*)
         from title
-        where teacherid = #{teacherid};
+        where teacherid = #{param1} and flag = #{param2};
     </select>
 
     <!--通过教师id查询没有被选的毕设题目接口-->

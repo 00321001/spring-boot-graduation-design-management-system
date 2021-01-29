@@ -9,9 +9,11 @@ public interface ITitleService {
 
     int updateTitle(Title title);
 
-    List<Title> selectTitleByTeacherId(int teacherid, int page, int limit);
+    int deleteTitle(int id);
 
-    int selectTitleCountByTeacherId(int teacherid);
+    List<Title> selectTitleByTeacherId(int teacherid,int flag, int page, int limit);
+
+    int selectTitleCountByTeacherId(int teacherid,int flag);
 
     List<Title> selectNotTitleByTeacherId(int teacherid, int page, int limit);
 

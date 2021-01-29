@@ -52,6 +52,17 @@ public class IndexController {
     }
 
     /**
+     * 跳转教师端接口，无需入参
+     *
+     * @param request HttpServletRequest
+     * @return 返回状态码和提示信息
+     */
+    @RequestMapping(value = "/teacher", method = RequestMethod.GET)
+    public String teacher(HttpServletRequest request) {
+        return "back2";
+    }
+
+    /**
      * 跳转管理员公告信息管理页面接口，无需入参
      *
      * @param request HttpServletRequest
@@ -63,14 +74,56 @@ public class IndexController {
     }
 
     /**
-     * 跳转教师信息管理页面接口，无需入参
+     * 跳转教师公告信息管理页面接口，无需入参
      *
      * @param request HttpServletRequest
      * @return 返回状态码和提示信息
      */
-    @RequestMapping(value = "/GoTeacher", method = RequestMethod.GET)
-    public String GoTeacher(HttpServletRequest request) {
-        return "teacherManage";
+    @RequestMapping(value = "/GoTeacherNotice", method = RequestMethod.GET)
+    public String GoTeacherNotice(HttpServletRequest request) {
+        return "teacherNotice";
+    }
+
+    /**
+     * 跳转教师毕设题目管理页面接口，无需入参
+     *
+     * @param request HttpServletRequest
+     * @return 返回状态码和提示信息
+     */
+    @RequestMapping(value = "/GoTeacherTitle", method = RequestMethod.GET)
+    public String GoTeacherTitle(HttpServletRequest request) {
+        String flagStr = request.getParameter("flag");
+        if(Integer.parseInt(flagStr) == 0){
+            return "teacherTitle0";
+        }else if(Integer.parseInt(flagStr) == 1){
+            return "teacherTitle1";
+        }else if(Integer.parseInt(flagStr) == 2){
+            return "teacherTitle2";
+        }else if(Integer.parseInt(flagStr) == 3){
+            return "teacherTitle3";
+        }else{
+            return UtilTools.FAIL_RETURN_JSON;
+        }
+    }
+
+    /**
+     * 跳转教师中期论文管理页面接口，无需入参
+     *
+     * @param request HttpServletRequest
+     * @return 返回状态码和提示信息
+     */
+    @RequestMapping(value = "/GoTeacherMidterm", method = RequestMethod.GET)
+    public String GoTeacherMidterm(HttpServletRequest request) {
+        String flagStr = request.getParameter("flag");
+        if(Integer.parseInt(flagStr) == 0){
+            return "GoTeacherMidterm0";
+        }else if(Integer.parseInt(flagStr) == 1){
+            return "GoTeacherMidterm1";
+        }else if(Integer.parseInt(flagStr) == 2){
+            return "GoTeacherMidterm2";
+        }else{
+            return UtilTools.FAIL_RETURN_JSON;
+        }
     }
 
     /**

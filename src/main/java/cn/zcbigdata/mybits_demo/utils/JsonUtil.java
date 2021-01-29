@@ -9,6 +9,24 @@ import java.util.List;
  * @author yty
  */
 public class JsonUtil {
+    public static String listToNewLayJson(String[] fields, List<?> data, int count) throws Exception {
+        StringBuilder re = new StringBuilder();
+        re.append("{\"code\":0,\"msg\":\"获取成功\",\"count\":");
+        re.append(count);
+        re.append(",\"data\":[");
+        if (data.isEmpty()) {
+            re.append("]}");
+            return re.toString();
+        }
+        for (Object object : data) {
+            re.append(beanToJson(fields, object));
+            re.append(',');
+        }
+        re.deleteCharAt(re.length() - 1);
+        re.append("]}");
+        return re.toString();
+    }
+
 
     /**
      * 将list转换为layui风格的json

@@ -56,7 +56,8 @@ public class StudentController {
         }
         List<Student> students = this.studentService.selectStudentByTeacherid(Integer.valueOf((String) session.getAttribute("userid")), Integer.valueOf(pageStr.trim()), Integer.valueOf(limitStr.trim()));
         try {
-            return JsonUtil.listToLayJson(new String[]{"id", "userName", "password", "teacherid", "nickName"}, students);
+            int count = this.studentService.selectCountByTeacherid(Integer.valueOf((String) session.getAttribute("userid")));
+            return JsonUtil.listToNewLayJson(new String[]{"id", "userName", "password", "teacherid", "nickName"}, students, count);
         } catch (Exception e) {
             logger.error(e.getStackTrace());
             return UtilTools.FAIL_RETURN_JSON;
@@ -231,5 +232,32 @@ public class StudentController {
         session.setAttribute("userid", student.getId().toString());
         session.setAttribute("userType", "2");
         return UtilTools.SUCCESS_RETURN_JSON;
+    }
+
+    /**
+     * 教师删除学生接口，
+     * 请求方式：POST，
+     * 入参：学生ID:id
+     * 出参：提示是否成功的json
+     *
+     * @param request HttpServletRequest
+     * @return 提示是否成功的json
+     */
+    @RequestMapping(value = "/teacherDeleteStudent", method = RequestMethod.POST)
+    @ResponseBody
+    public String teacherDeleteStudent(HttpServletRequest request, HttpSession session) {
+        if (!UtilTools.checkLogin(session, 1)) {
+            return UtilTools.NO_LOGIN_RETURN_JSON;
+        }
+        String idStr = request.getParameter("id");
+        if (!UtilTools.checkNull(new String[]{idStr})) {
+            return UtilTools.IS_NULL_RETURN_JSON;
+        }
+        int flag = this.studentService.deleteById(Integer.parseInt(idStr.trim()));
+        if (flag == 1) {
+            return UtilTools.SUCCESS_RETURN_JSON;
+        } else {
+            return UtilTools.FAIL_RETURN_JSON;
+        }
     }
 }

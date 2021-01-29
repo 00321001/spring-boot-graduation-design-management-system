@@ -165,7 +165,7 @@ public class IStudentServiceImpl implements IStudentService {
     public Integer teacherUpdateStudentById(Student student) {
         try {
             return this.studentMapper.teacherUpdateStudentById(student);
-        }catch (Exception e){
+        } catch (Exception e) {
             logger.error(e);
             return 0;
         }

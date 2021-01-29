@@ -5,9 +5,9 @@ import cn.zcbigdata.mybits_demo.entity.MidtermReview;
 import java.util.List;
 
 public interface IMidtermReviewService {
-    List<MidtermReview> selectMidtermByTeacherId(int teacherid, int flag,int page, int limit);
+    List<MidtermReview> selectMidtermByTeacherId(int teacherid, int flag, int page, int limit);
 
-    int selectMidtermCountByTeacherId(int teacherid,int flag);
+    int selectMidtermCountByTeacherId(int teacherid, int flag);
 
     List<MidtermReview> selectMidtermByStudentId(int studentid);
 

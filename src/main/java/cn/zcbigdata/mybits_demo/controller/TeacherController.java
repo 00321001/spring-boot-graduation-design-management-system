@@ -1,5 +1,6 @@
 package cn.zcbigdata.mybits_demo.controller;
 
+import cn.zcbigdata.mybits_demo.entity.Admin;
 import cn.zcbigdata.mybits_demo.entity.Teacher;
 import cn.zcbigdata.mybits_demo.service.ITeacherService;
 import cn.zcbigdata.mybits_demo.utils.JsonUtil;
@@ -57,6 +58,24 @@ public class TeacherController {
         session.setAttribute("userid", teacher.getId().toString());
         session.setAttribute("userType", "1");
         return UtilTools.SUCCESS_RETURN_JSON;
+    }
+    /**
+     * 检查教师登录接口
+     * 请求方式：GET
+     * 入参：无入参
+     * 出参：包含响应码和管理员id和用户名的JSON
+     *
+     * @param session HttpSession
+     * @return 包含响应码和管理员id和用户名的JSON
+     */
+    @RequestMapping(value = "/loginCheck", method = RequestMethod.GET)
+    @ResponseBody
+    public String loginCheck(HttpSession session) throws Exception {
+        if (!UtilTools.checkLogin(session, 1)) {
+            return UtilTools.NO_LOGIN_RETURN_JSON;
+        }
+        Teacher teacher = this.teacherService.selectTeacherById(Integer.valueOf((String) session.getAttribute("userid")));
+        return JsonUtil.objectToJson(new String[]{"id", "userName"}, teacher);
     }
 
     /**

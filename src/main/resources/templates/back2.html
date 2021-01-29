@@ -28,9 +28,8 @@
         </ul>
         <ul class="layui-nav layui-layout-right">
             <li class="layui-nav-item">
-                <a href="javascript:">
+                <a href="javascript:" id="showUserName">
                     <img class="layui-nav-img" src="http://t.cn/RCzsdCq">
-                    teacher
                 </a>
                 <dl class="layui-nav-child">
                     <dd><a href="">基本资料</a></dd>
@@ -72,17 +71,42 @@
             </ul>
             <ul class="layui-nav layui-nav-tree" lay-filter="test">
                 <li class="layui-nav-item layui-nav-itemed">
+                    <a class="" href="javascript:">开题报告管理</a>
+                    <dl class="layui-nav-child">
+                        <dd><a class="site-demo-active" data-id="21" data-title="待审核开题报告" data-type="tabAdd"
+                               data-url="GoTeacherOpening?flag=0" href="javascript:">待审核开题报告</a></dd>
+                        <dd><a class="site-demo-active" data-id="22" data-title="已通过开题报告" data-type="tabAdd"
+                               data-url="GoTeacherOpening?flag=1" href="javascript:">已通过开题报告</a></dd>
+                        <dd><a class="site-demo-active" data-id="23" data-title="未通过开题报告" data-type="tabAdd"
+                               data-url="GoTeacherOpening?flag=2" href="javascript:">未通过开题报告</a></dd>
+                    </dl>
+                <li>
+            </ul>
+            <ul class="layui-nav layui-nav-tree" lay-filter="test">
+                <li class="layui-nav-item layui-nav-itemed">
                     <a class="" href="javascript:">中期论文管理</a>
                     <dl class="layui-nav-child">
-                        <dd><a class="site-demo-active" data-id="21" data-title="待审核论文" data-type="tabAdd"
+                        <dd><a class="site-demo-active" data-id="31" data-title="待审核论文" data-type="tabAdd"
                                data-url="GoTeacherMidterm?flag=0" href="javascript:">未审核论文</a></dd>
-                        <dd><a class="site-demo-active" data-id="22" data-title="已通过论文" data-type="tabAdd"
+                        <dd><a class="site-demo-active" data-id="32" data-title="已通过论文" data-type="tabAdd"
                                data-url="GoTeacherMidterm?flag=1" href="javascript:">已通过论文</a></dd>
-                        <dd><a class="site-demo-active" data-id="23" data-title="未通过论文" data-type="tabAdd"
+                        <dd><a class="site-demo-active" data-id="33" data-title="未通过论文" data-type="tabAdd"
                                data-url="GoTeacherMidterm?flag=2" href="javascript:">未通过论文</a></dd>
                     </dl>
                 <li>
             </ul>
+            <ul class="layui-nav layui-nav-tree" lay-filter="test">
+                <li class="layui-nav-item layui-nav-itemed">
+                    <a class="" href="javascript:">论文终稿管理</a>
+                    <dl class="layui-nav-child">
+                        <dd><a class="site-demo-active" data-id="41" data-title="待审核论文终稿" data-type="tabAdd"
+                               data-url="GoTeacherFinal?flag=0" href="javascript:">未审核论文终稿</a></dd>
+                        <dd><a class="site-demo-active" data-id="42" data-title="已审核论文终稿" data-type="tabAdd"
+                               data-url="GoTeacherFinal?flag=1" href="javascript:">已审核论文终稿</a></dd>
+                    </dl>
+                <li>
+            </ul>
+
         </div>
     </div>
 
@@ -153,9 +177,38 @@
 
     //JavaScript代码区域
     //layui模块的使用
-    layui.use('element', function () {
+    layui.use(['element','layer'], function () {
         var $ = layui.jquery;    //  var $=layui.jquery;
+        var layer = layui.layer;
         var element = layui.element; //Tab的切换功能，切换事件监听等，需要依赖element模块
+
+        checklogin();
+        function checklogin() {
+            var url = "/teacher/loginCheck";
+            $.ajax({
+                type: "get", //指定提交的类型 get对应 doGet()方法，post--->doPost()犯法
+                url: url, //传输地址的URL
+                data: {}, //data代表我们的数据  key -value类型的数据
+                dataType: 'JSON',
+                async: false, //success和error代表是否返回成功，既后台给前台传输数据是否成功
+                success: function (res) {
+                    if (res.code == "7777") {
+                        layer.alert("请重新登陆",{closeBtn: 0},function () {
+                            window.location.href = "/";
+                        });
+                    }else{
+                        var html = $("#showUserName").html();
+                        html += res.data.userName;
+                        $("#showUserName").html(html);
+                    }
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    alert("请重新登陆");
+                    window.location.href = "http://localhost:8080/user/login";
+
+                }
+            });
+        }
 
         //触发事件
         var active = {
@@ -165,7 +218,7 @@
                 //关于tabAdd的方法所传入的参数可看layui的开发文档中基础方法部分
                 element.tabAdd('demo', {
                     title: name,
-                    content: '<iframe data-frameid="' + id + '" scrolling="auto" frameborder="0" src="http://localhost:8080/' + url + '" style="width:100%;height:99%;"></iframe>',
+                    content: '<iframe data-frameid="' + id + '" scrolling="auto" frameborder="0" src="/' + url + '" style="width:100%;height:99%;"></iframe>',
                     id: id //规定好的id
                 })
                 CustomRightClick(id); //给tab绑定右击事件

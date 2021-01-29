@@ -16,10 +16,9 @@ import java.util.Map;
  */
 @Service
 public class ITeacherServiceImpl implements ITeacherService {
+    private static final Logger logger = Logger.getLogger(ITeacherServiceImpl.class);
     @Resource
     private TeacherMapper teacherMapper;
-
-    private static final Logger logger = Logger.getLogger(ITeacherServiceImpl.class);
 
     /**
      * 教师登录的Service层方法
@@ -51,9 +50,9 @@ public class ITeacherServiceImpl implements ITeacherService {
      */
     @Override
     public Integer adminAddTeacher(Teacher teacher) {
-        try{
+        try {
             return this.teacherMapper.adminAddTeacher(teacher);
-        }catch (Exception e){
+        } catch (Exception e) {
             logger.error(e);
             return 0;
         }
@@ -74,7 +73,7 @@ public class ITeacherServiceImpl implements ITeacherService {
     public Integer adminUpdateTeacher(Teacher teacher) {
         try {
             return this.teacherMapper.adminUpdateTeacher(teacher);
-        }catch (Exception e){
+        } catch (Exception e) {
             logger.error(e);
             return 0;
         }

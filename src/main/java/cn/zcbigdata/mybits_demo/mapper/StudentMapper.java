@@ -51,6 +51,7 @@ public interface StudentMapper {
 
     /**
      * 学生登录的Mapper层方法
+     *
      * @param student Student对象，包含用户名和密码
      * @return 返回查询到的学生对象
      */
@@ -58,6 +59,7 @@ public interface StudentMapper {
 
     /**
      * 根据教师id获取学生数量的Mapper层方法
+     *
      * @param id 教师id
      * @return 学生数量
      */
@@ -65,6 +67,7 @@ public interface StudentMapper {
 
     /**
      * 通过id删除学生的Mapper层方法
+     *
      * @param id 学生id
      * @return 受影响行数
      */

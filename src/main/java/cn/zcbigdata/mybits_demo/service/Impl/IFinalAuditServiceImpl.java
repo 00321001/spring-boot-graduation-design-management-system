@@ -20,16 +20,16 @@ public class IFinalAuditServiceImpl implements IFinalAuditService {
     /**
      * 根据教师id获取论文终稿的Service层方法
      *
-     * @param id 教师id
-     * @param flag 终稿状态
-     * @param page 当前页码
+     * @param id    教师id
+     * @param flag  终稿状态
+     * @param page  当前页码
      * @param limit 每页大小
      * @return 一个List，存有查询到的FinalAudit对象
      */
     @Override
-    public List<FinalAudit> selectFinalAuditByTeacherid(Integer id, Integer flag, Integer page, Integer limit){
-        Integer startIndex = (page - 1)* limit;
-        return this.finalAuditMapper.selectFinalAuditByTeacherid(id,flag,startIndex, limit);
+    public List<FinalAudit> selectFinalAuditByTeacherid(Integer id, Integer flag, Integer page, Integer limit) {
+        Integer startIndex = (page - 1) * limit;
+        return this.finalAuditMapper.selectFinalAuditByTeacherid(id, flag, startIndex, limit);
     }
 
     /**

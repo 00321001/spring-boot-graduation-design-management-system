@@ -11,9 +11,9 @@ public interface ITitleService {
 
     int deleteTitle(int id);
 
-    List<Title> selectTitleByTeacherId(int teacherid,int flag, int page, int limit);
+    List<Title> selectTitleByTeacherId(int teacherid, int flag, int page, int limit);
 
-    int selectTitleCountByTeacherId(int teacherid,int flag);
+    int selectTitleCountByTeacherId(int teacherid, int flag);
 
     List<Title> selectNotTitleByTeacherId(int teacherid, int page, int limit);
 

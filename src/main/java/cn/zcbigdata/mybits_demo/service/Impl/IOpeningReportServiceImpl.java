@@ -20,7 +20,7 @@ public class IOpeningReportServiceImpl implements IOpeningReportService {
     /**
      * 根据教师id获取开题报告的Service层方法
      *
-     * @param id 教师id
+     * @param id   教师id
      * @param flag 开题报告状态
      * @return 一个List，存有查询到的OpeningReport对象
      */

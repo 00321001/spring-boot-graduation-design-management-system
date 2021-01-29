@@ -79,6 +79,40 @@
 
 <script>
 
+    layui.use('layer', function () {
+        var layer = layui.layer;
+        checklogin();
+        function checklogin() {
+            var url = "/teacher/loginCheck";
+            $.ajax({
+                type: "get", //指定提交的类型 get对应 doGet()方法，post--->doPost()犯法
+                url: url, //传输地址的URL
+                data: {}, //data代表我们的数据  key -value类型的数据
+                dataType: 'JSON',
+                async: false, //success和error代表是否返回成功，既后台给前台传输数据是否成功
+                success: function (res) {
+                    if (res.code == "7777") {
+                        layer.alert("请重新登陆",{closeBtn: 0},function () {
+                            parent.location.href = "/";
+                            window.location.href = "/";
+                        });
+                    }else{
+                        var html = $("#showUserName").html();
+                        html += res.data.userName;
+                        $("#showUserName").html(html);
+                    }
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    alert("请重新登陆");
+                    layer.alert("请重新登陆",{closeBtn: 0},function () {
+                        parent.location.href = "/";
+                        window.location.href = "/";
+                    });
+                }
+            });
+        }
+    });
+
     layui.use('table', function () {
         var table = layui.table;
         var pagecount;

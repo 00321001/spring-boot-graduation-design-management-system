@@ -104,15 +104,15 @@ public class IndexController {
     @RequestMapping(value = "/GoTeacherTitle", method = RequestMethod.GET)
     public String GoTeacherTitle(HttpServletRequest request) {
         String flagStr = request.getParameter("flag");
-        if(Integer.parseInt(flagStr) == 0){
+        if (Integer.parseInt(flagStr) == 0) {
             return "teacherTitle0";
-        }else if(Integer.parseInt(flagStr) == 1){
+        } else if (Integer.parseInt(flagStr) == 1) {
             return "teacherTitle1";
-        }else if(Integer.parseInt(flagStr) == 2){
+        } else if (Integer.parseInt(flagStr) == 2) {
             return "teacherTitle2";
-        }else if(Integer.parseInt(flagStr) == 3){
+        } else if (Integer.parseInt(flagStr) == 3) {
             return "teacherTitle3";
-        }else{
+        } else {
             return UtilTools.FAIL_RETURN_JSON;
         }
     }
@@ -126,13 +126,51 @@ public class IndexController {
     @RequestMapping(value = "/GoTeacherMidterm", method = RequestMethod.GET)
     public String GoTeacherMidterm(HttpServletRequest request) {
         String flagStr = request.getParameter("flag");
-        if(Integer.parseInt(flagStr) == 0){
+        if (Integer.parseInt(flagStr) == 0) {
             return "teacherMidterm0";
-        }else if(Integer.parseInt(flagStr) == 1){
+        } else if (Integer.parseInt(flagStr) == 1) {
             return "teacherMidterm1";
-        }else if(Integer.parseInt(flagStr) == 2){
+        } else if (Integer.parseInt(flagStr) == 2) {
             return "teacherMidterm2";
-        }else{
+        } else {
+            return UtilTools.FAIL_RETURN_JSON;
+        }
+    }
+
+    /**
+     * 跳转教师开题报告管理页面接口，无需入参
+     *
+     * @param request HttpServletRequest
+     * @return 返回状态码和提示信息
+     */
+    @RequestMapping(value = "/GoTeacherOpening", method = RequestMethod.GET)
+    public String GoTeacherOpening(HttpServletRequest request) {
+        String flagStr = request.getParameter("flag");
+        if (Integer.parseInt(flagStr) == 0) {
+            return "teacherOpening0";
+        } else if (Integer.parseInt(flagStr) == 1) {
+            return "teacherOpening1";
+        } else if (Integer.parseInt(flagStr) == 2) {
+            return "teacherOpening2";
+        } else {
+            return UtilTools.FAIL_RETURN_JSON;
+        }
+    }
+
+    /**
+     * 跳转教师论文终稿管理页面接口，无需入参
+     *
+     * @param request HttpServletRequest
+     * @return 返回状态码和提示信息
+     */
+    @RequestMapping(value = "/GoTeacherFinal", method = RequestMethod.GET)
+    public String GoTeacherFinal(HttpServletRequest request) {
+        String flagStr = request.getParameter("flag");
+        if (Integer.parseInt(flagStr) == 0) {
+            return "teacherFinal0";
+        } else if (Integer.parseInt(flagStr) == 1) {
+            return "teacherFinal1";
+        } else {
             return UtilTools.FAIL_RETURN_JSON;
         }
     }
@@ -143,17 +181,8 @@ public class IndexController {
      * @return 教师端学生管理页面
      */
     @RequestMapping(value = "/GoStudent", method = RequestMethod.GET)
-    public String GoStudent(){
+    public String GoStudent() {
         return "studentManage";
     }
 
-    /**
-     * 返回批量添加学生测试页面的接口
-     *
-     * @return 返回批量添加学生测试页面
-     */
-    @RequestMapping(value = "/test", method = RequestMethod.GET)
-    public String testPage() {
-        return "test";
-    }
 }

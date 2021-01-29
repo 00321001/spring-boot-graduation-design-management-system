@@ -12,9 +12,9 @@ public interface IOpeningReportService {
     /**
      * 根据教师id获取开题报告的Service层方法
      *
-     * @param id 教师id
-     * @param flag 报告状态
-     * @param page 当前页码
+     * @param id    教师id
+     * @param flag  报告状态
+     * @param page  当前页码
      * @param limit 每页大小
      * @return 一个List，存有查询到的OpeningReport对象
      */
@@ -56,7 +56,7 @@ public interface IOpeningReportService {
      * 根据教师id和开题报告状态查询开题报告数量的Service层方法
      *
      * @param teacherid 教师id
-     * @param flag 开题报告状态标记
+     * @param flag      开题报告状态标记
      * @return 数量
      */
     Integer selectCountByTeacherIdAndFlag(Integer teacherid, Integer flag);

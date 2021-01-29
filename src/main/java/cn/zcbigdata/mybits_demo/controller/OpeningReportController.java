@@ -29,20 +29,30 @@ public class OpeningReportController {
     /**
      * 根据教师id查询开题报告接口，
      * 请求方式：GET，
-     * 入参：无入参，
+     * 入参：报告状态：flag,
      * 出参：layui风格的json
      *
      * @param session HttpSession
+     * @param request HttpServletRequest
      * @return layui风格的json
      */
     @RequestMapping(value = "selectOpeningReportByTeacherid", method = RequestMethod.GET)
     @ResponseBody
-    public String selectOpeningReportByTeacherid(HttpSession session) throws Exception {
+    public String selectOpeningReportByTeacherid(HttpServletRequest request,HttpSession session) throws Exception {
         if (!UtilTools.checkLogin(session, 1)) {
             return UtilTools.NO_LOGIN_RETURN_JSON;
         }
-        List<OpeningReport> openingReports = this.openingReportService.selectOpeningReportByTeacherid(Integer.valueOf((String) session.getAttribute("userid")));
-        return JsonUtil.listToLayJson(FIELDS, openingReports);
+        String flagStr = request.getParameter("flag");
+        String limitStr = request.getParameter("limit");
+        String pageStr = request.getParameter("page");
+        if(!UtilTools.checkNull(new String[]{flagStr, limitStr, pageStr})){
+            return UtilTools.IS_NULL_RETURN_JSON;
+        }
+        Integer teacherid = Integer.valueOf((String) session.getAttribute("userid"));
+        Integer flag = Integer.valueOf(flagStr.trim());
+        int count = this.openingReportService.selectCountByTeacherIdAndFlag(teacherid, flag);
+        List<OpeningReport> openingReports = this.openingReportService.selectOpeningReportByTeacherid(teacherid, flag, Integer.valueOf(pageStr.trim()), Integer.valueOf(limitStr.trim()));
+        return JsonUtil.listToNewLayJson(FIELDS, openingReports ,count);
     }
 
     /**

@@ -1,6 +1,7 @@
 package cn.zcbigdata.mybits_demo.controller;
 
 import cn.zcbigdata.mybits_demo.entity.FinalAudit;
+import cn.zcbigdata.mybits_demo.entity.FinalAudit;
 import cn.zcbigdata.mybits_demo.service.IFinalAuditService;
 import cn.zcbigdata.mybits_demo.utils.JsonUtil;
 import cn.zcbigdata.mybits_demo.utils.UtilTools;
@@ -27,22 +28,32 @@ public class FinalAuditController {
     private IFinalAuditService finalAuditService;
 
     /**
-     * 根据教师id查询论文终稿接口，
+     * 根据教师id论文终稿接口，
      * 请求方式：GET，
-     * 入参：无入参，
+     * 入参：报告状态：flag,
      * 出参：layui风格的json
      *
      * @param session HttpSession
+     * @param request HttpServletRequest
      * @return layui风格的json
      */
     @RequestMapping(value = "selectFinalAuditByTeacherid", method = RequestMethod.GET)
     @ResponseBody
-    public String selectFinalAuditByTeacherid(HttpSession session) throws Exception {
+    public String selectFinalAuditByTeacherid(HttpServletRequest request,HttpSession session) throws Exception {
         if (!UtilTools.checkLogin(session, 1)) {
             return UtilTools.NO_LOGIN_RETURN_JSON;
         }
-        List<FinalAudit> finalAudits = this.finalAuditService.selectFinalAuditByTeacherid(Integer.valueOf((String) session.getAttribute("userid")));
-        return JsonUtil.listToLayJson(FIELDS, finalAudits);
+        String flagStr = request.getParameter("flag");
+        String limitStr = request.getParameter("limit");
+        String pageStr = request.getParameter("page");
+        if(!UtilTools.checkNull(new String[]{flagStr, limitStr, pageStr})){
+            return UtilTools.IS_NULL_RETURN_JSON;
+        }
+        Integer teacherid = Integer.valueOf((String) session.getAttribute("userid"));
+        Integer flag = Integer.valueOf(flagStr.trim());
+        int count = this.finalAuditService.selectCountByTeacherIdAndFlag(teacherid, flag);
+        List<FinalAudit> finalAudits = this.finalAuditService.selectFinalAuditByTeacherid(teacherid, flag, Integer.valueOf(pageStr.trim()), Integer.valueOf(limitStr.trim()));
+        return JsonUtil.listToNewLayJson(FIELDS, finalAudits ,count);
     }
 
     /**

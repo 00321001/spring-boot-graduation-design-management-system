@@ -13,9 +13,12 @@ public interface IFinalAuditService {
      * 根据教师id获取论文终稿的Service层方法
      *
      * @param id 教师id
+     * @param flag 终稿状态
+     * @param page 当前页码
+     * @param limit 每页大小
      * @return 一个List，存有查询到的FinalAudit对象
      */
-    List<FinalAudit> selectFinalAuditByTeacherid(Integer id);
+    List<FinalAudit> selectFinalAuditByTeacherid(Integer id, Integer flag, Integer page, Integer limit);
 
     /**
      * 根据学生id获取论文终稿的Service层方法
@@ -48,4 +51,13 @@ public interface IFinalAuditService {
      * @return 受影响行数
      */
     Integer addFinalAudit(FinalAudit finalAudit);
+
+    /**
+     * 根据教师id和论文终稿状态查询论文终稿数量的Service层方法
+     *
+     * @param teacherid 教师id
+     * @param flag 开题报告状态标记
+     * @return 数量
+     */
+    Integer selectCountByTeacherIdAndFlag(Integer teacherid, Integer flag);
 }

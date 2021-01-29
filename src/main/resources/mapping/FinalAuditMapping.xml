@@ -15,8 +15,19 @@
     <select id="selectFinalAuditByTeacherid" resultMap="BaseResultMap" parameterType="java.lang.Integer">
         SELECT *
         FROM `final-audit`
-        WHERE teacherid = #{id};
+        WHERE teacherid = #{id}
+        AND flag = #{flag}
+        LIMIT #{startIndex}, #{pageSize};
     </select>
+
+    <!--根据教师id和终稿状态获取总数-->
+    <select id="selectCountByTeacherIdAndFlag" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+        SELECT COUNT(*)
+        FROM `final-audit`
+        WHERE teacherid = #{teacherid}
+          AND flag = #{flag};
+    </select>
+
     <!--根据学生id查询论文终稿-->
     <select id="selectFinalAuditByStudent" parameterType="java.lang.Integer" resultMap="BaseResultMap">
         SELECT *
@@ -43,5 +54,6 @@
         INSERT INTO `final-audit`(content, studentid, teacherid, flag)
         VALUES (#{content}, #{studentid}, #{teacherid}, #{flag});
     </insert>
+
 
 </mapper>

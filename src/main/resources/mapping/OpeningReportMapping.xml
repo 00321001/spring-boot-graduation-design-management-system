@@ -15,8 +15,19 @@
     <select id="selectOpeningReportByTeacherid" resultMap="BaseResultMap" parameterType="java.lang.Integer">
         SELECT *
         FROM `opening-report`
-        WHERE teacherid = #{id};
+        WHERE teacherid = #{id}
+          AND flag = #{flag}
+        LIMIT #{startIndex}, #{pageSize};
     </select>
+
+    <!--根据教师id和报告状态获取总数-->
+    <select id="selectCountByTeacherIdAndFlag" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+        SELECT COUNT(*)
+        FROM `opening-report`
+        WHERE teacherid = #{teacherid}
+          AND flag = #{flag};
+    </select>
+
     <!--根据学生id查询开题报告-->
     <select id="selectOpeningReportByStudent" parameterType="java.lang.Integer" resultMap="BaseResultMap">
         SELECT *

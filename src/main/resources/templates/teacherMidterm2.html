@@ -12,23 +12,6 @@
 </head>
 <body>
 
-<!-- 添加的from表单 -->
-<form action="" class="layui-form" enctype="multipart/form-data" id="addForm" lay-filter="add" style="display:none">
-
-    <div class="layui-form-item">
-        <label class="layui-form-label">毕设题目</label>
-        <div class="layui-input-block">
-            <input autocomplete="off" class="layui-input" id="title" lay-verify="description" name="title" placeholder="毕设题目"
-                   style="width:340px" type="text">
-        </div>
-    </div>
-
-    <div class="layui-form-item" id="sub">
-        <button class="layui-btn" id="addsub" lay-filter="demo2" lay-submit style="margin-left:220px" type="button">提交
-        </button>
-    </div>
-</form>
-
 <!--修改的from表单 -->
 <form action="" class="layui-form" enctype="multipart/form-data" id="updataForm" lay-filter="updata"
       style="display:none">
@@ -42,9 +25,9 @@
     </div>
 
     <div class="layui-form-item">
-        <label class="layui-form-label">毕设题目</label>
+        <label class="layui-form-label">评语</label>
         <div class="layui-input-block">
-            <input autocomplete="off" class="layui-input" id="title" lay-verify="title" name="title" placeholder="毕设题目"
+            <input autocomplete="off" class="layui-input" id="comments" lay-verify="comments" name="comments" placeholder="评语"
                    style="width:340px" type="text">
         </div>
     </div>
@@ -61,7 +44,6 @@
 
 <script id="toolbarDemo" type="text/html">
     <div class="layui-btn-container">
-        <button type="button" class="layui-btn layui-btn-sm" id="add" lay-event="add">添加</button>
         <button class="layui-btn layui-btn-sm" lay-event="getCheckData">获取选中行数据</button>
         <button class="layui-btn layui-btn-sm" lay-event="getCheckLength">获取选中数目</button>
         <button class="layui-btn layui-btn-sm" lay-event="isAll">验证是否全选</button>
@@ -69,7 +51,7 @@
 </script>
 
 <script id="barDemo" type="text/html">
-    <a class="layui-btn layui-btn-xs" lay-event="edit">修改题目</a>
+    <a class="layui-btn layui-btn-xs" lay-event="edit">修改评语</a>
     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
 </script>
 
@@ -86,7 +68,7 @@
 
         function page() {
             $.ajax({
-                url: 'http://localhost:8080/title/selectTitleCountByTeacherId?flag=0',
+                url: 'http://localhost:8080/midterm/selectMidtermCountByTeacherId?flag=2',
                 dataType: 'json',
                 type: 'get',
                 async: false,
@@ -102,7 +84,7 @@
 
         table.render({
             elem: '#test'
-            , url: 'http://localhost:8080/title/selectTitleByTeacherId?flag=0'
+            , url: 'http://localhost:8080/midterm/selectMidtermByTeacherId?flag=2'
             , toolbar: '#toolbarDemo' //开启头部工具栏，并为其绑定左侧模板
             , defaultToolbar: ['filter', 'exports', 'print', { //自定义头部工具栏右侧图标。如无需自定义，去除该参数即可
                 title: '提示'
@@ -114,14 +96,12 @@
                 [
                     {type: 'checkbox', fixed: 'left'}
                     , {field: 'id', width: 60, title: 'ID', sort: true}
-                    , {field: 'title',  title: '毕设题目'}
+                    , {field: 'content',  title: '中期论文'}
+                    , {field: 'comments',  title: '评语'}
+                    , {field: 'studentid',  title: '学生id',width: 80}
                     , {fixed: 'right', title: '操作', toolbar: '#barDemo', width: 160}
                 ]
             ]
-            , initSort: {
-                field: 'flag',
-                type: 'asc'
-            }
             , page: true
             , limit: 10 //每一页的数据量
             , response: {
@@ -144,49 +124,10 @@
             form = layui.form;
             form.render();
             //表单取值
-            form.on('submit(demo2)', function (data) {
-                console.log(JSON.stringify(data.field));
-                $.ajax({
-                    url: 'http://localhost:8080/title/addTitle',
-                    method: 'get',
-                    data: data.field,
-                    dataType: 'JSON',
-                    success: function (res) {
-                        if (res.status = '0') {
-                            console.log(res);
-                            if (res.code == "0000") {
-                                layer.msg("添加成功");
-                                $("#addForm")[0].reset();
-                                form.render();
-                                //刷新页面
-                                table.reload('test', {
-                                    url: 'http://localhost:8080/title/selectTitleByTeacherId?flag=0'
-                                });
-                                page();
-                            } else if (res.code == "7777") {
-                                layer.msg("账号已过期，请重新登陆");
-                            } else {
-                                layer.msg("不可添加空信息");
-                            }
-                        } else {
-                            layer.msg("添加失败");
-                            $("#addForm")[0].reset();
-                            form.render();
-                        }
-                    },
-                    error: function (data) {
-                        layer.msg("网络错误");
-                        $("#addForm")[0].reset();
-                        form.render();
-                    }
-                });
-                layer.close(layer_index);
-            });
-
             form.on('submit(demo3)', function (data) {
                 console.log(JSON.stringify(data.field));
                 $.ajax({
-                    url: 'http://localhost:8080/title/updateTitle',
+                    url: 'http://localhost:8080/midterm/addComments',
                     method: 'get',
                     data: data.field,
                     dataType: 'JSON',
@@ -194,12 +135,12 @@
                         if (res.status = '0') {
                             console.log(res);
                             if (res.code == "0000") {
-                                layer.msg("修改成功");
+                                layer.msg("修改评语成功");
                                 $("#updataForm")[0].reset();
                                 form.render();
                                 //刷新页面
                                 table.reload('test', {
-                                    url: 'http://localhost:8080/title/selectTitleByTeacherId?flag=0'
+                                    url: 'http://localhost:8080/midterm/selectMidtermByTeacherId?flag=2'
                                 });
                                 page();
                             } else if (res.code == "7777") {
@@ -223,21 +164,6 @@
             });
         });
 
-        function add() {
-            layer_index = layer.open({
-                type: 1,  //可传入的值有：0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）
-                title: "添加", //数组第二项可以写任意css样式；如果你不想显示标题栏，你可以title: false
-                area: ['500px', '400px'], //所打开页面大小
-                content: $("#addForm"), //内容
-                //关闭操作
-                cancel: function () {
-                    layer.close(layer_index);
-                    $("#addForm")[0].reset();
-                    $('#demoe1').attr('src', "");
-                }
-            });
-        }
-
         //修改
         function updateById(data) {
             layer_index = layer.open({
@@ -259,9 +185,6 @@
         table.on('toolbar(test)', function (obj) {
             var checkStatus = table.checkStatus(obj.config.id);
             switch (obj.event) {
-                case 'add':
-                    add();
-                    break;
                 case 'getCheckData':
                     var data = checkStatus.data;
                     layer.alert(JSON.stringify(data));
@@ -299,7 +222,7 @@
             } else if (obj.event === 'edit') {
                 form.val("updata", { //formTest 即 class="layui-form" 所在元素属性 lay-filter="" 对应的值
                     "id": data.id // "name": "value"
-                    , "content": data.content
+                    , "comments": data.comments
                 });
                 updateById(data);
             }
@@ -310,7 +233,7 @@
             var data = {
                 id
             };
-            var url = "http://localhost:8080/title/deleteTitle";
+            var url = "http://localhost:8080/midterm/deleteMidterm";
             $.ajax({
                 type: "get", //指定提交的类型 get对应 doGet()方法，post--->doPost()犯法
                 url: url,    //传输地址的URL
@@ -324,7 +247,7 @@
                         layer.msg("删除成功");
                         //刷新页面
                         table.reload('test', {
-                            url: 'http://localhost:8080/title/selectTitleByTeacherId?flag=0'
+                            url: 'http://localhost:8080/midterm/selectMidtermByTeacherId?flag=2'
                         });
                     } else {
                         layer.msg("删除失败");

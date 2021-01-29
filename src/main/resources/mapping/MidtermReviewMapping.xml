@@ -40,8 +40,15 @@
     <!--教师审核中期论文接口-->
     <update id="checkMidterm" parameterType="cn.zcbigdata.mybits_demo.entity.MidtermReview">
         UPDATE `midterm-review`
-        SET comments = #{comments},
-            flag = #{flag} WHERE id = #{id};
+        SET flag = #{flag}
+        WHERE id = #{id};
+    </update>
+
+    <!--教师审核中期论文接口-->
+    <update id="addComments" parameterType="cn.zcbigdata.mybits_demo.entity.MidtermReview">
+        UPDATE `midterm-review`
+        SET comments = #{comments}
+        WHERE id = #{id};
     </update>
 
     <!--通过学生id查询中期论文数量接口-->
@@ -63,5 +70,12 @@
         from `midterm-review`
         where id = #{id}
     </select>
+
+    <!--管理员和教师公用删除公告接口-->
+    <delete id="deleteMidterm" parameterType="java.lang.Integer">
+        DELETE
+        FROM `midterm-review`
+        WHERE id = #{id};
+    </delete>
 
 </mapper>

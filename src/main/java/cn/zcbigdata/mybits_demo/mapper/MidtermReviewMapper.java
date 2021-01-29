@@ -13,9 +13,13 @@ public interface MidtermReviewMapper {
 
     int checkMidterm(MidtermReview midtermReview);
 
+    int addComments(MidtermReview midtermReview);
+
     int selectMidtermCountByStudentId(int studentid);
 
     int addMidterm(MidtermReview midtermReview);
 
     List<MidtermReview> selectMidtermById(int id);
+
+    int deleteMidterm(int id);
 }

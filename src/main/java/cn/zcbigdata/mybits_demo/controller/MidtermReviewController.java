@@ -117,9 +117,9 @@ public class MidtermReviewController {
     }
 
     /**
-     * 教师通过中期论文并评语的controller层
+     * 教师通过中期论文的controller层
      * 请求方式：GET
-     * 入参：中期论文id：id；标记：flag为1；评语：comments
+     * 入参：中期论文id：id；标记：flag为1
      * 出参：提示是否成功的json
      *
      * @param request HttpServletRequest
@@ -134,22 +134,20 @@ public class MidtermReviewController {
             return UtilTools.NO_LOGIN_RETURN_JSON;
         }
         String idStr = request.getParameter("id");
-        String comments = request.getParameter("comments");
-        if (!UtilTools.checkNull(new String[]{idStr, comments})) {
+        if (!UtilTools.checkNull(new String[]{idStr})) {
             return UtilTools.IS_NULL_RETURN_JSON;
         }
         MidtermReview midtermReview = new MidtermReview();
         midtermReview.setId(Integer.parseInt(idStr.trim()));
-        midtermReview.setComments(comments.trim());
         midtermReview.setFlag(1);
         midtermReviewService.checkMidterm(midtermReview);
         return UtilTools.SUCCESS_RETURN_JSON;
     }
 
     /**
-     * 教师不通过中期论文并评语的controller层
+     * 教师不通过中期论文的controller层
      * 请求方式：GET
-     * 入参：中期论文id：id；标记：flag为2；评语：comments
+     * 入参：中期论文id：id；标记：flag为2
      * 出参：提示是否成功的json
      *
      * @param request HttpServletRequest
@@ -164,6 +162,34 @@ public class MidtermReviewController {
             return UtilTools.NO_LOGIN_RETURN_JSON;
         }
         String idStr = request.getParameter("id");
+        if (!UtilTools.checkNull(new String[]{idStr})) {
+            return UtilTools.IS_NULL_RETURN_JSON;
+        }
+        MidtermReview midtermReview = new MidtermReview();
+        midtermReview.setId(Integer.parseInt(idStr.trim()));
+        midtermReview.setFlag(2);
+        midtermReviewService.checkMidterm(midtermReview);
+        return UtilTools.SUCCESS_RETURN_JSON;
+    }
+
+    /**
+     * 教师评语的controller层
+     * 请求方式：GET
+     * 入参：中期论文id：id；标记：flag为2；评语：comments
+     * 出参：提示是否成功的json
+     *
+     * @param request HttpServletRequest
+     * @return 提示是否成功的json
+     */
+    @ResponseBody
+    @RequestMapping(value = "/addComments", method = RequestMethod.GET, produces = "text/plain;charset=utf-8")
+    public String addComments(HttpServletRequest request) throws Exception {
+        request.setCharacterEncoding("utf-8");
+        HttpSession session = request.getSession();
+        if (!UtilTools.checkLogin(session, 1)) {
+            return UtilTools.NO_LOGIN_RETURN_JSON;
+        }
+        String idStr = request.getParameter("id");
         String comments = request.getParameter("comments");
         if (!UtilTools.checkNull(new String[]{idStr, comments})) {
             return UtilTools.IS_NULL_RETURN_JSON;
@@ -171,8 +197,7 @@ public class MidtermReviewController {
         MidtermReview midtermReview = new MidtermReview();
         midtermReview.setId(Integer.parseInt(idStr.trim()));
         midtermReview.setComments(comments.trim());
-        midtermReview.setFlag(2);
-        midtermReviewService.checkMidterm(midtermReview);
+        midtermReviewService.addComments(midtermReview);
         return UtilTools.SUCCESS_RETURN_JSON;
     }
 
@@ -231,4 +256,30 @@ public class MidtermReviewController {
         String[] colums = {"id", "content", "comments", "studentid", "teacherid", "flag"};
         return JsonUtil.listToLayJson(colums, midtermReviews);
     }
+
+    /**
+     * 删除中期论文的controller层
+     * 请求方式：GET
+     * 入参：中期论文id：id
+     * 出参：提示是否成功的json
+     *
+     * @param request HttpServletRequest
+     * @return 提示是否成功的json
+     */
+    @ResponseBody
+    @RequestMapping(value = "/deleteMidterm", method = RequestMethod.GET, produces = "text/plain;charset=utf-8")
+    public String deleteMidterm(HttpServletRequest request) throws Exception {
+        request.setCharacterEncoding("utf-8");
+        HttpSession session = request.getSession();
+        if (!UtilTools.checkLogin(session, 1)) {
+            return UtilTools.NO_LOGIN_RETURN_JSON;
+        }
+        String idStr = request.getParameter("id");
+        if (!UtilTools.checkNull(new String[]{idStr})) {
+            return UtilTools.IS_NULL_RETURN_JSON;
+        }
+        midtermReviewService.deleteMidterm(Integer.parseInt(idStr.trim()));
+        return UtilTools.SUCCESS_RETURN_JSON;
+    }
+
 }

@@ -63,6 +63,17 @@ public class IndexController {
     }
 
     /**
+     * 跳转管理员教师信息管理页面接口，无需入参
+     *
+     * @param request HttpServletRequest
+     * @return 返回状态码和提示信息
+     */
+    @RequestMapping(value = "/GoTeacher", method = RequestMethod.GET)
+    public String GoTeacher(HttpServletRequest request) {
+        return "teacherManage";
+    }
+
+    /**
      * 跳转管理员公告信息管理页面接口，无需入参
      *
      * @param request HttpServletRequest
@@ -116,11 +127,11 @@ public class IndexController {
     public String GoTeacherMidterm(HttpServletRequest request) {
         String flagStr = request.getParameter("flag");
         if(Integer.parseInt(flagStr) == 0){
-            return "GoTeacherMidterm0";
+            return "teacherMidterm0";
         }else if(Integer.parseInt(flagStr) == 1){
-            return "GoTeacherMidterm1";
+            return "teacherMidterm1";
         }else if(Integer.parseInt(flagStr) == 2){
-            return "GoTeacherMidterm2";
+            return "teacherMidterm2";
         }else{
             return UtilTools.FAIL_RETURN_JSON;
         }
@@ -132,7 +143,7 @@ public class IndexController {
      * @return 教师端学生管理页面
      */
     @RequestMapping(value = "/GoStudent", method = RequestMethod.GET)
-    public String teacher(){
+    public String GoStudent(){
         return "studentManage";
     }
 

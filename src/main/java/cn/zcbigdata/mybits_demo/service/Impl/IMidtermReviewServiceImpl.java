@@ -36,6 +36,11 @@ public class IMidtermReviewServiceImpl implements IMidtermReviewService {
     }
 
     @Override
+    public int addComments(MidtermReview midtermReview) {
+        return this.midtermReviewMapper.addComments(midtermReview);
+    }
+
+    @Override
     public int selectMidtermCountByStudentId(int studentid) {
         return this.midtermReviewMapper.selectMidtermCountByStudentId(studentid);
     }
@@ -48,6 +53,11 @@ public class IMidtermReviewServiceImpl implements IMidtermReviewService {
     @Override
     public List<MidtermReview> selectMidtermById(int id) {
         return this.midtermReviewMapper.selectMidtermById(id);
+    }
+
+    @Override
+    public int deleteMidterm(int id) {
+        return this.midtermReviewMapper.deleteMidterm(id);
     }
 
 }

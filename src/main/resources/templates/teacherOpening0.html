@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>待审核开题报告</title>
+    <meta content="webkit" name="renderer">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport">
+    <link href="../static/layui/css/layui.css" media="all" rel="stylesheet">
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+    <!-- 注意：如果你直接复制所有代码到本地，上述css路径需要改成你本地的 -->
+</head>
+<body>
+
+<table class="layui-hide" id="test" lay-filter="test"></table>
+
+<script id="toolbarDemo" type="text/html">
+    <div class="layui-btn-container">
+        <button class="layui-btn layui-btn-sm" lay-event="getCheckData">获取选中行数据</button>
+        <button class="layui-btn layui-btn-sm" lay-event="getCheckLength">获取选中数目</button>
+        <button class="layui-btn layui-btn-sm" lay-event="isAll">验证是否全选</button>
+    </div>
+</script>
+
+<script id="barDemo" type="text/html">
+    <a class="layui-btn layui-btn-xs" lay-event="edit">审核</a>
+</script>
+
+
+<script charset="utf-8" src="../static/layui/layui.js"></script>
+<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
+
+<form action="" class="layui-form" enctype="multipart/form-data" id="updataForm" lay-filter="updata"
+      style="display: none">
+    <div class="layui-form-item" style="display:none">
+        <label class="layui-form-label">ID</label>
+        <div class="layui-input-block">
+            <input autocomplete="off" class="layui-input" id="id" lay-verify="required" name="id" placeholder="ID"
+                   type="text">
+        </div>
+    </div>
+
+    <div class="layui-form-item layui-form-text">
+        <label class="layui-form-label">评分（评语）</label>
+        <div class="layui-input-block">
+            <textarea placeholder="请输入内容" class="layui-textarea" lay-verify="required" name="comments"></textarea>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">是否通过</label>
+        <div class="layui-input-block">
+            <input type="radio" name="flag" value="1" title="通过" checked="">
+            <input type="radio" name="flag" value="2" title="不通过">
+        </div>
+    </div>
+
+    <div class="layui-form-item" id="sub">
+        <button class="layui-btn" id="updatasub" lay-filter="updatasub" lay-submit style="margin-left:220px"
+                type="button">
+            提交
+        </button>
+    </div>
+</form>
+
+<script>
+    layui.use(['table', 'layer', 'form'], function () {
+        var table = layui.table,
+            layer = layui.layer,
+            form = layui.form,
+            $ = layui.jquery;
+
+        form.render('radio');
+        table.render({
+            elem: '#test'
+            , url: '/openingReport/selectOpeningReportByTeacherid?flag=0'
+            , toolbar: '#toolbarDemo' //开启头部工具栏，并为其绑定左侧模板
+            , defaultToolbar: ['filter', 'exports', 'print', { //自定义头部工具栏右侧图标。如无需自定义，去除该参数即可
+                title: '提示'
+                , layEvent: 'LAYTABLE_TIPS'
+                , icon: 'layui-icon-tips'
+            }]
+            , title: '待审核开题报告表'
+            , cols: [
+                [
+                    {type: 'checkbox', fixed: 'left'}
+                    , {field: 'id', title: 'ID', width: 80, fixed: 'left', unresize: true, sort: true}
+                    , {field: 'content', title: '内容'}
+                    , {field: 'comments', title: '评语', hide: true}
+                    , {field: 'studentid', title: '学生id'}
+                    , {field: 'teacherid', title: '教师id', hide: true}
+                    , {field: 'flag', title: '审核状态' ,templet: function(d){if(d.flag == 0){return '待审核'}else if(d.flag == 1){return '已通过'} else{return '未通过'}}}
+                    , {fixed: 'right', title: '操作', toolbar: '#barDemo'}
+                ]
+            ]
+            , page: true
+        });
+
+        //头工具栏事件
+        table.on('toolbar(test)', function (obj) {
+            var checkStatus = table.checkStatus(obj.config.id);
+            switch (obj.event) {
+                case 'getCheckData':
+                    var data = checkStatus.data;
+                    layer.alert(JSON.stringify(data));
+                    break;
+                case 'getCheckLength':
+                    var data = checkStatus.data;
+                    layer.msg('选中了：' + data.length + ' 个');
+                    break;
+                case 'isAll':
+                    layer.msg(checkStatus.isAll ? '全选' : '未全选');
+                    break;
+                //自定义头工具栏右侧图标 - 提示
+                case 'LAYTABLE_TIPS':
+                    layer.alert('这是工具栏右侧自定义的一个图标按钮');
+                    break;
+            }
+        });
+        var formLayerId;
+        //监听行工具事件
+        table.on('tool(test)', function (obj) {
+            var data = obj.data;
+            //console.log(obj)
+            if (obj.event === 'edit') {
+                form.val('updata', {
+                    "id": data.id // "name": "value"
+                });
+                //捕获表单，打开弹层
+                formLayerId = layer.open({
+                    type: 1,
+                    shade: false,
+                    title: false, //不显示标题
+                    content: $('#updataForm'), //捕获的元素，注意：最好该指定的元素要存放在body最外层，否则可能被其它的相对元素所影响
+                    cancel: function () {
+                        form.render();
+                        layer.close(formLayerId);
+                    }
+                });
+            }
+        });
+        //修改表单提交事件
+        form.on('submit(updatasub)', function (data) {
+            var url = "/openingReport/reviewOpeningReport";
+            $.ajax({
+                type: "POST", //指定提交的类型 get对应 doGet()方法，post--->doPost()犯法
+                url: url,    //传输地址的URL
+                data: data.field, //data代表我们的数据  key -value类型的数据
+                dataType: 'JSON',
+                async: false, //success和error代表是否返回成功，既后台给前台传输数据是否成功
+                success: function (res) {
+                    if (res.code == "7777") {
+                        layer.msg("账号已过期，请重新登陆");
+                        form.render();
+                    } else if (res.code == "0000") {
+                        layer.msg(res.msg);
+                        //刷新页面
+                        table.reload('test', {
+                            url: '/openingReport/selectOpeningReportByTeacherid?flag=0'
+                        });
+                        form.render();
+                    } else {
+                        layer.msg(res.msg);
+                        form.render();
+                    }
+                    layer.close(formLayerId);
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    alert(typeof (errorThrown));
+                    layer.close(formLayerId);
+                }
+            });
+        });
+
+    });
+</script>
+
+</body>
+</html>

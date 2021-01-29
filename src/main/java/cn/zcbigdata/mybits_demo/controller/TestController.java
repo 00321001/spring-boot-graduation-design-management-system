@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping(value = "/test")
 public class TestController {
 
-    @RequestMapping(value = "/stu", method = RequestMethod.GET)
+    @RequestMapping(value = "/", method = RequestMethod.GET)
     public String testPage(){
-        return "studentManage";
+        return "teacherFinal1";
     }
+
+
 }

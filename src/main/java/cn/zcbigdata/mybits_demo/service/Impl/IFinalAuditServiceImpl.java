@@ -21,11 +21,15 @@ public class IFinalAuditServiceImpl implements IFinalAuditService {
      * 根据教师id获取论文终稿的Service层方法
      *
      * @param id 教师id
+     * @param flag 终稿状态
+     * @param page 当前页码
+     * @param limit 每页大小
      * @return 一个List，存有查询到的FinalAudit对象
      */
     @Override
-    public List<FinalAudit> selectFinalAuditByTeacherid(Integer id) {
-        return this.finalAuditMapper.selectFinalAuditByTeacherid(id);
+    public List<FinalAudit> selectFinalAuditByTeacherid(Integer id, Integer flag, Integer page, Integer limit){
+        Integer startIndex = (page - 1)* limit;
+        return this.finalAuditMapper.selectFinalAuditByTeacherid(id,flag,startIndex, limit);
     }
 
     /**
@@ -82,5 +86,17 @@ public class IFinalAuditServiceImpl implements IFinalAuditService {
         }
         finalAudit.setFlag(0);
         return this.finalAuditMapper.addFinalAudit(finalAudit);
+    }
+
+    /**
+     * 根据教师id和论文终稿状态查询论文终稿数量的Service层方法
+     *
+     * @param teacherid 教师id
+     * @param flag      开题报告状态标记
+     * @return 数量
+     */
+    @Override
+    public Integer selectCountByTeacherIdAndFlag(Integer teacherid, Integer flag) {
+        return this.finalAuditMapper.selectCountByTeacherIdAndFlag(teacherid, flag);
     }
 }

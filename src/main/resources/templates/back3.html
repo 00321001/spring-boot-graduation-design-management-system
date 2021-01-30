@@ -59,13 +59,13 @@
                     <a class="" href="javascript:">毕设管理</a>
                     <dl class="layui-nav-child">
                         <dd><a class="site-demo-active" data-id="11" data-title="可选毕设题目" data-type="tabAdd"
-                               data-url="GoTeacherTitle?flag=0" href="javascript:">可选毕设题目</a></dd>
+                               data-url="GoChooseTitle" href="javascript:">可选毕设题目</a></dd>
                         <dd><a class="site-demo-active" data-id="12" data-title="个人毕设题目" data-type="tabAdd"
-                               data-url="GoTeacherTitle?flag=1" href="javascript:">毕设题目管理</a></dd>
+                               data-url="GoStudentTitle" href="javascript:">毕设题目管理</a></dd>
                         <dd><a class="site-demo-active" data-id="22" data-title="开题报告管理" data-type="tabAdd"
                                data-url="GoTeacherOpening?flag=1" href="javascript:">开题报告管理</a></dd>
                         <dd><a class="site-demo-active" data-id="32" data-title="中期论文管理" data-type="tabAdd"
-                               data-url="GoTeacherMidterm?flag=1" href="javascript:">中期论文管理</a></dd>
+                               data-url="GoStudentMidterm" href="javascript:">中期论文管理</a></dd>
                         <dd><a class="site-demo-active" data-id="42" data-title="论文终稿管理" data-type="tabAdd"
                                data-url="GoTeacherFinal?flag=1" href="javascript:">论文终稿管理</a></dd>
                     </dl>
@@ -138,7 +138,7 @@
                         });
                     }else{
                         var html = $("#showUserName").html();
-                        html += res.data.userName;
+                        html += res.data.nickName;
                         $("#showUserName").html(html);
                     }
                 },

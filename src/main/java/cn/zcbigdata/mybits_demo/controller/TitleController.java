@@ -117,7 +117,7 @@ public class TitleController {
      * ①如果该用户为教师，则只能看自己发布的毕设题目：
      * 入参：页码：page；数据量：limit；教师id：teacherid从session中的userid中获取
      * 出参：毕设题目ID：id；毕设题目：title；标记：flag；学生id：studentid
-     * ②如果该用户为学生，则可以通过搜索自己老师的id，并且看到的毕设题目都是没有被选的（flag=0，studentid=0），其他的不会被获取：
+     * ②如果该用户为学生，则可以通过搜索自己老师的id，并且看到的毕设题目都是没有被选的（flag=0），其他的不会被获取：
      * 入参：页码：page；数据量：limit；教师id：teacherid
      * 出参：毕设题目ID：id；毕设题目：title；标记：flag（为0）；学生id：studentid（为空）
      *
@@ -227,9 +227,35 @@ public class TitleController {
         if (!UtilTools.checkLogin(session, 2)) {
             return UtilTools.NO_LOGIN_RETURN_JSON;
         }
-        List<Title> titles = titleService.selectTitleByStudentId(Integer.parseInt((String) session.getAttribute("userid")));
+        String pageString = request.getParameter("page");
+        String limitString = request.getParameter("limit");
+        if (!UtilTools.checkNull(new String[]{pageString,limitString})) {
+            return UtilTools.IS_NULL_RETURN_JSON;
+        }
+        List<Title> titles = titleService.selectTitleByStudentId(Integer.parseInt((String) session.getAttribute("userid")),Integer.parseInt(pageString),Integer.parseInt(limitString));
         String[] colums = {"id", "title", "teacherid" ,"flag", "studentid"};
         return JsonUtil.listToLayJson(colums, titles);
+    }
+
+    /**
+     * 通过学生id查询毕设题目数量的controller层，查询全部和自己有关的题目
+     * 请求方式：GET
+     * 入参：学生id：存在于session中
+     * 出参：提示是否成功和数据数量的json
+     *
+     * @param request HttpServletRequest
+     * @return 提示是否成功的json
+     */
+    @ResponseBody
+    @RequestMapping(value = "/selectTitleCountByStuId", method = RequestMethod.GET, produces = "text/plain;charset=utf-8")
+    public String selectTitleCountByStuId(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        if (!UtilTools.checkLogin(session, 2)) {
+            return UtilTools.NO_LOGIN_RETURN_JSON;
+        }
+        int count = titleService.selectTitleCountByStuId(Integer.parseInt((String) session.getAttribute("userid")));
+        String data = String.valueOf(count);
+        return "{\"code\":\"0000\",\"msg\":\"操作成功\",\"count\":\"" + data + "\"}";
     }
 
     /**
@@ -279,13 +305,13 @@ public class TitleController {
         if (!UtilTools.checkLogin(session, 2)) {
             return UtilTools.NO_LOGIN_RETURN_JSON;
         }
-        if (titleService.selectTitleCountByStudentId(Integer.parseInt((String) session.getAttribute("userid"))) > 0) {
-            return UtilTools.FAIL_RETURN_JSON;
-        }
         String teacheridStr = request.getParameter("teacherid");
         String stuTitle = request.getParameter("title");
         if (!UtilTools.checkNull(new String[]{teacheridStr, stuTitle})) {
             return UtilTools.IS_NULL_RETURN_JSON;
+        }
+        if (titleService.selectTitleCountByStudentId(Integer.parseInt((String) session.getAttribute("userid"))) > 0) {
+            return UtilTools.FAIL_RETURN_JSON;
         }
         Title title = new Title();
         title.setTeacherid(Integer.parseInt(teacheridStr.trim()));

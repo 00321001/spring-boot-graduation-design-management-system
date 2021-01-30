@@ -64,13 +64,19 @@ public class ITitleServiceImpl implements ITitleService {
     }
 
     @Override
-    public List<Title> selectTitleByStudentId(int studentid) {
-        return this.titleMapper.selectTitleByStudentId(studentid);
+    public List<Title> selectTitleByStudentId(int studentid,int page,int limit) {
+        int pageIndex = (page - 1) * limit;
+        return this.titleMapper.selectTitleByStudentId(studentid,pageIndex,limit);
     }
 
     @Override
     public int selectTitleCountByStudentId(int studentid) {
         return this.titleMapper.selectTitleCountByStudentId(studentid);
+    }
+
+    @Override
+    public int selectTitleCountByStuId(int studentid) {
+        return this.titleMapper.selectTitleCountByStuId(studentid);
     }
 
     @Override

@@ -120,6 +120,27 @@ public class MidtermReviewController {
     }
 
     /**
+     * 通过学生id查询中期论文数量的controller层
+     * 请求方式：GET
+     * 入参：学生id：studentid为session中的userid
+     * 出参：提示是否成功和数据数量的json
+     *
+     * @param request HttpServletRequest
+     * @return 提示是否成功的json
+     */
+    @ResponseBody
+    @RequestMapping(value = "/selectMidtermCountByStuId", method = RequestMethod.GET, produces = "text/plain;charset=utf-8")
+    public String selectMidtermCountByStuId(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        if (!UtilTools.checkLogin(session, 2)) {
+            return UtilTools.NO_LOGIN_RETURN_JSON;
+        }
+        int count = midtermReviewService.selectMidtermCountByStuId(Integer.parseInt((String) session.getAttribute("userid")));
+        String data = String.valueOf(count);
+        return "{\"code\":\"0000\",\"msg\":\"操作成功\",\"count\":\"" + data + "\"}";
+    }
+
+    /**
      * 教师通过中期论文的controller层
      * 请求方式：GET
      * 入参：中期论文id：id；标记：flag为1
@@ -220,13 +241,13 @@ public class MidtermReviewController {
         if (!UtilTools.checkLogin(session, 2)) {
             return UtilTools.NO_LOGIN_RETURN_JSON;
         }
-        if (midtermReviewService.selectMidtermCountByStudentId(Integer.parseInt((String) session.getAttribute("userid"))) > 0) {
-            return UtilTools.FAIL_RETURN_JSON;
-        }
         String content = request.getParameter("content");
         String teacheridStr = request.getParameter("teacherid");
         if (!UtilTools.checkNull(new String[]{content, teacheridStr})) {
             return UtilTools.IS_NULL_RETURN_JSON;
+        }
+        if (midtermReviewService.selectMidtermCountByStudentId(Integer.parseInt((String) session.getAttribute("userid"))) > 0) {
+            return UtilTools.FAIL_RETURN_JSON;
         }
         MidtermReview midtermReview = new MidtermReview();
         midtermReview.setContent(content.trim());

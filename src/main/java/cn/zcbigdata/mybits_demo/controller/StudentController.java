@@ -1,6 +1,7 @@
 package cn.zcbigdata.mybits_demo.controller;
 
 import cn.zcbigdata.mybits_demo.entity.Student;
+import cn.zcbigdata.mybits_demo.entity.Teacher;
 import cn.zcbigdata.mybits_demo.service.IStudentService;
 import cn.zcbigdata.mybits_demo.utils.JsonUtil;
 import cn.zcbigdata.mybits_demo.utils.UtilTools;
@@ -32,6 +33,26 @@ public class StudentController {
 
     @Value("${define.nginx.path}")
     private String nginxPath;
+
+
+    /**
+     * 检查学生登录接口
+     * 请求方式：GET
+     * 入参：无入参
+     * 出参：包含响应码和管理员id和用户名的JSON
+     *
+     * @param session HttpSession
+     * @return 包含响应码和管理员id和用户名的JSON
+     */
+    @RequestMapping(value = "/loginCheck", method = RequestMethod.GET)
+    @ResponseBody
+    public String loginCheck(HttpSession session) throws Exception {
+        if (!UtilTools.checkLogin(session, 2)) {
+            return UtilTools.NO_LOGIN_RETURN_JSON;
+        }
+        List<Student> student = this.studentService.selectStudentById(Integer.valueOf((String) session.getAttribute("userid")));
+        return JsonUtil.objectToJson(new String[]{"id", "userName"}, student.get(0));
+    }
 
     /**
      * 根据教师id查询学生信息接口，
@@ -150,7 +171,7 @@ public class StudentController {
     @RequestMapping(value = "/teacherUpdateStudent", method = RequestMethod.POST)
     @ResponseBody
     public String teacherUpdateStudent(HttpServletRequest request, HttpSession session) {
-        if (!UtilTools.checkLogin(session, 1)) {
+        if (!UtilTools.checkLogin(session, 5)) {
             return UtilTools.NO_LOGIN_RETURN_JSON;
         }
         String stuidStr = request.getParameter("id");
@@ -187,16 +208,12 @@ public class StudentController {
     @ResponseBody
     public String selectStudentById(HttpServletRequest request) {
         HttpSession session = request.getSession();
-        if (!(UtilTools.checkLogin(session, 4))) {
+        if (!(UtilTools.checkLogin(session, 5))) {
             return UtilTools.NO_LOGIN_RETURN_JSON;
         }
-        String idStr = request.getParameter("id");
-        if (!UtilTools.checkNull(new String[]{idStr})) {
-            return UtilTools.IS_NULL_RETURN_JSON;
-        }
-        Student student = this.studentService.selectStudentById(Integer.valueOf(idStr.trim()));
+        List<Student> student = this.studentService.selectStudentById(Integer.parseInt((String) session.getAttribute("userid")));
         try {
-            return JsonUtil.objectToJson(new String[]{"id", "userName", "password", "teacherid", "nickName"}, student);
+            return JsonUtil.listToLayJson(new String[]{"id", "userName", "password", "teacherid", "nickName"}, student);
         } catch (Exception e) {
             logger.error(e.getStackTrace());
             return UtilTools.FAIL_RETURN_JSON;

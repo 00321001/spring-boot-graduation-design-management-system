@@ -47,7 +47,7 @@ public interface StudentMapper {
      * @param studentid 学生id
      * @return 查询到的Student对象
      */
-    Student selectStudentById(Integer studentid);
+    List<Student>  selectStudentById(Integer studentid);
 
     /**
      * 学生登录的Mapper层方法

@@ -32,24 +32,6 @@ public class StudentController {
     private String nginxPath;
 
 
-    /**
-     * 检查学生登录接口
-     * 请求方式：GET
-     * 入参：无入参
-     * 出参：包含响应码和管理员id和用户名的JSON
-     *
-     * @param session HttpSession
-     * @return 包含响应码和管理员id和用户名的JSON
-     */
-    @RequestMapping(value = "/loginCheck", method = RequestMethod.GET)
-    @ResponseBody
-    public String loginCheck(HttpSession session) throws Exception {
-        if (!UtilTools.checkLogin(session, 2)) {
-            return UtilTools.NO_LOGIN_RETURN_JSON;
-        }
-        List<Student> student = this.studentService.selectStudentById(Integer.valueOf((String) session.getAttribute("userid")));
-        return JsonUtil.objectToJson(new String[]{"id", "userName"}, student.get(0));
-    }
 
     /**
      * 根据教师id查询学生信息接口，
@@ -289,7 +271,9 @@ public class StudentController {
         if (!UtilTools.checkLogin(session, 2)) {
             return UtilTools.NO_LOGIN_RETURN_JSON;
         }
-        Student student = this.studentService.selectStudentById(Integer.valueOf(session.getAttribute("userid").toString()));
+        Student student;
+        List<Student> students = this.studentService.selectStudentById(Integer.valueOf(session.getAttribute("userid").toString()));
+        student = students.get(0);
         try {
             return JsonUtil.objectToJson(new String[]{"id", "teacherid", "nickName"}, student);
         }catch (Exception e){

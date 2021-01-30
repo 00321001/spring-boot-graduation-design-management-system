@@ -20,9 +20,11 @@ public interface ITitleService {
 
     int selectNotTitleCountByTeacherId(int teacherid);
 
-    List<Title> selectTitleByStudentId(int studentid);
+    List<Title> selectTitleByStudentId(int studentid, int page, int limit);
 
     int selectTitleCountByStudentId(int studentid);
+
+    int selectTitleCountByStuId(int studentid);
 
     int chooseTitle(Title title);
 

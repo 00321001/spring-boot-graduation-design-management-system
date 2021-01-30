@@ -17,6 +17,8 @@ public interface MidtermReviewMapper {
 
     int selectMidtermCountByStudentId(int studentid);
 
+    int selectMidtermCountByStuId(int studentid);
+
     int addMidterm(MidtermReview midtermReview);
 
     List<MidtermReview> selectMidtermById(int id);

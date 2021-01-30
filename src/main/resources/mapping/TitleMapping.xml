@@ -71,7 +71,8 @@
     <select id="selectTitleByStudentId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
         select *
         from title
-        where studentid = #{studentid};
+        where studentid = #{param1}
+        limit #{param2},#{param3};
     </select>
 
     <!--通过学生id查询毕设题目数量接口-->
@@ -79,6 +80,13 @@
         select count(*)
         from title
         where studentid = #{studentid} and (flag = 1 or flag = 2);
+    </select>
+
+    <!--通过学生id查询毕设题目数量接口-->
+    <select id="selectTitleCountByStuId" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+        select count(*)
+        from title
+        where studentid = #{studentid};
     </select>
 
     <!--学生选择毕设题目接口-->

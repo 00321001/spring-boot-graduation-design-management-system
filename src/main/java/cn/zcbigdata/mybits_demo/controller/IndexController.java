@@ -96,6 +96,39 @@ public class IndexController {
     }
 
     /**
+     * 跳转学生端可选毕设题目页面接口，无需入参
+     *
+     * @param request HttpServletRequest
+     * @return 返回状态码和提示信息
+     */
+    @RequestMapping(value = "/GoChooseTitle", method = RequestMethod.GET)
+    public String GoChooseTitle(HttpServletRequest request) {
+        return "chooseTitle";
+    }
+
+    /**
+     * 跳转学生端毕设题目管理页面接口，无需入参
+     *
+     * @param request HttpServletRequest
+     * @return 返回状态码和提示信息
+     */
+    @RequestMapping(value = "/GoStudentTitle", method = RequestMethod.GET)
+    public String GoStudentTitle(HttpServletRequest request) {
+        return "studentTitle";
+    }
+
+    /**
+     * 跳转学生端中期论文管理页面接口，无需入参
+     *
+     * @param request HttpServletRequest
+     * @return 返回状态码和提示信息
+     */
+    @RequestMapping(value = "/GoStudentMidterm", method = RequestMethod.GET)
+    public String GoStudentMidterm(HttpServletRequest request) {
+        return "studentMidterm";
+    }
+
+    /**
      * 跳转管理员教师信息管理页面接口，无需入参
      *
      * @param request HttpServletRequest

@@ -37,6 +37,7 @@
         where studentid = #{studentid}
     </select>
 
+
     <!--教师审核中期论文接口-->
     <update id="checkMidterm" parameterType="cn.zcbigdata.mybits_demo.entity.MidtermReview">
         UPDATE `midterm-review`
@@ -56,6 +57,13 @@
         select count(*)
         from `midterm-review`
         where studentid = #{studentid} and (flag = 0 or flag = 1);
+    </select>
+
+    <!--通过学生id查询中期论文数量接口-->
+    <select id="selectMidtermCountByStuId" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+        select count(*)
+        from `midterm-review`
+        where studentid = #{studentid};
     </select>
 
     <!--学生提交中期论文接口-->

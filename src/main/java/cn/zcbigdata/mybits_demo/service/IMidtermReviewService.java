@@ -29,8 +29,9 @@ public interface IMidtermReviewService {
 
     /**
      * 下载开题报告的service层方法
+     *
      * @param response HttpServletResponse
-     * @param id 开题报告id
+     * @param id       开题报告id
      * @return 存有状态码和提示信息的集合
      */
     Map<String, String> downloadMidterm(HttpServletResponse response, Integer id);

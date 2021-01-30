@@ -39,7 +39,8 @@
     <select id="selectTitleByTeacherId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
         select *
         from title
-        where teacherid = #{param1} and flag = #{param2}
+        where teacherid = #{param1}
+          and flag = #{param2}
         limit #{param3},#{param4};
     </select>
 
@@ -47,7 +48,8 @@
     <select id="selectTitleCountByTeacherId" resultType="java.lang.Integer" parameterType="java.lang.Integer">
         select count(*)
         from title
-        where teacherid = #{param1} and flag = #{param2};
+        where teacherid = #{param1}
+          and flag = #{param2};
     </select>
 
     <!--通过教师id查询没有被选的毕设题目接口-->
@@ -79,7 +81,8 @@
     <select id="selectTitleCountByStudentId" resultType="java.lang.Integer" parameterType="java.lang.Integer">
         select count(*)
         from title
-        where studentid = #{studentid} and (flag = 1 or flag = 2);
+        where studentid = #{studentid}
+          and (flag = 1 or flag = 2);
     </select>
 
     <!--通过学生id查询毕设题目数量接口-->

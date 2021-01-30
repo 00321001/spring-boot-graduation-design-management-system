@@ -1,6 +1,5 @@
 package cn.zcbigdata.mybits_demo.service.Impl;
 
-import cn.zcbigdata.mybits_demo.entity.Student;
 import cn.zcbigdata.mybits_demo.entity.Title;
 import cn.zcbigdata.mybits_demo.mapper.TitleMapper;
 import cn.zcbigdata.mybits_demo.service.ITitleService;
@@ -64,9 +63,9 @@ public class ITitleServiceImpl implements ITitleService {
     }
 
     @Override
-    public List<Title> selectTitleByStudentId(int studentid,int page,int limit) {
+    public List<Title> selectTitleByStudentId(int studentid, int page, int limit) {
         int pageIndex = (page - 1) * limit;
-        return this.titleMapper.selectTitleByStudentId(studentid,pageIndex,limit);
+        return this.titleMapper.selectTitleByStudentId(studentid, pageIndex, limit);
     }
 
     @Override

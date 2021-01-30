@@ -46,17 +46,17 @@ public class MidtermReviewController {
         String flagStr = request.getParameter("flag");
         String pageString = request.getParameter("page");
         String limitString = request.getParameter("limit");
-        if (!UtilTools.checkNull(new String[]{flagStr,pageString, limitString})) {
+        if (!UtilTools.checkNull(new String[]{flagStr, pageString, limitString})) {
             return UtilTools.IS_NULL_RETURN_JSON;
         }
         List<MidtermReview> midtermReviews;
-        if(Integer.parseInt(flagStr.trim()) == 0){
-            midtermReviews = midtermReviewService.selectMidtermByTeacherId(Integer.parseInt((String) session.getAttribute("userid")),0,Integer.parseInt(pageString.trim()), Integer.parseInt(limitString.trim()));
-        }else if(Integer.parseInt(flagStr.trim()) == 1){
-            midtermReviews = midtermReviewService.selectMidtermByTeacherId(Integer.parseInt((String) session.getAttribute("userid")),1,Integer.parseInt(pageString.trim()), Integer.parseInt(limitString.trim()));
-        }else if(Integer.parseInt(flagStr.trim()) == 2){
-            midtermReviews = midtermReviewService.selectMidtermByTeacherId(Integer.parseInt((String) session.getAttribute("userid")),2,Integer.parseInt(pageString.trim()), Integer.parseInt(limitString.trim()));
-        }else{
+        if (Integer.parseInt(flagStr.trim()) == 0) {
+            midtermReviews = midtermReviewService.selectMidtermByTeacherId(Integer.parseInt((String) session.getAttribute("userid")), 0, Integer.parseInt(pageString.trim()), Integer.parseInt(limitString.trim()));
+        } else if (Integer.parseInt(flagStr.trim()) == 1) {
+            midtermReviews = midtermReviewService.selectMidtermByTeacherId(Integer.parseInt((String) session.getAttribute("userid")), 1, Integer.parseInt(pageString.trim()), Integer.parseInt(limitString.trim()));
+        } else if (Integer.parseInt(flagStr.trim()) == 2) {
+            midtermReviews = midtermReviewService.selectMidtermByTeacherId(Integer.parseInt((String) session.getAttribute("userid")), 2, Integer.parseInt(pageString.trim()), Integer.parseInt(limitString.trim()));
+        } else {
             return UtilTools.FAIL_RETURN_JSON;
         }
         String[] colums = {"id", "content", "comments", "studentid", "teacherid", "flag"};
@@ -84,13 +84,13 @@ public class MidtermReviewController {
         if (!UtilTools.checkNull(new String[]{flagStr})) {
             return UtilTools.IS_NULL_RETURN_JSON;
         }
-        if(Integer.parseInt(flagStr.trim()) == 0){
-            count = midtermReviewService.selectMidtermCountByTeacherId(Integer.parseInt((String) session.getAttribute("userid")),0);
-        }else if(Integer.parseInt(flagStr.trim()) == 1){
-            count = midtermReviewService.selectMidtermCountByTeacherId(Integer.parseInt((String) session.getAttribute("userid")),1);
-        }else if(Integer.parseInt(flagStr.trim()) == 2){
-            count = midtermReviewService.selectMidtermCountByTeacherId(Integer.parseInt((String) session.getAttribute("userid")),2);
-        }else{
+        if (Integer.parseInt(flagStr.trim()) == 0) {
+            count = midtermReviewService.selectMidtermCountByTeacherId(Integer.parseInt((String) session.getAttribute("userid")), 0);
+        } else if (Integer.parseInt(flagStr.trim()) == 1) {
+            count = midtermReviewService.selectMidtermCountByTeacherId(Integer.parseInt((String) session.getAttribute("userid")), 1);
+        } else if (Integer.parseInt(flagStr.trim()) == 2) {
+            count = midtermReviewService.selectMidtermCountByTeacherId(Integer.parseInt((String) session.getAttribute("userid")), 2);
+        } else {
             return UtilTools.FAIL_RETURN_JSON;
         }
         String data = String.valueOf(count);
@@ -236,7 +236,7 @@ public class MidtermReviewController {
      */
     @RequestMapping(value = "/addMidterm", method = RequestMethod.GET)
     @ResponseBody
-    public String addMidterm(HttpServletRequest request) throws Exception{
+    public String addMidterm(HttpServletRequest request) throws Exception {
         HttpSession session = request.getSession();
         if (!UtilTools.checkLogin(session, 2)) {
             return UtilTools.NO_LOGIN_RETURN_JSON;
@@ -311,19 +311,20 @@ public class MidtermReviewController {
      * 请求方式：POST，
      * 入参：开题报告id：id，
      * 出参：含有响应码和提示信息的json，
-     * @param session HttpSession
-     * @param request HttpServletRequest
+     *
+     * @param session  HttpSession
+     * @param request  HttpServletRequest
      * @param response HttpServletResponse
      * @return 含有响应码和提示信息的json
      */
     @PostMapping(value = "downloadMidterm")
     @ResponseBody
-    public  String downloadFinalAudit(HttpSession session, HttpServletRequest request, HttpServletResponse response){
+    public String downloadFinalAudit(HttpSession session, HttpServletRequest request, HttpServletResponse response) {
         if (!UtilTools.checkLogin(session, 2)) {
             return UtilTools.NO_LOGIN_RETURN_JSON;
         }
         String idStr = request.getParameter("id");
-        if(!UtilTools.checkNull(new String[]{idStr})){
+        if (!UtilTools.checkNull(new String[]{idStr})) {
             return UtilTools.IS_NULL_RETURN_JSON;
         }
         Map<String, String> map = this.midtermReviewService.downloadMidterm(response, Integer.valueOf(idStr.trim()));

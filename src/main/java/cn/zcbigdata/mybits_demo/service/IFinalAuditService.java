@@ -65,14 +65,16 @@ public interface IFinalAuditService {
 
     /**
      * 下载开题报告的service层方法
+     *
      * @param response HttpServletResponse
-     * @param id 开题报告id
+     * @param id       开题报告id
      * @return 存有状态码和提示信息的集合
      */
     Map<String, String> downloadFinalAudit(HttpServletResponse response, Integer id);
 
     /**
      * 根据学生id查询总数Service层方法
+     *
      * @param id 学生id
      * @return 总数
      */

@@ -16,7 +16,7 @@
         SELECT *
         FROM `final-audit`
         WHERE teacherid = #{id}
-        AND flag = #{flag}
+          AND flag = #{flag}
         LIMIT #{startIndex}, #{pageSize};
     </select>
 

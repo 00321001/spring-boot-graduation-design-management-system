@@ -37,7 +37,7 @@
 
 <script>
     var teacherid;
-    layui.use(['upload','layer','table', 'form'], function () {
+    layui.use(['upload', 'layer', 'table', 'form'], function () {
         var table = layui.table,
             layer = layui.layer,
             form = layui.form,
@@ -45,6 +45,7 @@
             $ = layui.jquery;
 
         checklogin();
+
         function checklogin() {
             var url = "/student/loginCheck";
             $.ajax({
@@ -55,17 +56,17 @@
                 async: false, //success和error代表是否返回成功，既后台给前台传输数据是否成功
                 success: function (res) {
                     if (res.code == "7777") {
-                        layer.alert("请重新登陆",{closeBtn: 0},function () {
+                        layer.alert("请重新登陆", {closeBtn: 0}, function () {
                             parent.location.href = "/";
                             window.location.href = "/";
                         });
-                    }else{
+                    } else {
                         teacherid = res.data.teacherid;
                     }
                 },
                 error: function (XMLHttpRequest, textStatus, errorThrown) {
                     alert("请重新登陆");
-                    layer.alert("请重新登陆",{closeBtn: 0},function () {
+                    layer.alert("请重新登陆", {closeBtn: 0}, function () {
                         parent.location.href = "/";
                         window.location.href = "/";
                     });
@@ -78,7 +79,7 @@
 
         function page() {
             $.ajax({
-                url: 'http://localhost:8080/title/selectTitleCountByTeacherId?teacherid='+teacherid,
+                url: 'http://localhost:8080/title/selectTitleCountByTeacherId?teacherid=' + teacherid,
                 dataType: 'json',
                 type: 'get',
                 async: false,
@@ -93,7 +94,7 @@
         table.render({
 
             elem: '#test'
-            , url: 'http://localhost:8080/title/selectTitleByTeacherId?teacherid='+teacherid
+            , url: 'http://localhost:8080/title/selectTitleByTeacherId?teacherid=' + teacherid
             , toolbar: '#toolbarDemo' //开启头部工具栏，并为其绑定左侧模板
             , defaultToolbar: ['filter', 'exports', 'print', { //自定义头部工具栏右侧图标。如无需自定义，去除该参数即可
                 title: '提示'
@@ -105,8 +106,8 @@
                 [
                     {type: 'checkbox', fixed: 'left'}
                     , {field: 'id', width: 60, title: 'ID', sort: true}
-                    , {field: 'title',  title: '毕设题目'}
-                    , {field: 'teacherid',  title: '教师id',width: 80}
+                    , {field: 'title', title: '毕设题目'}
+                    , {field: 'teacherid', title: '教师id', width: 80}
                     , {fixed: 'right', title: '操作', toolbar: '#barDemo', width: 160}
                 ]
             ]
@@ -188,7 +189,7 @@
                         layer.msg("选择成功");
                         //刷新页面
                         table.reload('test', {
-                            url: 'http://localhost:8080/title/selectTitleByTeacherId?teacherid='+teacherid
+                            url: 'http://localhost:8080/title/selectTitleByTeacherId?teacherid=' + teacherid
                         });
                     } else {
                         layer.msg("您已选择题目或您发布的自拟题目待审核");

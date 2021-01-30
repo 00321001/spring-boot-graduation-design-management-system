@@ -19,7 +19,8 @@
     <select id="selectMidtermByTeacherId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
         select *
         from `midterm-review`
-        where teacherid = #{param1} and flag = #{param2}
+        where teacherid = #{param1}
+          and flag = #{param2}
         limit #{param3},#{param4};
     </select>
 
@@ -27,7 +28,8 @@
     <select id="selectMidtermCountByTeacherId" resultType="java.lang.Integer" parameterType="java.lang.Integer">
         select count(*)
         from `midterm-review`
-        where teacherid = #{param1} and flag = #{param2};
+        where teacherid = #{param1}
+          and flag = #{param2};
     </select>
 
     <!--通过学生id查询中期论文接口-->
@@ -56,7 +58,8 @@
     <select id="selectMidtermCountByStudentId" resultType="java.lang.Integer" parameterType="java.lang.Integer">
         select count(*)
         from `midterm-review`
-        where studentid = #{studentid} and (flag = 0 or flag = 1);
+        where studentid = #{studentid}
+          and (flag = 0 or flag = 1);
     </select>
 
     <!--通过学生id查询中期论文数量接口-->

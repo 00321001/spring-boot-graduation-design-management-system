@@ -8,7 +8,10 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
-import java.io.*;
+import java.io.BufferedInputStream;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
@@ -109,38 +112,39 @@ public class IOpeningReportServiceImpl implements IOpeningReportService {
 
     /**
      * 下载开题报告的service层方法
+     *
      * @param response HttpServletResponse
-     * @param id 开题报告id
+     * @param id       开题报告id
      * @return 存有状态码和提示信息的集合
      */
     @Override
-    public Map<String, String> downloadOpenReport(HttpServletResponse response, Integer id){
+    public Map<String, String> downloadOpenReport(HttpServletResponse response, Integer id) {
         OpeningReport openingReport = this.selectOpeningReportById(id);
         String content = openingReport.getContent() + "\n-----------------以下为教师评语-----------------\n" + openingReport.getComments();
         response.setContentType("application/force-download");
         response.setCharacterEncoding("utf-8");
         String fileName = UUID.randomUUID().toString().replace("-", "") + ".txt";
         response.addHeader("Content-disposition", "attachment;fileName=" + URLEncoder.encode(fileName));
-        Map<String, String> map= new HashMap<String, String>(2);
+        Map<String, String> map = new HashMap<String, String>(2);
         byte[] buff = new byte[1024];
         BufferedInputStream bis = null;
         OutputStream outputStream = null;
-        try{
+        try {
             outputStream = response.getOutputStream();
             bis = new BufferedInputStream(new ByteArrayInputStream(content.getBytes(StandardCharsets.UTF_8)));
             int read = bis.read(buff);
-            while (read != -1){
+            while (read != -1) {
                 outputStream.write(buff, 0, buff.length);
                 outputStream.flush();
                 read = bis.read(buff);
             }
-            map.put("code","0000");
+            map.put("code", "0000");
             map.put("msg", "下载成功");
-        }catch (Exception e){
+        } catch (Exception e) {
             logger.error(e);
-            map.put("code","9999");
+            map.put("code", "9999");
             map.put("msg", "下载失败");
-        }finally {
+        } finally {
             if (bis != null) {
                 try {
                     bis.close();

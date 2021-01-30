@@ -15,7 +15,8 @@
     <div class="layui-form-item">
         <label class="layui-form-label">旧密码</label>
         <div class="layui-input-block">
-            <input autocomplete="off" class="layui-input" id="oldPassword" lay-verify="required" name="oldPassword" placeholder="旧密码"
+            <input autocomplete="off" class="layui-input" id="oldPassword" lay-verify="required" name="oldPassword"
+                   placeholder="旧密码"
                    type="password">
         </div>
     </div>
@@ -23,13 +24,15 @@
     <div class="layui-form-item">
         <label class="layui-form-label">新密码</label>
         <div class="layui-input-block">
-            <input autocomplete="off" class="layui-input" id="newPassword" lay-verify="required" name="newPassword" placeholder="新密码"
+            <input autocomplete="off" class="layui-input" id="newPassword" lay-verify="required" name="newPassword"
+                   placeholder="新密码"
                    type="password">
         </div>
     </div>
 
     <div class="layui-form-item" id="sub">
-        <button class="layui-btn" id="resetPasswordSub" lay-filter="resetPasswordSub" lay-submit style="margin-left:220px"
+        <button class="layui-btn" id="resetPasswordSub" lay-filter="resetPasswordSub" lay-submit
+                style="margin-left:220px"
                 type="button">
             提交
         </button>
@@ -109,13 +112,14 @@
 <script>
 
     var layerIndex;
-    function resetPassword(){
+
+    function resetPassword() {
         layerIndex = layui.layer.open({
             type: 1,
             shade: false,
             title: false, //不显示标题
             content: $('#resetPasswordForm'), //捕获的元素，注意：最好该指定的元素要存放在body最外层，否则可能被其它的相对元素所影响
-            cancel: function(){
+            cancel: function () {
                 layui.layer.close(layerIndex);
             }
         });
@@ -140,7 +144,7 @@
 
     //JavaScript代码区域
     //layui模块的使用
-    layui.use(['element','layer','form'], function () {
+    layui.use(['element', 'layer', 'form'], function () {
         var $ = layui.jquery;    //  var $=layui.jquery;
         var element = layui.element; //Tab的切换功能，切换事件监听等，需要依赖element模块
         var layer = layui.layer;
@@ -177,6 +181,7 @@
         });
 
         checklogin();
+
         function checklogin() {
             var url = "/admin/loginCheck";
             $.ajax({
@@ -187,10 +192,10 @@
                 async: false, //success和error代表是否返回成功，既后台给前台传输数据是否成功
                 success: function (res) {
                     if (res.code == "7777") {
-                        layer.alert("请重新登陆",{closeBtn: 0},function () {
+                        layer.alert("请重新登陆", {closeBtn: 0}, function () {
                             window.location.href = "/";
                         });
-                    }else{
+                    } else {
                         var html = $("#showUserName").html();
                         html += res.data.userName;
                         $("#showUserName").html(html);

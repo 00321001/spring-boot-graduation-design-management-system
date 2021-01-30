@@ -183,6 +183,17 @@ public class IStudentServiceImpl implements IStudentService {
     }
 
     /**
+     * 修改教师密码的Service层方法
+     *
+     * @param map 一个Map，里面存有用户id：userid；旧密码：oldPassword； 新密码：newPassword
+     * @return 受影响的行数，返回0时代表操作失败，1代表操作成功
+     */
+    @Override
+    public Integer resetPassword(Map<String, String> map) {
+        return this.studentMapper.resetPassword(map);
+    }
+
+    /**
      * 学生登录的Service层方法
      *
      * @param student Student对象，包含用户名和密码

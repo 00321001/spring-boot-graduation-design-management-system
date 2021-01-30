@@ -37,6 +37,7 @@
     layui.use('layer', function () {
         var layer = layui.layer;
         checklogin();
+
         function checklogin() {
             var url = "/teacher/loginCheck";
             $.ajax({
@@ -47,11 +48,11 @@
                 async: false, //success和error代表是否返回成功，既后台给前台传输数据是否成功
                 success: function (res) {
                     if (res.code == "7777") {
-                        layer.alert("请重新登陆",{closeBtn: 0},function () {
+                        layer.alert("请重新登陆", {closeBtn: 0}, function () {
                             parent.location.href = "/";
                             window.location.href = "/";
                         });
-                    }else{
+                    } else {
                         var html = $("#showUserName").html();
                         html += res.data.userName;
                         $("#showUserName").html(html);
@@ -59,7 +60,7 @@
                 },
                 error: function (XMLHttpRequest, textStatus, errorThrown) {
                     alert("请重新登陆");
-                    layer.alert("请重新登陆",{closeBtn: 0},function () {
+                    layer.alert("请重新登陆", {closeBtn: 0}, function () {
                         parent.location.href = "/";
                         window.location.href = "/";
                     });
@@ -103,8 +104,8 @@
                 [
                     {type: 'checkbox', fixed: 'left'}
                     , {field: 'id', width: 60, title: 'ID', sort: true}
-                    , {field: 'title',  title: '毕设题目'}
-                    , {field: 'studentid',  title: '学生id', width: 80}
+                    , {field: 'title', title: '毕设题目'}
+                    , {field: 'studentid', title: '学生id', width: 80}
                     , {fixed: 'right', title: '操作', toolbar: '#barDemo', width: 160}
                 ]
             ]
@@ -155,14 +156,14 @@
         table.on('tool(test)', function (obj) {
             var data = obj.data;
             //console.log(obj)
-            if(obj.event === 'yes'){
+            if (obj.event === 'yes') {
                 layer.confirm('真的通过行么', function (index) {
                     obj.del();
                     //在这里写通过方法
                     yesById(data.id);
                     layer.close(index);
                 });
-            }else if(obj.event === 'no'){
+            } else if (obj.event === 'no') {
                 layer.confirm('真的不通过行么', function (index) {
                     obj.del();
                     //在这里写不通过方法

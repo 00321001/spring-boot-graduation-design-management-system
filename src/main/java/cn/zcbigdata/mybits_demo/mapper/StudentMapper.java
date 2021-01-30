@@ -47,7 +47,7 @@ public interface StudentMapper {
      * @param studentid 学生id
      * @return 查询到的Student对象
      */
-    List<Student>  selectStudentById(Integer studentid);
+    List<Student> selectStudentById(Integer studentid);
 
     /**
      * 学生登录的Mapper层方法
@@ -72,4 +72,12 @@ public interface StudentMapper {
      * @return 受影响行数
      */
     Integer deleteById(Integer id);
+
+    /**
+     * 修改学生密码的Mapper层方法
+     *
+     * @param map 一个Map，里面存有用户id：userid；旧密码：oldPassword； 新密码：newPassword
+     * @return 受影响的行数，返回0时代表操作失败，1代表操作成功
+     */
+    Integer resetPassword(Map<String, String> map);
 }

@@ -149,19 +149,19 @@ public class TitleController {
             if (!UtilTools.checkNull(new String[]{flagStr})) {
                 return UtilTools.IS_NULL_RETURN_JSON;
             }
-            if(Integer.parseInt(flagStr.trim()) == 0){
-                titles = titleService.selectTitleByTeacherId(Integer.parseInt((String) session.getAttribute("userid")), 0 ,Integer.parseInt(pageString.trim()), Integer.parseInt(limitString.trim()));
-            }else if(Integer.parseInt(flagStr.trim()) == 1){
-                titles = titleService.selectTitleByTeacherId(Integer.parseInt((String) session.getAttribute("userid")), 1 ,Integer.parseInt(pageString.trim()), Integer.parseInt(limitString.trim()));
-            }else if(Integer.parseInt(flagStr.trim()) == 2){
-                titles = titleService.selectTitleByTeacherId(Integer.parseInt((String) session.getAttribute("userid")), 2 ,Integer.parseInt(pageString.trim()), Integer.parseInt(limitString.trim()));
-            }else if(Integer.parseInt(flagStr.trim()) == 3){
-                titles = titleService.selectTitleByTeacherId(Integer.parseInt((String) session.getAttribute("userid")), 3 ,Integer.parseInt(pageString.trim()), Integer.parseInt(limitString.trim()));
-            }else{
+            if (Integer.parseInt(flagStr.trim()) == 0) {
+                titles = titleService.selectTitleByTeacherId(Integer.parseInt((String) session.getAttribute("userid")), 0, Integer.parseInt(pageString.trim()), Integer.parseInt(limitString.trim()));
+            } else if (Integer.parseInt(flagStr.trim()) == 1) {
+                titles = titleService.selectTitleByTeacherId(Integer.parseInt((String) session.getAttribute("userid")), 1, Integer.parseInt(pageString.trim()), Integer.parseInt(limitString.trim()));
+            } else if (Integer.parseInt(flagStr.trim()) == 2) {
+                titles = titleService.selectTitleByTeacherId(Integer.parseInt((String) session.getAttribute("userid")), 2, Integer.parseInt(pageString.trim()), Integer.parseInt(limitString.trim()));
+            } else if (Integer.parseInt(flagStr.trim()) == 3) {
+                titles = titleService.selectTitleByTeacherId(Integer.parseInt((String) session.getAttribute("userid")), 3, Integer.parseInt(pageString.trim()), Integer.parseInt(limitString.trim()));
+            } else {
                 return UtilTools.FAIL_RETURN_JSON;
             }
         }
-        String[] colums = {"id", "title", "teacherid" ,"flag", "studentid"};
+        String[] colums = {"id", "title", "teacherid", "flag", "studentid"};
         return JsonUtil.listToLayJson(colums, titles);
     }
 
@@ -194,15 +194,15 @@ public class TitleController {
             if (!UtilTools.checkNull(new String[]{flagStr})) {
                 return UtilTools.IS_NULL_RETURN_JSON;
             }
-            if(Integer.parseInt(flagStr.trim()) == 0){
-                count = titleService.selectTitleCountByTeacherId(Integer.parseInt((String) session.getAttribute("userid")),0);
-            }else if(Integer.parseInt(flagStr.trim()) == 1){
-                count = titleService.selectTitleCountByTeacherId(Integer.parseInt((String) session.getAttribute("userid")),1);
-            }else if(Integer.parseInt(flagStr.trim()) == 2){
-                count = titleService.selectTitleCountByTeacherId(Integer.parseInt((String) session.getAttribute("userid")),2);
-            }else if(Integer.parseInt(flagStr.trim()) == 3){
-                count = titleService.selectTitleCountByTeacherId(Integer.parseInt((String) session.getAttribute("userid")),3);
-            }else{
+            if (Integer.parseInt(flagStr.trim()) == 0) {
+                count = titleService.selectTitleCountByTeacherId(Integer.parseInt((String) session.getAttribute("userid")), 0);
+            } else if (Integer.parseInt(flagStr.trim()) == 1) {
+                count = titleService.selectTitleCountByTeacherId(Integer.parseInt((String) session.getAttribute("userid")), 1);
+            } else if (Integer.parseInt(flagStr.trim()) == 2) {
+                count = titleService.selectTitleCountByTeacherId(Integer.parseInt((String) session.getAttribute("userid")), 2);
+            } else if (Integer.parseInt(flagStr.trim()) == 3) {
+                count = titleService.selectTitleCountByTeacherId(Integer.parseInt((String) session.getAttribute("userid")), 3);
+            } else {
                 return UtilTools.FAIL_RETURN_JSON;
             }
         }
@@ -229,11 +229,11 @@ public class TitleController {
         }
         String pageString = request.getParameter("page");
         String limitString = request.getParameter("limit");
-        if (!UtilTools.checkNull(new String[]{pageString,limitString})) {
+        if (!UtilTools.checkNull(new String[]{pageString, limitString})) {
             return UtilTools.IS_NULL_RETURN_JSON;
         }
-        List<Title> titles = titleService.selectTitleByStudentId(Integer.parseInt((String) session.getAttribute("userid")),Integer.parseInt(pageString),Integer.parseInt(limitString));
-        String[] colums = {"id", "title", "teacherid" ,"flag", "studentid"};
+        List<Title> titles = titleService.selectTitleByStudentId(Integer.parseInt((String) session.getAttribute("userid")), Integer.parseInt(pageString), Integer.parseInt(limitString));
+        String[] colums = {"id", "title", "teacherid", "flag", "studentid"};
         return JsonUtil.listToLayJson(colums, titles);
     }
 

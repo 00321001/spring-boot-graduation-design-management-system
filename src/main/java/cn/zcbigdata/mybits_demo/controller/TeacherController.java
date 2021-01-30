@@ -1,6 +1,5 @@
 package cn.zcbigdata.mybits_demo.controller;
 
-import cn.zcbigdata.mybits_demo.entity.Admin;
 import cn.zcbigdata.mybits_demo.entity.Teacher;
 import cn.zcbigdata.mybits_demo.service.ITeacherService;
 import cn.zcbigdata.mybits_demo.utils.JsonUtil;
@@ -59,6 +58,7 @@ public class TeacherController {
         session.setAttribute("userType", "1");
         return UtilTools.SUCCESS_RETURN_JSON;
     }
+
     /**
      * 检查教师登录接口
      * 请求方式：GET

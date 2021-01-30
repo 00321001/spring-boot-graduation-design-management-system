@@ -134,6 +134,30 @@ public class IndexController {
      * @param request HttpServletRequest
      * @return 返回状态码和提示信息
      */
+
+    @RequestMapping(value = "/GoStudentFinal", method = RequestMethod.GET)
+    public String GoStudentFinal(HttpServletRequest request) {
+        return "studentFinal";
+    }
+
+    /**
+     * 跳转管理员教师信息管理页面接口，无需入参
+     *
+     * @param request HttpServletRequest
+     * @return 返回状态码和提示信息
+     */
+
+    @RequestMapping(value = "/GoStudentOpening", method = RequestMethod.GET)
+    public String GoStudentOpening(HttpServletRequest request) {
+        return "studentOpeningReport";
+    }
+
+    /**
+     * 跳转管理员教师信息管理页面接口，无需入参
+     *
+     * @param request HttpServletRequest
+     * @return 返回状态码和提示信息
+     */
     @RequestMapping(value = "/GoTeacher", method = RequestMethod.GET)
     public String GoTeacher(HttpServletRequest request) {
         return "teacherManage";

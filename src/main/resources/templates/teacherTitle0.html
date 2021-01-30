@@ -18,7 +18,8 @@
     <div class="layui-form-item">
         <label class="layui-form-label">毕设题目</label>
         <div class="layui-input-block">
-            <input autocomplete="off" class="layui-input" id="title" lay-verify="description" name="title" placeholder="毕设题目"
+            <input autocomplete="off" class="layui-input" id="title" lay-verify="description" name="title"
+                   placeholder="毕设题目"
                    style="width:340px" type="text">
         </div>
     </div>
@@ -65,7 +66,8 @@
         <button class="layui-btn layui-btn-sm" lay-event="getCheckData">获取选中行数据</button>
         <button class="layui-btn layui-btn-sm" lay-event="getCheckLength">获取选中数目</button>
         <button class="layui-btn layui-btn-sm" lay-event="isAll">验证是否全选</button>
-        <button type="button" class="layui-btn  layui-btn-sm" id="uploadXml"><i class="layui-icon"></i>通过xml文件批量添加</button>
+        <button type="button" class="layui-btn  layui-btn-sm" id="uploadXml"><i class="layui-icon"></i>通过xml文件批量添加
+        </button>
     </div>
 </script>
 
@@ -87,6 +89,7 @@
     layui.use('layer', function () {
         var layer = layui.layer;
         checklogin();
+
         function checklogin() {
             var url = "/teacher/loginCheck";
             $.ajax({
@@ -97,11 +100,11 @@
                 async: false, //success和error代表是否返回成功，既后台给前台传输数据是否成功
                 success: function (res) {
                     if (res.code == "7777") {
-                        layer.alert("请重新登陆",{closeBtn: 0},function () {
+                        layer.alert("请重新登陆", {closeBtn: 0}, function () {
                             parent.location.href = "/";
                             window.location.href = "/";
                         });
-                    }else{
+                    } else {
                         var html = $("#showUserName").html();
                         html += res.data.userName;
                         $("#showUserName").html(html);
@@ -109,7 +112,7 @@
                 },
                 error: function (XMLHttpRequest, textStatus, errorThrown) {
                     alert("请重新登陆");
-                    layer.alert("请重新登陆",{closeBtn: 0},function () {
+                    layer.alert("请重新登陆", {closeBtn: 0}, function () {
                         parent.location.href = "/";
                         window.location.href = "/";
                     });
@@ -118,7 +121,7 @@
         }
     });
 
-    layui.use(['upload','table', 'form'], function () {
+    layui.use(['upload', 'table', 'form'], function () {
         var table = layui.table,
             form = layui.form,
             upload = layui.upload,
@@ -156,7 +159,7 @@
                 [
                     {type: 'checkbox', fixed: 'left'}
                     , {field: 'id', width: 60, title: 'ID', sort: true}
-                    , {field: 'title',  title: '毕设题目'}
+                    , {field: 'title', title: '毕设题目'}
                     , {fixed: 'right', title: '操作', toolbar: '#barDemo', width: 160}
                 ]
             ]
@@ -377,10 +380,10 @@
         //文件上传
         upload.render({ //允许上传的文件后缀
             elem: '#uploadXml'
-            ,url: 'http://localhost:8080/title/teacherAddTitleUseXml' //改成您自己的上传接口
-            ,accept: 'file' //普通文件
-            ,exts: 'xml' //只允许上传xml文件
-            ,done: function(res){
+            , url: 'http://localhost:8080/title/teacherAddTitleUseXml' //改成您自己的上传接口
+            , accept: 'file' //普通文件
+            , exts: 'xml' //只允许上传xml文件
+            , done: function (res) {
                 layer.msg(res.msg);
                 console.log(res);
                 //刷新页面

@@ -43,14 +43,14 @@
     <div class="layui-form-item layui-form-text">
         <label class="layui-form-label">评分（评语）</label>
         <div class="layui-input-block">
-            <textarea placeholder="请输入内容" class="layui-textarea" lay-verify="required" name="comments"></textarea>
+            <textarea class="layui-textarea" lay-verify="required" name="comments" placeholder="请输入内容"></textarea>
         </div>
     </div>
 
     <div class="layui-form-item" style="display:none">
         <label class="layui-form-label">是否通过</label>
         <div class="layui-input-block">
-            <input type="radio" name="flag" value="1" title="通过" checked="">
+            <input checked="" name="flag" title="通过" type="radio" value="1">
         </div>
     </div>
 
@@ -70,6 +70,7 @@
             $ = layui.jquery;
 
         checklogin();
+
         function checklogin() {
             var url = "/teacher/loginCheck";
             $.ajax({
@@ -80,11 +81,11 @@
                 async: false, //success和error代表是否返回成功，既后台给前台传输数据是否成功
                 success: function (res) {
                     if (res.code == "7777") {
-                        layer.alert("请重新登陆",{closeBtn: 0},function () {
+                        layer.alert("请重新登陆", {closeBtn: 0}, function () {
                             parent.location.href = "/";
                             window.location.href = "/";
                         });
-                    }else{
+                    } else {
                         var html = $("#showUserName").html();
                         html += res.data.userName;
                         $("#showUserName").html(html);
@@ -92,7 +93,7 @@
                 },
                 error: function (XMLHttpRequest, textStatus, errorThrown) {
                     alert("请重新登陆");
-                    layer.alert("请重新登陆",{closeBtn: 0},function () {
+                    layer.alert("请重新登陆", {closeBtn: 0}, function () {
                         parent.location.href = "/";
                         window.location.href = "/";
                     });
@@ -119,7 +120,17 @@
                     , {field: 'comments', title: '评语', hide: true}
                     , {field: 'studentid', title: '学生id'}
                     , {field: 'teacherid', title: '教师id', hide: true}
-                    , {field: 'flag', title: '审核状态' ,templet: function(d){if(d.flag == 0){return '待审核'}else if(d.flag == 1){return '已通过'} else{return '未通过'}}}
+                    , {
+                    field: 'flag', title: '审核状态', templet: function (d) {
+                        if (d.flag == 0) {
+                            return '待审核'
+                        } else if (d.flag == 1) {
+                            return '已通过'
+                        } else {
+                            return '未通过'
+                        }
+                    }
+                }
                     , {fixed: 'right', title: '操作', toolbar: '#barDemo'}
                 ]
             ]

@@ -27,7 +27,8 @@
     <div class="layui-form-item">
         <label class="layui-form-label">用户名</label>
         <div class="layui-input-block">
-            <input autocomplete="off" class="layui-input" id="userName" lay-verify="userName" name="userName" placeholder="用户名"
+            <input autocomplete="off" class="layui-input" id="userName" lay-verify="userName" name="userName"
+                   placeholder="用户名"
                    style="width:340px" type="text">
         </div>
     </div>
@@ -35,7 +36,8 @@
     <div class="layui-form-item">
         <label class="layui-form-label">密码</label>
         <div class="layui-input-block">
-            <input autocomplete="off" class="layui-input" id="password" lay-verify="password" name="password" placeholder="密码"
+            <input autocomplete="off" class="layui-input" id="password" lay-verify="password" name="password"
+                   placeholder="密码"
                    style="width:340px" type="text">
         </div>
     </div>
@@ -43,7 +45,8 @@
     <div class="layui-form-item">
         <label class="layui-form-label">昵称</label>
         <div class="layui-input-block">
-            <input autocomplete="off" class="layui-input" id="nickName" lay-verify="nickName" name="nickName" placeholder="昵称"
+            <input autocomplete="off" class="layui-input" id="nickName" lay-verify="nickName" name="nickName"
+                   placeholder="昵称"
                    style="width:340px" type="text">
         </div>
     </div>
@@ -79,6 +82,7 @@
     layui.use('layer', function () {
         var layer = layui.layer;
         checklogin();
+
         function checklogin() {
             var url = "/student/loginCheck";
             $.ajax({
@@ -89,18 +93,18 @@
                 async: false, //success和error代表是否返回成功，既后台给前台传输数据是否成功
                 success: function (res) {
                     if (res.code == "7777") {
-                        layer.alert("请重新登陆",{closeBtn: 0},function () {
+                        layer.alert("请重新登陆", {closeBtn: 0}, function () {
                             parent.location.href = "/";
                             window.location.href = "/";
                         });
-                    }else{
+                    } else {
                         var html = $("#showUserName").html();
                         html += res.data.userName;
                         $("#showUserName").html(html);
                     }
                 },
                 error: function (XMLHttpRequest, textStatus, errorThrown) {
-                    layer.alert("请重新登陆",{closeBtn: 0},function () {
+                    layer.alert("请重新登陆", {closeBtn: 0}, function () {
                         parent.location.href = "/";
                         window.location.href = "/";
                     });
@@ -127,10 +131,10 @@
                 [
                     {type: 'checkbox', fixed: 'left'}
                     , {field: 'id', width: 60, title: 'ID', sort: true}
-                    , {field: 'userName',  title: '用户名'}
-                    , {field: 'password',  title: '密码'}
-                    , {field: 'nickName',  title: '昵称'}
-                    , {field: 'teacherid',  title: '老师id'}
+                    , {field: 'userName', title: '用户名'}
+                    , {field: 'password', title: '密码'}
+                    , {field: 'nickName', title: '昵称'}
+                    , {field: 'teacherid', title: '老师id'}
                     , {fixed: 'right', title: '操作', toolbar: '#barDemo', width: 120}
                 ]
             ]

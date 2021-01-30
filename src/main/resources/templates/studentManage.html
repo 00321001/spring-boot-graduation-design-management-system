@@ -20,7 +20,8 @@
         <button class="layui-btn layui-btn-sm" lay-event="getCheckLength">获取选中数目</button>
         <button class="layui-btn layui-btn-sm" lay-event="isAll">验证是否全选</button>
         <button class="layui-btn layui-btn-sm" lay-event="add">单个添加</button>
-        <button type="button" class="layui-btn  layui-btn-sm" id="uploadXml"><i class="layui-icon"></i>通过xml文件批量添加</button>
+        <button type="button" class="layui-btn  layui-btn-sm" id="uploadXml"><i class="layui-icon"></i>通过xml文件批量添加
+        </button>
     </div>
 </script>
 
@@ -121,7 +122,7 @@
 </form>
 
 <script>
-    layui.use(['upload','table', 'layer', 'form'], function () {
+    layui.use(['upload', 'table', 'layer', 'form'], function () {
         var table = layui.table,
             layer = layui.layer,
             form = layui.form,
@@ -129,6 +130,7 @@
             $ = layui.jquery;
 
         checklogin();
+
         function checklogin() {
             var url = "/teacher/loginCheck";
             $.ajax({
@@ -139,11 +141,11 @@
                 async: false, //success和error代表是否返回成功，既后台给前台传输数据是否成功
                 success: function (res) {
                     if (res.code == "7777") {
-                        layer.alert("请重新登陆",{closeBtn: 0},function () {
+                        layer.alert("请重新登陆", {closeBtn: 0}, function () {
                             parent.location.href = "/";
                             window.location.href = "/";
                         });
-                    }else{
+                    } else {
                         var html = $("#showUserName").html();
                         html += res.data.userName;
                         $("#showUserName").html(html);
@@ -151,7 +153,7 @@
                 },
                 error: function (XMLHttpRequest, textStatus, errorThrown) {
                     alert("请重新登陆");
-                    layer.alert("请重新登陆",{closeBtn: 0},function () {
+                    layer.alert("请重新登陆", {closeBtn: 0}, function () {
                         parent.location.href = "/";
                         window.location.href = "/";
                     });
@@ -198,7 +200,7 @@
                 case 'isAll':
                     layer.msg(checkStatus.isAll ? '全选' : '未全选');
                     break;
-                case 'add':{
+                case 'add': {
                     //捕获表单，打开弹层
                     formLayerId = layer.open({
                         type: 1,
@@ -342,10 +344,10 @@
         //文件上传
         upload.render({ //允许上传的文件后缀
             elem: '#uploadXml'
-            ,url: '/student/teacherAddStudentsUseXml' //改成您自己的上传接口
-            ,accept: 'file' //普通文件
-            ,exts: 'xml' //只允许上传xml文件
-            ,done: function(res){
+            , url: '/student/teacherAddStudentsUseXml' //改成您自己的上传接口
+            , accept: 'file' //普通文件
+            , exts: 'xml' //只允许上传xml文件
+            , done: function (res) {
                 layer.msg(res.msg);
                 console.log(res);
                 table.reload('test', {

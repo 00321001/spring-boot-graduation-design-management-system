@@ -23,7 +23,7 @@ public interface OpeningReportMapper {
     /**
      * 根据学生id获取开题报告的Mapper层方法
      *
-     * @param id 学生id
+     * @param id         学生id
      * @param startIndex 开始位置
      * @param pageSize   每页大小
      * @return 一个List，存有查询到的OpeningReport对象
@@ -65,6 +65,7 @@ public interface OpeningReportMapper {
 
     /**
      * 根据学生id获取开题报告总数的Mapper层方法
+     *
      * @param id 学生id
      * @return 总数
      */

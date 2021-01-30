@@ -5,8 +5,10 @@ import cn.zcbigdata.mybits_demo.service.IOpeningReportService;
 import cn.zcbigdata.mybits_demo.utils.JsonUtil;
 import cn.zcbigdata.mybits_demo.utils.UtilTools;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -39,21 +41,21 @@ public class OpeningReportController {
      */
     @RequestMapping(value = "selectOpeningReportByTeacherid", method = RequestMethod.GET)
     @ResponseBody
-    public String selectOpeningReportByTeacherid(HttpServletRequest request,HttpSession session) throws Exception {
+    public String selectOpeningReportByTeacherid(HttpServletRequest request, HttpSession session) throws Exception {
         if (!UtilTools.checkLogin(session, 1)) {
             return UtilTools.NO_LOGIN_RETURN_JSON;
         }
         String flagStr = request.getParameter("flag");
         String limitStr = request.getParameter("limit");
         String pageStr = request.getParameter("page");
-        if(!UtilTools.checkNull(new String[]{flagStr, limitStr, pageStr})){
+        if (!UtilTools.checkNull(new String[]{flagStr, limitStr, pageStr})) {
             return UtilTools.IS_NULL_RETURN_JSON;
         }
         Integer teacherid = Integer.valueOf((String) session.getAttribute("userid"));
         Integer flag = Integer.valueOf(flagStr.trim());
         int count = this.openingReportService.selectCountByTeacherIdAndFlag(teacherid, flag);
         List<OpeningReport> openingReports = this.openingReportService.selectOpeningReportByTeacherid(teacherid, flag, Integer.valueOf(pageStr.trim()), Integer.valueOf(limitStr.trim()));
-        return JsonUtil.listToNewLayJson(FIELDS, openingReports ,count);
+        return JsonUtil.listToNewLayJson(FIELDS, openingReports, count);
     }
 
     /**
@@ -73,7 +75,7 @@ public class OpeningReportController {
         }
         String pageStr = request.getParameter("page");
         String limitStr = request.getParameter("limit");
-        if(!UtilTools.checkNull(new String[]{pageStr, limitStr})){
+        if (!UtilTools.checkNull(new String[]{pageStr, limitStr})) {
             return UtilTools.IS_NULL_RETURN_JSON;
         }
         List<OpeningReport> openingReports = this.openingReportService.selectOpeningReportByStudent(Integer.valueOf((String) session.getAttribute("userid")), Integer.valueOf(pageStr.trim()), Integer.valueOf(limitStr.trim()));
@@ -177,19 +179,20 @@ public class OpeningReportController {
      * 请求方式：POST，
      * 入参：开题报告id：id，
      * 出参：含有响应码和提示信息的json，
-     * @param session HttpSession
-     * @param request HttpServletRequest
+     *
+     * @param session  HttpSession
+     * @param request  HttpServletRequest
      * @param response HttpServletResponse
      * @return 含有响应码和提示信息的json
      */
     @PostMapping(value = "downloadOpenReport")
     @ResponseBody
-    public  String downloadOpenReport(HttpSession session, HttpServletRequest request, HttpServletResponse response){
+    public String downloadOpenReport(HttpSession session, HttpServletRequest request, HttpServletResponse response) {
         if (!UtilTools.checkLogin(session, 2)) {
             return UtilTools.NO_LOGIN_RETURN_JSON;
         }
         String idStr = request.getParameter("id");
-        if(!UtilTools.checkNull(new String[]{idStr})){
+        if (!UtilTools.checkNull(new String[]{idStr})) {
             return UtilTools.IS_NULL_RETURN_JSON;
         }
         Map<String, String> map = this.openingReportService.downloadOpenReport(response, Integer.valueOf(idStr.trim()));

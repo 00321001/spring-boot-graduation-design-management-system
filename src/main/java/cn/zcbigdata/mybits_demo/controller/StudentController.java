@@ -1,7 +1,6 @@
 package cn.zcbigdata.mybits_demo.controller;
 
 import cn.zcbigdata.mybits_demo.entity.Student;
-import cn.zcbigdata.mybits_demo.entity.Teacher;
 import cn.zcbigdata.mybits_demo.service.IStudentService;
 import cn.zcbigdata.mybits_demo.utils.JsonUtil;
 import cn.zcbigdata.mybits_demo.utils.UtilTools;
@@ -14,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -30,7 +30,6 @@ public class StudentController {
 
     @Value("${define.nginx.path}")
     private String nginxPath;
-
 
 
     /**
@@ -262,6 +261,7 @@ public class StudentController {
      * 请求方式：GET
      * 入参：无入参
      * 出参：包含学生id，教师id，昵称和状态码、提示信息的json
+     *
      * @param session HttpSession
      * @return 包含学生id，教师id，昵称和状态码、提示信息的json
      */
@@ -276,8 +276,42 @@ public class StudentController {
         student = students.get(0);
         try {
             return JsonUtil.objectToJson(new String[]{"id", "teacherid", "nickName"}, student);
-        }catch (Exception e){
+        } catch (Exception e) {
             logger.error(e);
+            return UtilTools.FAIL_RETURN_JSON;
+        }
+    }
+
+    /**
+     * 教师修改密码接口，
+     * 请求方式：POST，
+     * 入参：旧密码：oldPassword；新密码：newPassword，
+     * 出参：提示是否成功的json
+     *
+     * @param request HttpServletRequest
+     * @return 提示是否成功的json
+     */
+    @RequestMapping(value = "/resetPassword", method = RequestMethod.POST)
+    @ResponseBody
+    public String resetPassword(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        if (!UtilTools.checkLogin(session, 2)) {
+            return UtilTools.NO_LOGIN_RETURN_JSON;
+        }
+        String oldPassword = request.getParameter("oldPassword");
+        String newPassword = request.getParameter("newPassword");
+        logger.info("oldPassword：" + oldPassword + "-----newPassword：" + newPassword);
+        if (!UtilTools.checkNull(new String[]{oldPassword, newPassword})) {
+            return UtilTools.IS_NULL_RETURN_JSON;
+        }
+        Map<String, String> map = new HashMap<>(3);
+        map.put("oldPassword", oldPassword.trim());
+        map.put("newPassword", newPassword.trim());
+        map.put("id", (String) session.getAttribute("userid"));
+        int flag = this.studentService.resetPassword(map);
+        if (flag == 1) {
+            return UtilTools.SUCCESS_RETURN_JSON;
+        } else {
             return UtilTools.FAIL_RETURN_JSON;
         }
     }

@@ -18,8 +18,9 @@
     <div class="layui-form-item">
         <label class="layui-form-label">中期论文</label>
         <div class="layui-input-block">
-            <textarea autocomplete="off" class="layui-textarea" id="content" lay-verify="description" name="content" placeholder="中期论文"
-                   style="width:340px" type="text"></textarea>
+            <textarea autocomplete="off" class="layui-textarea" id="content" lay-verify="description" name="content"
+                      placeholder="中期论文"
+                      style="width:340px" type="text"></textarea>
         </div>
     </div>
 
@@ -46,13 +47,14 @@
 
 <script>
     var teacherid;
-    layui.use(['upload','layer','table', 'form'], function () {
+    layui.use(['upload', 'layer', 'table', 'form'], function () {
         var table = layui.table,
             layer = layui.layer,
             form = layui.form,
             $ = layui.jquery;
 
         checklogin();
+
         function checklogin() {
             var url = "/student/loginCheck";
             $.ajax({
@@ -63,17 +65,17 @@
                 async: false, //success和error代表是否返回成功，既后台给前台传输数据是否成功
                 success: function (res) {
                     if (res.code == "7777") {
-                        layer.alert("请重新登陆",{closeBtn: 0},function () {
+                        layer.alert("请重新登陆", {closeBtn: 0}, function () {
                             parent.location.href = "/";
                             window.location.href = "/";
                         });
-                    }else{
+                    } else {
                         teacherid = res.data.teacherid;
                     }
                 },
                 error: function (XMLHttpRequest, textStatus, errorThrown) {
                     alert("请重新登陆");
-                    layer.alert("请重新登陆",{closeBtn: 0},function () {
+                    layer.alert("请重新登陆", {closeBtn: 0}, function () {
                         parent.location.href = "/";
                         window.location.href = "/";
                     });
@@ -114,10 +116,20 @@
                 [
                     {type: 'checkbox', fixed: 'left'}
                     , {field: 'id', width: 60, title: 'ID', sort: true}
-                    , {field: 'content',  title: '中期论文'}
-                    , {field: 'comments',  title: '评语'}
-                    , {field: 'flag', title: '中期论文状态',width: 120 ,templet: function(d){if(d.flag == 0){return '待审核'}else if(d.flag == 1){return '已通过'}else if(d.flag == 2){return '未通过'}}}
-                    , {field: 'teacherid',  title: '教师id',width: 80}
+                    , {field: 'content', title: '中期论文'}
+                    , {field: 'comments', title: '评语'}
+                    , {
+                    field: 'flag', title: '中期论文状态', width: 120, templet: function (d) {
+                        if (d.flag == 0) {
+                            return '待审核'
+                        } else if (d.flag == 1) {
+                            return '已通过'
+                        } else if (d.flag == 2) {
+                            return '未通过'
+                        }
+                    }
+                }
+                    , {field: 'teacherid', title: '教师id', width: 80}
                 ]
             ]
             , page: true
@@ -145,7 +157,7 @@
             form.on('submit(demo2)', function (data) {
                 console.log(JSON.stringify(data.field));
                 $.ajax({
-                    url: 'http://localhost:8080/midterm/addMidterm?teacherid='+teacherid,
+                    url: 'http://localhost:8080/midterm/addMidterm?teacherid=' + teacherid,
                     method: 'GET',
                     data: data.field,
                     dataType: 'JSON',
@@ -164,9 +176,9 @@
                             } else if (res.code == "7777") {
                                 layer.msg("账号已过期，请重新登陆");
                             } else {
-                                if(res.msg == "操作失败"){
+                                if (res.msg == "操作失败") {
                                     layer.msg("您已通过中期论文或您的中期论文待审核");
-                                }else {
+                                } else {
                                     layer.msg("不可提交空题目");
                                 }
 

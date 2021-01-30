@@ -1,7 +1,6 @@
 package cn.zcbigdata.mybits_demo.controller;
 
 import cn.zcbigdata.mybits_demo.entity.FinalAudit;
-import cn.zcbigdata.mybits_demo.entity.FinalAudit;
 import cn.zcbigdata.mybits_demo.service.IFinalAuditService;
 import cn.zcbigdata.mybits_demo.utils.JsonUtil;
 import cn.zcbigdata.mybits_demo.utils.UtilTools;
@@ -42,21 +41,21 @@ public class FinalAuditController {
      */
     @RequestMapping(value = "selectFinalAuditByTeacherid", method = RequestMethod.GET)
     @ResponseBody
-    public String selectFinalAuditByTeacherid(HttpServletRequest request,HttpSession session) throws Exception {
+    public String selectFinalAuditByTeacherid(HttpServletRequest request, HttpSession session) throws Exception {
         if (!UtilTools.checkLogin(session, 1)) {
             return UtilTools.NO_LOGIN_RETURN_JSON;
         }
         String flagStr = request.getParameter("flag");
         String limitStr = request.getParameter("limit");
         String pageStr = request.getParameter("page");
-        if(!UtilTools.checkNull(new String[]{flagStr, limitStr, pageStr})){
+        if (!UtilTools.checkNull(new String[]{flagStr, limitStr, pageStr})) {
             return UtilTools.IS_NULL_RETURN_JSON;
         }
         Integer teacherid = Integer.valueOf((String) session.getAttribute("userid"));
         Integer flag = Integer.valueOf(flagStr.trim());
         int count = this.finalAuditService.selectCountByTeacherIdAndFlag(teacherid, flag);
         List<FinalAudit> finalAudits = this.finalAuditService.selectFinalAuditByTeacherid(teacherid, flag, Integer.valueOf(pageStr.trim()), Integer.valueOf(limitStr.trim()));
-        return JsonUtil.listToNewLayJson(FIELDS, finalAudits ,count);
+        return JsonUtil.listToNewLayJson(FIELDS, finalAudits, count);
     }
 
     /**
@@ -76,7 +75,7 @@ public class FinalAuditController {
         }
         String pageStr = request.getParameter("page");
         String limitStr = request.getParameter("limit");
-        if(!UtilTools.checkNull(new String[]{pageStr, limitStr})){
+        if (!UtilTools.checkNull(new String[]{pageStr, limitStr})) {
             return UtilTools.IS_NULL_RETURN_JSON;
         }
         Integer content = this.finalAuditService.selectCountByStudentId(Integer.valueOf(session.getAttribute("userid").toString()));
@@ -180,19 +179,20 @@ public class FinalAuditController {
      * 请求方式：POST，
      * 入参：开题报告id：id，
      * 出参：含有响应码和提示信息的json，
-     * @param session HttpSession
-     * @param request HttpServletRequest
+     *
+     * @param session  HttpSession
+     * @param request  HttpServletRequest
      * @param response HttpServletResponse
      * @return 含有响应码和提示信息的json
      */
     @PostMapping(value = "downloadFinalAudit")
     @ResponseBody
-    public  String downloadFinalAudit(HttpSession session, HttpServletRequest request, HttpServletResponse response){
+    public String downloadFinalAudit(HttpSession session, HttpServletRequest request, HttpServletResponse response) {
         if (!UtilTools.checkLogin(session, 2)) {
             return UtilTools.NO_LOGIN_RETURN_JSON;
         }
         String idStr = request.getParameter("id");
-        if(!UtilTools.checkNull(new String[]{idStr})){
+        if (!UtilTools.checkNull(new String[]{idStr})) {
             return UtilTools.IS_NULL_RETURN_JSON;
         }
         Map<String, String> map = this.finalAuditService.downloadFinalAudit(response, Integer.valueOf(idStr.trim()));

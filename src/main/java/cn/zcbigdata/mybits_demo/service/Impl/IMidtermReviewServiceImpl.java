@@ -1,6 +1,5 @@
 package cn.zcbigdata.mybits_demo.service.Impl;
 
-import cn.zcbigdata.mybits_demo.entity.FinalAudit;
 import cn.zcbigdata.mybits_demo.entity.MidtermReview;
 import cn.zcbigdata.mybits_demo.mapper.MidtermReviewMapper;
 import cn.zcbigdata.mybits_demo.service.IMidtermReviewService;
@@ -89,7 +88,7 @@ public class IMidtermReviewServiceImpl implements IMidtermReviewService {
     public Map<String, String> downloadMidterm(HttpServletResponse response, Integer id) {
         List<MidtermReview> midterms = this.selectMidtermById(id);
         MidtermReview midterm = null;
-        for (MidtermReview midterm1: midterms) {
+        for (MidtermReview midterm1 : midterms) {
             midterm = midterm1;
         }
 
@@ -102,30 +101,30 @@ public class IMidtermReviewServiceImpl implements IMidtermReviewService {
         response.setCharacterEncoding("utf-8");
         response.addHeader("Content-disposition", "attachment;fileName=" + URLEncoder.encode(fileName));
         //存放返回值的Map
-        Map<String, String> map= new HashMap<String, String>(2);
+        Map<String, String> map = new HashMap<String, String>(2);
         //声明缓冲流，输出流等
         byte[] buff = new byte[1024];
         BufferedInputStream bis = null;
         OutputStream outputStream = null;
-        try{
+        try {
             //获取response的输出流
             outputStream = response.getOutputStream();
             //设置缓冲流
             bis = new BufferedInputStream(new ByteArrayInputStream(content.getBytes(StandardCharsets.UTF_8)));
             int read = bis.read(buff);
             //循环读取并输出
-            while (read != -1){
+            while (read != -1) {
                 outputStream.write(buff, 0, buff.length);
                 outputStream.flush();
                 read = bis.read(buff);
             }
-            map.put("code","0000");
+            map.put("code", "0000");
             map.put("msg", "下载成功");
-        }catch (Exception e){
+        } catch (Exception e) {
             logger.error(e);
-            map.put("code","9999");
+            map.put("code", "9999");
             map.put("msg", "下载失败");
-        }finally {
+        } finally {
             //关闭流
             if (bis != null) {
                 try {

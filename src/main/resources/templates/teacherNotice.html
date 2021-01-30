@@ -18,7 +18,8 @@
     <div class="layui-form-item">
         <label class="layui-form-label">公告内容</label>
         <div class="layui-input-block">
-            <input autocomplete="off" class="layui-input" id="content" lay-verify="description" name="content" placeholder="公告内容"
+            <input autocomplete="off" class="layui-input" id="content" lay-verify="description" name="content"
+                   placeholder="公告内容"
                    style="width:340px" type="text">
         </div>
     </div>
@@ -44,7 +45,8 @@
     <div class="layui-form-item">
         <label class="layui-form-label">公告内容</label>
         <div class="layui-input-block">
-            <input autocomplete="off" class="layui-input" id="content" lay-verify="content" name="content" placeholder="公告内容"
+            <input autocomplete="off" class="layui-input" id="content" lay-verify="content" name="content"
+                   placeholder="公告内容"
                    style="width:340px" type="text">
         </div>
     </div>
@@ -82,6 +84,7 @@
     layui.use('layer', function () {
         var layer = layui.layer;
         checklogin();
+
         function checklogin() {
             var url = "/teacher/loginCheck";
             $.ajax({
@@ -92,11 +95,11 @@
                 async: false, //success和error代表是否返回成功，既后台给前台传输数据是否成功
                 success: function (res) {
                     if (res.code == "7777") {
-                        layer.alert("请重新登陆",{closeBtn: 0},function () {
+                        layer.alert("请重新登陆", {closeBtn: 0}, function () {
                             parent.location.href = "/";
                             window.location.href = "/";
                         });
-                    }else{
+                    } else {
                         var html = $("#showUserName").html();
                         html += res.data.userName;
                         $("#showUserName").html(html);
@@ -104,7 +107,7 @@
                 },
                 error: function (XMLHttpRequest, textStatus, errorThrown) {
                     alert("请重新登陆");
-                    layer.alert("请重新登陆",{closeBtn: 0},function () {
+                    layer.alert("请重新登陆", {closeBtn: 0}, function () {
                         parent.location.href = "/";
                         window.location.href = "/";
                     });
@@ -148,7 +151,7 @@
                 [
                     {type: 'checkbox', fixed: 'left'}
                     , {field: 'id', width: 60, title: 'ID', sort: true}
-                    , {field: 'content',  title: '公告内容'}
+                    , {field: 'content', title: '公告内容'}
                     , {fixed: 'right', title: '操作', toolbar: '#barDemo', width: 160}
                 ]
             ]

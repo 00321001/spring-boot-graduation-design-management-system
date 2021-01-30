@@ -70,12 +70,18 @@ public class FinalAuditController {
      */
     @RequestMapping(value = "selectFinalAuditByStudentId", method = RequestMethod.GET)
     @ResponseBody
-    public String selectFinalAuditByStudentId(HttpSession session) throws Exception {
+    public String selectFinalAuditByStudentId(HttpSession session, HttpServletRequest request) throws Exception {
         if (!UtilTools.checkLogin(session, 2)) {
             return UtilTools.NO_LOGIN_RETURN_JSON;
         }
-        List<FinalAudit> finalAudits = this.finalAuditService.selectFinalAuditByStudent(Integer.valueOf((String) session.getAttribute("userid")));
-        return JsonUtil.listToLayJson(FIELDS, finalAudits);
+        String pageStr = request.getParameter("page");
+        String limitStr = request.getParameter("limit");
+        if(!UtilTools.checkNull(new String[]{pageStr, limitStr})){
+            return UtilTools.IS_NULL_RETURN_JSON;
+        }
+        Integer content = this.finalAuditService.selectCountByStudentId(Integer.valueOf(session.getAttribute("userid").toString()));
+        List<FinalAudit> finalAudits = this.finalAuditService.selectFinalAuditByStudent(Integer.valueOf((String) session.getAttribute("userid")), Integer.valueOf(pageStr.trim()), Integer.valueOf(limitStr.trim()));
+        return JsonUtil.listToNewLayJson(FIELDS, finalAudits, content);
     }
 
     /**

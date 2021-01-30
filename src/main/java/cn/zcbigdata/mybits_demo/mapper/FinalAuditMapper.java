@@ -35,7 +35,7 @@ public interface FinalAuditMapper {
      * @param id 学生id
      * @return 一个List，存有查询到的FinalAudit对象
      */
-    List<FinalAudit> selectFinalAuditByStudent(Integer id);
+    List<FinalAudit> selectFinalAuditByStudent(Integer id, Integer startIndex, Integer pageSize);
 
     /**
      * 教师审核论文终稿并添加评语
@@ -60,4 +60,11 @@ public interface FinalAuditMapper {
      * @return 受影响行数
      */
     Integer addFinalAudit(FinalAudit finalAudit);
+
+    /**
+     * 根据学生id查询总数Mapper层方法
+     * @param id 学生id
+     * @return 总数
+     */
+    Integer selectCountByStudentId(Integer id);
 }

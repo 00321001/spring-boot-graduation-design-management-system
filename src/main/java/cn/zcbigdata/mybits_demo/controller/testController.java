@@ -7,6 +7,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class testController {
     @GetMapping(value = "test")
     public String test(){
-        return "studentOpeningReport";
+        return "studentFinal";
     }
 }

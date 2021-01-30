@@ -52,8 +52,9 @@ public class IFinalAuditServiceImpl implements IFinalAuditService {
      * @return 一个List，存有查询到的FinalAudit对象
      */
     @Override
-    public List<FinalAudit> selectFinalAuditByStudent(Integer id) {
-        return this.finalAuditMapper.selectFinalAuditByStudent(id);
+    public List<FinalAudit> selectFinalAuditByStudent(Integer id, Integer page, Integer limit) {
+        Integer startIndex = (page - 1) * limit;
+        return this.finalAuditMapper.selectFinalAuditByStudent(id, startIndex, limit);
     }
 
     /**
@@ -90,7 +91,7 @@ public class IFinalAuditServiceImpl implements IFinalAuditService {
      */
     @Override
     public Integer addFinalAudit(FinalAudit finalAudit) {
-        List<FinalAudit> finalAudits = this.finalAuditMapper.selectFinalAuditByStudent(finalAudit.getStudentid());
+        List<FinalAudit> finalAudits = this.finalAuditMapper.selectFinalAuditByStudent(finalAudit.getStudentid(), 0, 10000);
 
         for (FinalAudit finalAudit1 : finalAudits) {
             if (finalAudit1.getFlag().equals(1) || finalAudit1.getFlag().equals(0)) {
@@ -173,5 +174,16 @@ public class IFinalAuditServiceImpl implements IFinalAuditService {
             }
         }
         return map;
+    }
+
+    /**
+     * 根据学生id查询总数Service层方法
+     *
+     * @param id 学生id
+     * @return 总数
+     */
+    @Override
+    public Integer selectCountByStudentId(Integer id) {
+        return this.finalAuditMapper.selectCountByStudentId(id);
     }
 }

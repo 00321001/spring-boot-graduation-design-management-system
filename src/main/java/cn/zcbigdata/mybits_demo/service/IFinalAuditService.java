@@ -28,7 +28,7 @@ public interface IFinalAuditService {
      * @param id 学生id
      * @return 一个List，存有查询到的FinalAudit对象
      */
-    List<FinalAudit> selectFinalAuditByStudent(Integer id);
+    List<FinalAudit> selectFinalAuditByStudent(Integer id, Integer page, Integer limit);
 
     /**
      * 教师审核论文终稿并添加评语的Service层方法
@@ -70,4 +70,11 @@ public interface IFinalAuditService {
      * @return 存有状态码和提示信息的集合
      */
     Map<String, String> downloadFinalAudit(HttpServletResponse response, Integer id);
+
+    /**
+     * 根据学生id查询总数Service层方法
+     * @param id 学生id
+     * @return 总数
+     */
+    Integer selectCountByStudentId(Integer id);
 }

@@ -28,7 +28,7 @@ public interface IMidtermReviewService {
     int deleteMidterm(int id);
 
     /**
-     * 下载开题报告的service层方法
+     * 下载中期论文的service层方法
      *
      * @param response HttpServletResponse
      * @param id       开题报告id

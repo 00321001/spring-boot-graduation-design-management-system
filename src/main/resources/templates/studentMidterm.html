@@ -42,6 +42,10 @@
     </div>
 </script>
 
+<script id="barDemo" type="text/html">
+    <a class="layui-btn layui-btn-xs" lay-event="download">下载</a>
+</script>
+
 <script charset="utf-8" src="../static/layui/layui.js"></script>
 <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
 
@@ -117,7 +121,15 @@
                     {type: 'checkbox', fixed: 'left'}
                     , {field: 'id', width: 60, title: 'ID', sort: true}
                     , {field: 'content', title: '中期论文'}
-                    , {field: 'comments', title: '评语'}
+                    , {
+                    field: 'comments', title: '评语', templet: function (d) {
+                        if (d.comments == '') {
+                            return '暂无评语'
+                        } else {
+                            return d.comments
+                        }
+                    }
+                }
                     , {
                     field: 'flag', title: '中期论文状态', width: 120, templet: function (d) {
                         if (d.flag == 0) {
@@ -130,6 +142,7 @@
                     }
                 }
                     , {field: 'teacherid', title: '教师id', width: 80}
+                    , {fixed: 'right', title: '操作', toolbar: '#barDemo', width: 80}
                 ]
             ]
             , page: true
@@ -239,6 +252,26 @@
                     break;
             }
 
+        });
+
+        //监听行工具事件
+        table.on('tool(test)', function (obj) {
+            var data = obj.data;
+            //console.log(obj)
+            if (obj.event === 'download') {
+                var form = $("<form>");    // 定义一个form表单
+                form.attr("style", "display:none");
+                form.attr("target", "_blank");
+                form.attr("method", "post");
+                form.attr("action", "/midterm/downloadMidterm");    // 此处填写文件下载提交路径
+                var input1 = $("<input>");
+                input1.attr("type", "hidden");
+                input1.attr("name", "id");    // 后台接收参数名
+                input1.attr("value", data.id);
+                $("body").append(form);    // 将表单放置在web中
+                form.append(input1);
+                form.submit();    // 表单提交
+            }
         });
     });
 </script>

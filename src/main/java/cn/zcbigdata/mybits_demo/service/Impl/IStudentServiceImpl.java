@@ -178,7 +178,7 @@ public class IStudentServiceImpl implements IStudentService {
      * @return 查询到的Student对象
      */
     @Override
-    public Student selectStudentById(Integer studentid) {
+    public List<Student> selectStudentById(Integer studentid) {
         return this.studentMapper.selectStudentById(studentid);
     }
 

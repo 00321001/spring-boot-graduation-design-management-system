@@ -63,6 +63,39 @@ public class IndexController {
     }
 
     /**
+     * 跳转教师端接口，无需入参
+     *
+     * @param request HttpServletRequest
+     * @return 返回状态码和提示信息
+     */
+    @RequestMapping(value = "/student", method = RequestMethod.GET)
+    public String student(HttpServletRequest request) {
+        return "back3";
+    }
+
+    /**
+     * 跳转学生端个人信息管理页面接口，无需入参
+     *
+     * @param request HttpServletRequest
+     * @return 返回状态码和提示信息
+     */
+    @RequestMapping(value = "/GoMyself", method = RequestMethod.GET)
+    public String GoMyself(HttpServletRequest request) {
+        return "myselfManage";
+    }
+
+    /**
+     * 跳转学生端公告信息管理页面接口，无需入参
+     *
+     * @param request HttpServletRequest
+     * @return 返回状态码和提示信息
+     */
+    @RequestMapping(value = "/GoStudentNotice", method = RequestMethod.GET)
+    public String GoStudentNotice(HttpServletRequest request) {
+        return "studentNotice";
+    }
+
+    /**
      * 跳转管理员教师信息管理页面接口，无需入参
      *
      * @param request HttpServletRequest

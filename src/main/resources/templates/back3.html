@@ -11,7 +11,7 @@
 <body class="layui-layout-body">
 <div class="layui-layout layui-layout-admin">
     <div class="layui-header">
-        <div class="layui-logo">毕设管理系统-管理员端</div>
+        <div class="layui-logo">毕设管理系统-学生端</div>
         <!-- 头部区域（可配合layui已有的水平导航） -->
         <ul class="layui-nav layui-layout-left">
             <li class="layui-nav-item"><a href="">控制台</a></li>
@@ -30,7 +30,6 @@
             <li class="layui-nav-item">
                 <a href="javascript:" id="showUserName">
                     <img class="layui-nav-img" src="http://t.cn/RCzsdCq">
-
                 </a>
                 <dl class="layui-nav-child">
                     <dd><a href="">基本资料</a></dd>
@@ -48,10 +47,27 @@
                 <li class="layui-nav-item layui-nav-itemed">
                     <a class="" href="javascript:">信息管理</a>
                     <dl class="layui-nav-child">
-                        <dd><a class="site-demo-active" data-id="1" data-title="教师信息管理" data-type="tabAdd"
-                               data-url="GoTeacher" href="javascript:">教师信息管理</a></dd>
+                        <dd><a class="site-demo-active" data-id="1" data-title="个人信息管理" data-type="tabAdd"
+                               data-url="GoMyself" href="javascript:">个人信息管理</a></dd>
                         <dd><a class="site-demo-active" data-id="2" data-title="公告信息管理" data-type="tabAdd"
-                               data-url="GoAdminNotice" href="javascript:">公告信息管理</a></dd>
+                               data-url="GoStudentNotice" href="javascript:">公告信息管理</a></dd>
+                    </dl>
+                </li>
+            </ul>
+            <ul class="layui-nav layui-nav-tree" lay-filter="test">
+                <li class="layui-nav-item layui-nav-itemed">
+                    <a class="" href="javascript:">毕设管理</a>
+                    <dl class="layui-nav-child">
+                        <dd><a class="site-demo-active" data-id="11" data-title="可选毕设题目" data-type="tabAdd"
+                               data-url="GoTeacherTitle?flag=0" href="javascript:">可选毕设题目</a></dd>
+                        <dd><a class="site-demo-active" data-id="12" data-title="个人毕设题目" data-type="tabAdd"
+                               data-url="GoTeacherTitle?flag=1" href="javascript:">毕设题目管理</a></dd>
+                        <dd><a class="site-demo-active" data-id="22" data-title="开题报告管理" data-type="tabAdd"
+                               data-url="GoTeacherOpening?flag=1" href="javascript:">开题报告管理</a></dd>
+                        <dd><a class="site-demo-active" data-id="32" data-title="中期论文管理" data-type="tabAdd"
+                               data-url="GoTeacherMidterm?flag=1" href="javascript:">中期论文管理</a></dd>
+                        <dd><a class="site-demo-active" data-id="42" data-title="论文终稿管理" data-type="tabAdd"
+                               data-url="GoTeacherFinal?flag=1" href="javascript:">论文终稿管理</a></dd>
                     </dl>
                 </li>
             </ul>
@@ -82,8 +98,6 @@
 <script src="../static/layui/layui.js"></script>
 <script>
 
-
-
     function logout() {
         var url = "http://localhost:8080/logout";
         $.ajax({
@@ -105,12 +119,12 @@
     //layui模块的使用
     layui.use(['element','layer'], function () {
         var $ = layui.jquery;    //  var $=layui.jquery;
-        var element = layui.element; //Tab的切换功能，切换事件监听等，需要依赖element模块
         var layer = layui.layer;
+        var element = layui.element; //Tab的切换功能，切换事件监听等，需要依赖element模块
 
         checklogin();
         function checklogin() {
-            var url = "/admin/loginCheck";
+            var url = "/student/loginCheck";
             $.ajax({
                 type: "get", //指定提交的类型 get对应 doGet()方法，post--->doPost()犯法
                 url: url, //传输地址的URL

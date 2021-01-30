@@ -7,10 +7,7 @@ import cn.zcbigdata.mybits_demo.utils.UtilTools;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
@@ -257,6 +254,29 @@ public class StudentController {
         if (flag == 1) {
             return UtilTools.SUCCESS_RETURN_JSON;
         } else {
+            return UtilTools.FAIL_RETURN_JSON;
+        }
+    }
+
+    /**
+     * 学生登录检查接口
+     * 请求方式：GET
+     * 入参：无入参
+     * 出参：包含学生id，教师id，昵称和状态码、提示信息的json
+     * @param session HttpSession
+     * @return 包含学生id，教师id，昵称和状态码、提示信息的json
+     */
+    @GetMapping(value = "loginCheck")
+    @ResponseBody
+    public String loginCheck(HttpSession session) {
+        if (!UtilTools.checkLogin(session, 2)) {
+            return UtilTools.NO_LOGIN_RETURN_JSON;
+        }
+        Student student = this.studentService.selectStudentById(Integer.valueOf(session.getAttribute("userid").toString()));
+        try {
+            return JsonUtil.objectToJson(new String[]{"id", "teacherid", "nickName"}, student);
+        }catch (Exception e){
+            logger.error(e);
             return UtilTools.FAIL_RETURN_JSON;
         }
     }

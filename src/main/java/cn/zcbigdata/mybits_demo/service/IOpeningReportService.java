@@ -25,10 +25,12 @@ public interface IOpeningReportService {
     /**
      * 根据学生id获取开题报告的Service层方法
      *
+     * @param page  当前页码
+     * @param limit 每页大小
      * @param id 学生id
      * @return 一个List，存有查询到的OpeningReport对象
      */
-    List<OpeningReport> selectOpeningReportByStudent(Integer id);
+    List<OpeningReport> selectOpeningReportByStudent(Integer id, Integer page, Integer limit);
 
     /**
      * 教师审核开题报告并添加评语的Service层方法
@@ -70,4 +72,11 @@ public interface IOpeningReportService {
      * @return 存有状态码和提示信息的集合
      */
     Map<String, String> downloadOpenReport(HttpServletResponse response, Integer id);
+
+    /**
+     * 根据学生id获取开题报告总数的Service层方法
+     * @param id 学生id
+     * @return 总数
+     */
+    Integer selectCountByStudentid(Integer id);
 }

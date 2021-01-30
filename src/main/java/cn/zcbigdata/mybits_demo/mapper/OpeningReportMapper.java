@@ -24,9 +24,11 @@ public interface OpeningReportMapper {
      * 根据学生id获取开题报告的Mapper层方法
      *
      * @param id 学生id
+     * @param startIndex 开始位置
+     * @param pageSize   每页大小
      * @return 一个List，存有查询到的OpeningReport对象
      */
-    List<OpeningReport> selectOpeningReportByStudent(Integer id);
+    List<OpeningReport> selectOpeningReportByStudent(Integer id, Integer startIndex, Integer pageSize);
 
     /**
      * 教师审核开题报告并添加评语
@@ -60,4 +62,11 @@ public interface OpeningReportMapper {
      * @return 数量
      */
     Integer selectCountByTeacherIdAndFlag(Integer teacherid, Integer flag);
+
+    /**
+     * 根据学生id获取开题报告总数的Mapper层方法
+     * @param id 学生id
+     * @return 总数
+     */
+    Integer selectCountByStudentid(Integer id);
 }

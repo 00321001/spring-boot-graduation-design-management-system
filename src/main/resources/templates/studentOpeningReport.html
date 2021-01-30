@@ -42,7 +42,7 @@
     </div>
 
     <div class="layui-form-item layui-form-text">
-        <label class="layui-form-label">评分（评语）</label>
+        <label class="layui-form-label">开题报告内容</label>
         <div class="layui-input-block">
             <textarea placeholder="请输入内容" class="layui-textarea" lay-verify="required" name="content"></textarea>
         </div>
@@ -112,7 +112,7 @@
                     {type: 'checkbox', fixed: 'left'}
                     , {field: 'id', title: 'ID', width: 80, fixed: 'left', unresize: true, sort: true}
                     , {field: 'content', title: '内容'}
-                    , {field: 'comments', title: '评语', templet: function(d){if(d.comments == ''){return '暂无评语'}}}
+                    , {field: 'comments', title: '评语', templet: function(d){if(d.comments == ''){return '暂无评语'}else{return d.comments}}}
                     , {field: 'studentid', title: '学生id'}
                     , {field: 'teacherid', title: '教师id', hide: true}
                     , {field: 'flag', title: '审核状态' ,templet: function(d){if(d.flag == 0){return '待审核'}else if(d.flag == 1){return '已通过'} else{return '未通过'}}}
@@ -152,8 +152,8 @@
                             layer.close(formLayerId);
                         }
                     });
+                    break;
                 }
-
                 //自定义头工具栏右侧图标 - 提示
                 case 'LAYTABLE_TIPS':
                     layer.alert('这是工具栏右侧自定义的一个图标按钮');
@@ -166,7 +166,18 @@
             var data = obj.data;
             //console.log(obj)
             if (obj.event === 'download') {
-
+                var form=$("<form>");    // 定义一个form表单
+                form.attr("style","display:none");
+                form.attr("target","_blank");
+                form.attr("method","post");
+                form.attr("action","/openingReport/downloadOpenReport");    // 此处填写文件下载提交路径
+                var input1=$("<input>");
+                input1.attr("type","hidden");
+                input1.attr("name","id");    // 后台接收参数名
+                input1.attr("value",data.id);
+                $("body").append(form);    // 将表单放置在web中
+                form.append(input1);
+                form.submit();    // 表单提交
             }
         });
         //修改表单提交事件
@@ -201,7 +212,6 @@
                 }
             });
         });
-
     });
 </script>
 

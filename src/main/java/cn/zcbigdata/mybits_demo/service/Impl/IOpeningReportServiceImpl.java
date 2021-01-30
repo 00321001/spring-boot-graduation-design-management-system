@@ -46,8 +46,9 @@ public class IOpeningReportServiceImpl implements IOpeningReportService {
      * @return 一个List，存有查询到的OpeningReport对象
      */
     @Override
-    public List<OpeningReport> selectOpeningReportByStudent(Integer id) {
-        return this.openingReportMapper.selectOpeningReportByStudent(id);
+    public List<OpeningReport> selectOpeningReportByStudent(Integer id, Integer page, Integer limit) {
+        Integer startIndex = (page - 1) * limit;
+        return this.openingReportMapper.selectOpeningReportByStudent(id, startIndex, limit);
     }
 
     /**
@@ -84,7 +85,7 @@ public class IOpeningReportServiceImpl implements IOpeningReportService {
      */
     @Override
     public Integer addOpeningReport(OpeningReport openingReport) {
-        List<OpeningReport> openingReports = this.openingReportMapper.selectOpeningReportByStudent(openingReport.getStudentid());
+        List<OpeningReport> openingReports = this.openingReportMapper.selectOpeningReportByStudent(openingReport.getStudentid(), 0, 10000);
         for (OpeningReport openingReport1 : openingReports) {
             if (openingReport1.getFlag().equals(1) || openingReport1.getFlag().equals(0)) {
                 return 0;
@@ -157,5 +158,16 @@ public class IOpeningReportServiceImpl implements IOpeningReportService {
         }
 
         return map;
+    }
+
+    /**
+     * 根据学生id获取开题报告总数的Service层方法
+     *
+     * @param id 学生id
+     * @return 总数
+     */
+    @Override
+    public Integer selectCountByStudentid(Integer id) {
+        return this.openingReportMapper.selectCountByStudentid(id);
     }
 }

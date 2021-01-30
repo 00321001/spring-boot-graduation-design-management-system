@@ -67,12 +67,18 @@ public class OpeningReportController {
      */
     @RequestMapping(value = "selectOpeningReportByStudentId", method = RequestMethod.GET)
     @ResponseBody
-    public String selectOpeningReportByStudentId(HttpSession session) throws Exception {
+    public String selectOpeningReportByStudentId(HttpSession session, HttpServletRequest request) throws Exception {
         if (!UtilTools.checkLogin(session, 2)) {
             return UtilTools.NO_LOGIN_RETURN_JSON;
         }
-        List<OpeningReport> openingReports = this.openingReportService.selectOpeningReportByStudent(Integer.valueOf((String) session.getAttribute("userid")));
-        return JsonUtil.listToLayJson(FIELDS, openingReports);
+        String pageStr = request.getParameter("page");
+        String limitStr = request.getParameter("limit");
+        if(!UtilTools.checkNull(new String[]{pageStr, limitStr})){
+            return UtilTools.IS_NULL_RETURN_JSON;
+        }
+        List<OpeningReport> openingReports = this.openingReportService.selectOpeningReportByStudent(Integer.valueOf((String) session.getAttribute("userid")), Integer.valueOf(pageStr.trim()), Integer.valueOf(limitStr.trim()));
+        Integer count = this.openingReportService.selectCountByStudentid(Integer.valueOf(session.getAttribute("userid").toString()));
+        return JsonUtil.listToNewLayJson(FIELDS, openingReports, count);
     }
 
     /**

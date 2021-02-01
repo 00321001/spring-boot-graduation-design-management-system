@@ -25,7 +25,7 @@ function checkCookie() {
     var user = getCookie("account");
     if (user != "") {
         //跳转页面
-        window.location.href = "http://localhost:8080/index1";
+        window.location.href = "/index1";
         alert("欢迎 " + user + " 再次访问");
         return false;
     }

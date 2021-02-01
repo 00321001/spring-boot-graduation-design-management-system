@@ -88,7 +88,7 @@
 
         function page() {
             $.ajax({
-                url: 'http://localhost:8080/title/selectTitleCountByStuId',
+                url: '/title/selectTitleCountByStuId',
                 dataType: 'json',
                 type: 'get',
                 async: false,
@@ -104,7 +104,7 @@
 
         table.render({
             elem: '#test'
-            , url: 'http://localhost:8080/title/selectTitleByStudentId'
+            , url: '/title/selectTitleByStudentId'
             , toolbar: '#toolbarDemo' //开启头部工具栏，并为其绑定左侧模板
             , defaultToolbar: ['filter', 'exports', 'print', { //自定义头部工具栏右侧图标。如无需自定义，去除该参数即可
                 title: '提示'
@@ -156,7 +156,7 @@
             form.on('submit(demo2)', function (data) {
                 console.log(JSON.stringify(data.field));
                 $.ajax({
-                    url: 'http://localhost:8080/title/addStuTitle?teacherid=' + teacherid,
+                    url: '/title/addStuTitle?teacherid=' + teacherid,
                     method: 'GET',
                     data: data.field,
                     dataType: 'JSON',
@@ -169,7 +169,7 @@
                                 form.render();
                                 //刷新页面
                                 table.reload('test', {
-                                    url: 'http://localhost:8080/title/selectTitleByStudentId'
+                                    url: '/title/selectTitleByStudentId'
                                 });
                                 page();
                             } else if (res.code == "7777") {

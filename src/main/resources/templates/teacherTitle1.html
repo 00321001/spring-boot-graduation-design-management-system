@@ -75,7 +75,7 @@
 
         function page() {
             $.ajax({
-                url: 'http://localhost:8080/title/selectTitleCountByTeacherId?flag=1',
+                url: '/title/selectTitleCountByTeacherId?flag=1',
                 dataType: 'json',
                 type: 'get',
                 async: false,
@@ -91,7 +91,7 @@
 
         table.render({
             elem: '#test'
-            , url: 'http://localhost:8080/title/selectTitleByTeacherId?flag=1'
+            , url: '/title/selectTitleByTeacherId?flag=1'
             , toolbar: '#toolbarDemo' //开启头部工具栏，并为其绑定左侧模板
             , defaultToolbar: ['filter', 'exports', 'print', { //自定义头部工具栏右侧图标。如无需自定义，去除该参数即可
                 title: '提示'
@@ -171,7 +171,7 @@
             var data = {
                 id
             };
-            var url = "http://localhost:8080/title/deleteTitle";
+            var url = "/title/deleteTitle";
             $.ajax({
                 type: "get", //指定提交的类型 get对应 doGet()方法，post--->doPost()犯法
                 url: url,    //传输地址的URL
@@ -185,7 +185,7 @@
                         layer.msg("删除成功");
                         //刷新页面
                         table.reload('test', {
-                            url: 'http://localhost:8080/title/selectTitleByTeacherId?flag=1'
+                            url: '/title/selectTitleByTeacherId?flag=1'
                         });
                     } else {
                         layer.msg("删除失败");

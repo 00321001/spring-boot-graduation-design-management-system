@@ -55,3 +55,34 @@
 [INFO] [2021-01-30 11:54:05][cn.zcbigdata.mybits_demo.controller.TeacherController]userName：t2-----password：888888
 [INFO] [2021-01-30 11:54:22][cn.zcbigdata.mybits_demo.controller.StudentController]userName：zzy-----password：123123
 [INFO] [2021-01-30 12:06:52][cn.zcbigdata.mybits_demo.controller.StudentController]userName：zzy-----password：123123
+[INFO] [2021-01-30 14:43:57][cn.zcbigdata.mybits_demo.controller.StudentController]userName：t2-----password：888888
+[INFO] [2021-01-30 14:43:59][cn.zcbigdata.mybits_demo.controller.TeacherController]userName：t2-----password：888888
+[INFO] [2021-01-30 14:46:05][cn.zcbigdata.mybits_demo.controller.StudentController]上传的文件是：批量添加学生测试用xml.xml
+[INFO] [2021-01-30 14:46:05][cn.zcbigdata.mybits_demo.service.Impl.IStudentServiceImpl]文件重命名为：c5d19ded87e24502bb534175604df046.xml
+[INFO] [2021-01-30 14:46:05][cn.zcbigdata.mybits_demo.service.Impl.IStudentServiceImpl]操作成功
+[INFO] [2021-01-30 14:46:05][cn.zcbigdata.mybits_demo.controller.StudentController]操作成功
+[INFO] [2021-01-30 14:54:57][cn.zcbigdata.mybits_demo.controller.StudentController]上传的文件是：批量添加学生测试用xml.xml
+[INFO] [2021-01-30 14:54:57][cn.zcbigdata.mybits_demo.service.Impl.IStudentServiceImpl]文件重命名为：3e6dab017e694efc8a9147cf0fee2a2b.xml
+[INFO] [2021-01-30 14:54:58][cn.zcbigdata.mybits_demo.service.Impl.IStudentServiceImpl]插入数据库出现问题，可能是因为用户名冲突，出错位置为第6条数据，userName = 500006，已回滚操作
+[ERROR] [2021-01-30 14:54:58][cn.zcbigdata.mybits_demo.service.Impl.IStudentServiceImpl]org.springframework.dao.DuplicateKeyException: 
+### Error updating database.  Cause: java.sql.SQLIntegrityConstraintViolationException: Duplicate entry '500006' for key 'userName'
+### The error may exist in file [D:\vm\spring-boot-graduation-design-management-system\target\classes\mapping\StudentMapping.xml]
+### The error may involve cn.zcbigdata.mybits_demo.mapper.StudentMapper.teacherAddStudent-Inline
+### The error occurred while setting parameters
+### SQL: INSERT INTO student(userName, teacherid, nickName)         VALUES (?, ?, ?);
+### Cause: java.sql.SQLIntegrityConstraintViolationException: Duplicate entry '500006' for key 'userName'
+; Duplicate entry '500006' for key 'userName'; nested exception is java.sql.SQLIntegrityConstraintViolationException: Duplicate entry '500006' for key 'userName'
+[INFO] [2021-01-30 14:54:58][cn.zcbigdata.mybits_demo.controller.StudentController]插入数据库出现问题，可能是因为用户名冲突，出错位置为第6条数据，userName = 500006，已回滚操作
+[INFO] [2021-01-30 14:56:01][cn.zcbigdata.mybits_demo.controller.StudentController]userName：400002-----password：888888
+[INFO] [2021-01-30 14:56:55][cn.zcbigdata.mybits_demo.controller.StudentController]userName：400002-----password：888888
+[INFO] [2021-01-30 14:57:54][cn.zcbigdata.mybits_demo.controller.TeacherController]userName：t2-----password：888888
+[INFO] [2021-01-30 14:58:37][cn.zcbigdata.mybits_demo.controller.StudentController]userName：4000001-----password：888888
+[INFO] [2021-01-30 14:58:40][cn.zcbigdata.mybits_demo.controller.StudentController]userName：400001-----password：888888
+[INFO] [2021-01-30 14:58:43][cn.zcbigdata.mybits_demo.controller.StudentController]userName：400002-----password：888888
+[INFO] [2021-01-30 15:53:06][cn.zcbigdata.mybits_demo.controller.AdminController]userName：admin-----password：admin
+[INFO] [2021-02-01 10:48:21][cn.zcbigdata.mybits_demo.controller.AdminController]userName：admin-----password：admin
+[INFO] [2021-02-01 10:48:43][cn.zcbigdata.mybits_demo.controller.TeacherController]userName：t1-----password：888888
+[INFO] [2021-02-01 11:47:49][cn.zcbigdata.mybits_demo.controller.StudentController]userName：400002-----password：888888
+[INFO] [2021-02-01 11:48:09][cn.zcbigdata.mybits_demo.controller.StudentController]userName：400002-----password：888888
+[INFO] [2021-02-01 11:48:29][cn.zcbigdata.mybits_demo.controller.StudentController]userName：400002-----password：888888
+[INFO] [2021-02-01 11:49:49][cn.zcbigdata.mybits_demo.controller.TeacherController]userName：t2-----password：888888

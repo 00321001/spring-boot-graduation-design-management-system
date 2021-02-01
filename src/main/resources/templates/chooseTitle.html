@@ -79,7 +79,7 @@
 
         function page() {
             $.ajax({
-                url: 'http://localhost:8080/title/selectTitleCountByTeacherId?teacherid=' + teacherid,
+                url: '/title/selectTitleCountByTeacherId?teacherid=' + teacherid,
                 dataType: 'json',
                 type: 'get',
                 async: false,
@@ -94,7 +94,7 @@
         table.render({
 
             elem: '#test'
-            , url: 'http://localhost:8080/title/selectTitleByTeacherId?teacherid=' + teacherid
+            , url: '/title/selectTitleByTeacherId?teacherid=' + teacherid
             , toolbar: '#toolbarDemo' //开启头部工具栏，并为其绑定左侧模板
             , defaultToolbar: ['filter', 'exports', 'print', { //自定义头部工具栏右侧图标。如无需自定义，去除该参数即可
                 title: '提示'
@@ -175,7 +175,7 @@
             var data = {
                 id
             };
-            var url = "http://localhost:8080/title/chooseTitle";
+            var url = "/title/chooseTitle";
             $.ajax({
                 type: "get", //指定提交的类型 get对应 doGet()方法，post--->doPost()犯法
                 url: url,    //传输地址的URL
@@ -189,7 +189,7 @@
                         layer.msg("选择成功");
                         //刷新页面
                         table.reload('test', {
-                            url: 'http://localhost:8080/title/selectTitleByTeacherId?teacherid=' + teacherid
+                            url: '/title/selectTitleByTeacherId?teacherid=' + teacherid
                         });
                     } else {
                         layer.msg("您已选择题目或您发布的自拟题目待审核");

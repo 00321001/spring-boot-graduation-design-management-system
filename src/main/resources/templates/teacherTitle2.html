@@ -76,7 +76,7 @@
 
         function page() {
             $.ajax({
-                url: 'http://localhost:8080/title/selectTitleCountByTeacherId?flag=2',
+                url: '/title/selectTitleCountByTeacherId?flag=2',
                 dataType: 'json',
                 type: 'get',
                 async: false,
@@ -92,7 +92,7 @@
 
         table.render({
             elem: '#test'
-            , url: 'http://localhost:8080/title/selectTitleByTeacherId?flag=2'
+            , url: '/title/selectTitleByTeacherId?flag=2'
             , toolbar: '#toolbarDemo' //开启头部工具栏，并为其绑定左侧模板
             , defaultToolbar: ['filter', 'exports', 'print', { //自定义头部工具栏右侧图标。如无需自定义，去除该参数即可
                 title: '提示'
@@ -178,7 +178,7 @@
             var data = {
                 id
             };
-            var url = "http://localhost:8080/title/checkStuTitleYes";
+            var url = "/title/checkStuTitleYes";
             $.ajax({
                 type: "get", //指定提交的类型 get对应 doGet()方法，post--->doPost()犯法
                 url: url,    //传输地址的URL
@@ -192,7 +192,7 @@
                         layer.msg("已确认通过");
                         //刷新页面
                         table.reload('test', {
-                            url: 'http://localhost:8080/title/selectTitleByTeacherId?flag=2'
+                            url: '/title/selectTitleByTeacherId?flag=2'
                         });
                     } else {
                         layer.msg("通过失败");
@@ -209,7 +209,7 @@
             var data = {
                 id
             };
-            var url = "http://localhost:8080/title/checkStuTitleNo";
+            var url = "/title/checkStuTitleNo";
             $.ajax({
                 type: "get", //指定提交的类型 get对应 doGet()方法，post--->doPost()犯法
                 url: url,    //传输地址的URL
@@ -223,7 +223,7 @@
                         layer.msg("已确认不通过");
                         //刷新页面
                         table.reload('test', {
-                            url: 'http://localhost:8080/title/selectTitleByTeacherId?flag=2'
+                            url: '/title/selectTitleByTeacherId?flag=2'
                         });
                     } else {
                         layer.msg("不通过失败");

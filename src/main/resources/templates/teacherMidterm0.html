@@ -105,7 +105,7 @@
 
         function page() {
             $.ajax({
-                url: 'http://localhost:8080/midterm/selectMidtermCountByTeacherId?flag=0',
+                url: '/midterm/selectMidtermCountByTeacherId?flag=0',
                 dataType: 'json',
                 type: 'get',
                 async: false,
@@ -121,7 +121,7 @@
 
         table.render({
             elem: '#test'
-            , url: 'http://localhost:8080/midterm/selectMidtermByTeacherId?flag=0'
+            , url: '/midterm/selectMidtermByTeacherId?flag=0'
             , toolbar: '#toolbarDemo' //开启头部工具栏，并为其绑定左侧模板
             , defaultToolbar: ['filter', 'exports', 'print', { //自定义头部工具栏右侧图标。如无需自定义，去除该参数即可
                 title: '提示'
@@ -164,7 +164,7 @@
             form.on('submit(demo3)', function (data) {
                 console.log(JSON.stringify(data.field));
                 $.ajax({
-                    url: 'http://localhost:8080/midterm/addComments',
+                    url: '/midterm/addComments',
                     method: 'get',
                     data: data.field,
                     dataType: 'JSON',
@@ -177,7 +177,7 @@
                                 form.render();
                                 //刷新页面
                                 table.reload('test', {
-                                    url: 'http://localhost:8080/midterm/selectMidtermByTeacherId?flag=0'
+                                    url: '/midterm/selectMidtermByTeacherId?flag=0'
                                 });
                                 page();
                             } else if (res.code == "7777") {
@@ -275,7 +275,7 @@
             var data = {
                 id
             };
-            var url = "http://localhost:8080/midterm/checkMidtermYes";
+            var url = "/midterm/checkMidtermYes";
             $.ajax({
                 type: "get", //指定提交的类型 get对应 doGet()方法，post--->doPost()犯法
                 url: url,    //传输地址的URL
@@ -289,7 +289,7 @@
                         layer.msg("通过成功");
                         //刷新页面
                         table.reload('test', {
-                            url: 'http://localhost:8080/midterm/selectMidtermByTeacherId?flag=0'
+                            url: '/midterm/selectMidtermByTeacherId?flag=0'
                         });
                     } else {
                         layer.msg("通过失败");
@@ -306,7 +306,7 @@
             var data = {
                 id
             };
-            var url = "http://localhost:8080/midterm/checkMidtermNo";
+            var url = "/midterm/checkMidtermNo";
             $.ajax({
                 type: "get", //指定提交的类型 get对应 doGet()方法，post--->doPost()犯法
                 url: url,    //传输地址的URL
@@ -320,7 +320,7 @@
                         layer.msg("不通过成功");
                         //刷新页面
                         table.reload('test', {
-                            url: 'http://localhost:8080/midterm/selectMidtermByTeacherId?flag=0'
+                            url: '/midterm/selectMidtermByTeacherId?flag=0'
                         });
                     } else {
                         layer.msg("不通过失败");
